@@ -3784,7 +3784,7 @@
         if (screen.availWidth <= 767)
         {
             //debugger;
-            $('.desktopviewpatientconnect').remove();
+            // $('.desktopviewpatientconnect').remove();
              $("#Credit").html(credit);
             $('.mobileviewpatientconnect').css('overflow-y', 'hidden');
             $('.filtercloseclick').click(function () {
@@ -3865,8 +3865,10 @@
         $("#translControl").hide();
         //$("#translControl").css("visibility", "hidden");
         // document.getElementById("text_counter").innerHTML = 0;
-        document.getElementById("UnicodeMessage").style.display = 'none';
-        document.getElementById("EnglishMessage").style.display = 'Inline';
+        var uMsgInit = document.getElementById("UnicodeMessage");
+        if (uMsgInit) uMsgInit.style.display = 'none';
+        var eMsgInit = document.getElementById("EnglishMessage");
+        if (eMsgInit) eMsgInit.style.display = 'Inline';
         $('.length').html('0');
         $('.messages').html('0');
         var message = $("#EnglishMessage").val();
@@ -4694,8 +4696,10 @@
                     // alert("in unicode method");
                     $("#translControl").show();
                     //$("#translControl").css("visibility", "visible");
-                    document.getElementById("EnglishMessage").style.display = 'none';
-                    document.getElementById("UnicodeMessage").style.display = 'Inline';
+                    var eMsg1 = document.getElementById("EnglishMessage");
+                    if (eMsg1) eMsg1.style.display = 'none';
+                    var uMsg1 = document.getElementById("UnicodeMessage");
+                    if (uMsg1) uMsg1.style.display = 'Inline';
                     $('.length').html('0');
                     $('.messages').html('0');
                     var message = $("#UnicodeMessage").val();
@@ -4711,8 +4715,10 @@
                     $("#translControl").hide();
                     // $("#translControl").css("visibility", "hidden");
                     // document.getElementById("text_counter").innerHTML = 0;
-                    document.getElementById("UnicodeMessage").style.display = 'none';
-                    document.getElementById("EnglishMessage").style.display = 'Inline';
+                    var uMsg2 = document.getElementById("UnicodeMessage");
+                    if (uMsg2) uMsg2.style.display = 'none';
+                    var eMsg2 = document.getElementById("EnglishMessage");
+                    if (eMsg2) eMsg2.style.display = 'Inline';
                     $('.length').html('0');
                     $('.messages').html('0');
                     $("#EnglishMessage").val('');

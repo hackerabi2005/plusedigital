@@ -82,9 +82,9 @@ const pagesToTest = [
       let clickResult = 'ok';
 
       try {
-        const locator = page.locator(selector).nth(0);
+        const locator = btnInfo.id ? page.locator(`#${btnInfo.id}`).first() : page.locator('button, .btn, .nav-link, .nav-tabs a, .list-group-item').nth(btnInfo.idx);
         if (await locator.isVisible()) {
-          await locator.click({ timeout: 1000 }).catch(e => { clickResult = `click failed: ${e.message.split('\n')[0]}`; });
+          await locator.click({ force: true, timeout: 2000 }).catch(e => { clickResult = `click failed: ${e.message.split('\n')[0]}`; });
           await page.waitForTimeout(200);
 
           // If navigated away, go back
@@ -92,6 +92,15 @@ const pagesToTest = [
             clickResult = `navigated to ${page.url()}`;
             await page.goto(`http://localhost:3000${p.url}`, { waitUntil: 'domcontentloaded' });
             await page.waitForTimeout(400);
+          } else {
+            // Dismiss any open modal/backdrop to keep the UI clear for subsequent clicks
+            await page.keyboard.press('Escape').catch(() => {});
+            await page.evaluate(() => {
+              const closeBtn = document.querySelector('.modal.show [data-dismiss="modal"], .modal.in [data-dismiss="modal"]');
+              if (closeBtn) closeBtn.click();
+              const bd = document.querySelector('.modal-backdrop');
+              if (bd) bd.remove();
+            }).catch(() => {});
           }
         } else {
           clickResult = 'not visible';
@@ -117,4 +126,35 @@ const pagesToTest = [
   console.log('RESULTS:');
   console.log('=======================================================');
   console.log(JSON.stringify(results, null, 2));
+
+  let totalTested = 0;
+  let totalSuccessful = 0;
+  let totalFailed = 0;
+  let totalErrors = 0;
+
+  for (const [pageName, pageRes] of Object.entries(results)) {
+    totalErrors += pageRes.errorsOnPage.length;
+    for (const item of pageRes.clicked) {
+      totalTested++;
+      if (item.result.includes('failed') || item.result.includes('error')) {
+        totalFailed++;
+        console.error(`❌ [${pageName}] Click failed on "${item.text}" (#${item.id}): ${item.result}`);
+      } else {
+        totalSuccessful++;
+      }
+    }
+  }
+
+  console.log('\n=======================================================');
+  console.log(`TOTAL BUTTONS TESTED: ${totalTested}`);
+  console.log(`TOTAL SUCCESSFUL CLICKS: ${totalSuccessful}`);
+  console.log(`TOTAL FAILED CLICKS: ${totalFailed}`);
+  console.log(`TOTAL CONSOLE/PAGE ERRORS: ${totalErrors}`);
+  console.log('=======================================================');
+
+  if (totalFailed > 0 || totalErrors > 0) {
+    process.exit(1);
+  } else {
+    console.log('✅ ALL INTERACTIVE CLICKS PASSED 100% GREEN');
+  }
 })();

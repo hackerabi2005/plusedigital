@@ -240,7 +240,16 @@ function sendHtml(res, html, statusCode = 200) {
 
 function sendJson(res, data, statusCode = 200) {
   res.writeHead(statusCode, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' });
-  res.end(typeof data === 'string' ? data : JSON.stringify(data));
+  if (typeof data === 'string') {
+    const trimmed = data.trim();
+    if ((trimmed.startsWith('{') && trimmed.endsWith('}')) || (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+      res.end(trimmed);
+      return;
+    }
+    res.end(JSON.stringify(data));
+    return;
+  }
+  res.end(JSON.stringify(data));
 }
 
 function formatDDMMYYYY(d) {
@@ -1416,8 +1425,20 @@ const server = http.createServer(async (req, res) => {
 
   // 5. Calendar Endpoints
   if (pathname === '/calendar/procedureautocomplete') {
-    const rawJson = fs.readFileSync(path.join(CAPTURED_PAGES_DIR, 'procedure_autocomplete.html'), 'utf8').replace(/<\/?(html|head|body)>/g, '');
-    return sendJson(res, rawJson);
+    const list = [
+      'Root Canal Treatment (RCT)',
+      'Single Sitting RCT',
+      'Full Mouth Ultrasonic Scaling',
+      'Composite Light-Cure Restoration',
+      'Tooth Extraction (Simple)',
+      'Surgical Impaction Removal',
+      'Zirconia Crown Placement',
+      'Titanium Dental Implant',
+      'Orthodontic Consultation',
+      'Teeth Whitening & Bleaching',
+      'Pediatric Pulpectomy'
+    ];
+    return sendJson(res, { data: list });
   }
 
   if (pathname === '/calendar/getmobilenumber') {
