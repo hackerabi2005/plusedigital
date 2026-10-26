@@ -1,0 +1,1451 @@
+
+
+
+
+<style>
+    .edit-btn:hover {
+        color: #6a6d6f !important;
+    }
+
+    .scrollable {
+        max-height: 100px;
+        height: auto;
+        overflow-y: scroll;
+    }
+
+    .print-btn {
+        font-size: 20px !important;
+        border: none !important;
+        color: white;
+    }
+
+    .email-btn {
+        font-size: 18px !important;
+        border: none !important;
+        color: white;
+    }
+
+    .edit-btn:hover {
+        color: #6a6d6f !important;
+    }
+
+    span.emptyXeditableField {
+        display: inline-block;
+    }
+
+    span.emptyXeditableField:empty::before {
+        content: '--';
+        display: inline-block;
+    }
+
+    span.emptyXeditableField:empty:focus::before {
+        content: '';
+    }
+    .edit-btn {
+        cursor: pointer !important
+    }
+</style>
+
+<div class="card mr-0">
+    <div id="PatientMedicalConditionAccordion">
+        <div class="card-header pt-2 pb-2 pr-3 pl-3" style="cursor:pointer" data-toggle="collapse" data-target="#PatientMedicalConditionDiv" aria-expanded="false" aria-controls="collapseOne">
+            <div class="cardHeadingText d-inline">Medical Conditions </div>
+            <i class="fas fa-angle-up d-inline pull-right p-1 " style="font-size:16px;"></i>
+        </div>
+        <div id="PatientMedicalConditionDiv" class="collapse show pt-2 pb-2 pr-3 pl-3" aria-labelledby="PatientMedicalConditionDiv" data-parent="#accordion">
+            <div id="MedicalCondition">
+
+                
+
+                <div id="medicalConditionList" class="row">
+
+                    
+                        <div class="ermsg" style="background-color: #f2f2f2 !important; color: #6a6a6a !important;width:100%;margin-top: -5px !important;margin-bottom:10px !important;">
+                            <span style="padding:0 14px;">No Records Found.</span>
+                        </div>
+                </div>
+
+                <div id="desktopActionButtons" class="row d-flex" style="padding-left:12px;padding-right:12px;">
+                    <div class="col-12 p-0">
+                        <a href="#" id="editMedicalCondition" class="edit-btn:hover pull-right mR5" data-toggle="modal" data-target="#consentModal"><i class="fas fa-edit edit-btn" style="color:#6a6c6f; font-size:20px !important"></i></a>
+                    </div>
+                </div>
+
+                    <script>
+                        $("#medicalConditionList").removeClass("scrollable");
+                    </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mr-0 mt-0">
+    <div id="PatientPersonalDetailAccordion">
+        <div class="card-header pt-2 pb-2 pr-3 pl-3" style="cursor:pointer" data-toggle="collapse" data-target="#PatientPersonalDetailDiv" aria-expanded="true" aria-controls="collapseOne">
+            <div class="cardHeadingText d-inline">Personal Details</div>
+            <i class="fas fa-angle-down d-inline pull-right p-1 " style="font-size:16px;"></i>
+        </div>
+        <div id="PatientPersonalDetailDiv" class="collapse pt-2 pb-2 pr-3 pl-3" aria-labelledby="PatientPersonalDetailDiv" data-parent="#accordion">
+            <div id="personalDetail">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12 pr-3 pl-3">
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Title:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="title" class="font-detail-color PatientDetailText  editable editable-click editable-empty">--</span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">First Name:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="firstname" class="font-detail-color PatientDetailText  editable editable-click">Ms. </span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Last Name:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="lastname" class="font-detail-color PatientDetailText  editable editable-click">Yalini</span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Gender:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="gender" class="font-detail-color PatientDetailText  editable editable-click">Female</span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Date Of Birth:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                    <span id="dob1" data-type="combodate" class="font-detail-color patientdetailtext  editable editable-click">--</span>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Marital Status:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="maritalStatus" class="font-detail-color PatientDetailText  editable editable-click editable-empty">--</span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">No. Of Children:</span>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                                <span id="nochildren" data-type="number" class="font-detail-color PatientDetailText  editable editable-click">0</span>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                                <span class="font-color-detail PatientDetailsLabel">Patient Added:</span>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-4 col-4 pr-0 SetPad1024">
+                                <span id="patientAdded" data-type="combodate" class="font-detail-color PatientDetailText  editable editable-click"> 22-10-2026</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-3 p-0 m-auto" id="personalInformationImage">
+                                <div class="thumbnail thumbnailPosition" style="">
+                                    <input type="text" id="patientID" name="patientID" style="display:none" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mr-0">
+    <div id="PatientContactDetailAccordion">
+        <div class="card-header pt-2 pb-2 pr-3 pl-3" style="cursor:pointer" data-toggle="collapse" data-target="#PatientContactDetailDiv" aria-expanded="false" aria-controls="collapseOne">
+            <div class="cardHeadingText d-inline">Contact Details</div>
+            <i class="fas fa-angle-down d-inline pull-right p-1 " style="font-size:16px;"></i>
+        </div>
+        <div id="PatientContactDetailDiv" class="collapse  pt-2 pb-2 pr-3 pl-3" aria-labelledby="PatientContactDetailDiv" data-parent="#accordion">
+            <div id="contactDetail">
+                <div class="">
+                    <div class="row ">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Mobile:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="CellPhone" class="font-detail-color PatientDetailText desktopMobileLink editable editable-click">7548801024</span>
+                            <div class="mobileCallLink">
+                                <a id="calling" class="mobilecall PatientDetailText editable" href="tel:7548801024" tabindex="-1">7548801024</a>
+                                <button type="button" id="editcalling" class="btn IconButtons editcall" title="Edit" style=""><i class="fas fa-edit " style=""></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Email:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="email" class="font-detail-color PatientDetailText emptyXeditableField editable editable-click editable-empty"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Phone:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="ph1" class="font-detail-color PatientDetailText emptyXeditableField editable editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Fax:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="fx1" class="font-detail-color PatientDetailText emptyXeditableField editable editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Address1:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="address1" class="font-detail-color PatientDetailText emptyXeditableField editable editable-pre-wrapped editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Address2:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="address2" class="font-detail-color PatientDetailText emptyXeditableField editable editable-pre-wrapped editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Country:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="country" class="font-detail-color PatientDetailText editable editable-click">
+                                India
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">State:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="state" class="font-detail-color PatientDetailText editable editable-click editable-empty">--</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">City:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="city" class="font-detail-color PatientDetailText editable editable-click editable-empty">--</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Region:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="region" class="font-detail-color PatientDetailText emptyXeditableField editable editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Zip:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7 SetPad1024">
+                            <span id="zip" class="font-detail-color PatientDetailText emptyXeditableField editable editable-click editable-empty"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mr-0">
+    <div id="PatientOtherDetailAccordion">
+        <div class="card-header pt-2 pb-2 pr-3 pl-3" style="cursor:pointer" data-toggle="collapse" data-target="#PatientOtherDetailDiv" aria-expanded="false" aria-controls="collapseOne">
+            <div class="cardHeadingText d-inline">Other Information</div>
+            <i class="fas fa-angle-down d-inline pull-right p-1 " style="font-size:16px;"></i>
+        </div>
+        <div id="PatientOtherDetailDiv" class="collapse  pt-2 pb-2 pr-3 pl-3" aria-labelledby="PatientOtherDetailDiv" data-parent="#accordion">
+            <div id="otherInfo">
+                <div class="">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">File Number:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7">
+                            <span id="fname" class="font-detail-color PatientDetailText editable editable-click">223997</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Clinic Location:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7">
+                            <span id="location" class="font-detail-color PatientDetailText editable editable-click"> Vaiyapuri Nagar,Kurumbpalayam</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Group:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7">
+                            <span id="group" class="font-detail-color PatientDetailText editable editable-click">undefined</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Note:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7">
+                            <span id="Patientnote" class="font-detail-color PatientDetailText emptyXeditableField editable editable-pre-wrapped editable-click editable-empty"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-5 border-right ThemeBorderColor SetPad1024">
+                            <span class="font-color-detail PatientDetailsLabel">Referred By:</span>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-xs-7 col-7">
+                            <span id="referredBy" class="font-detail-color PatientDetailText editable editable-click editable-empty">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mr-0">
+    <div id="PatientconsentDetailAccordion">
+        <div class="card-header pt-2 pb-2 pr-3 pl-3" style="cursor:pointer" data-toggle="collapse" data-target="#PatientconsentDetailDiv" aria-expanded="false" aria-controls="collapseOne">
+            <div class="cardHeadingText d-inline">Consents </div>
+            <i class="fas fa-angle-down d-inline pull-right p-1 " style="font-size:16px;"></i>
+        </div>
+        <div id="PatientconsentDetailDiv" class="collapse  pt-2 pb-2 pr-3 pl-3" aria-labelledby="PatientconsentDetailDiv" data-parent="#accordion">
+            <div id="consent">
+                
+                <div class="row">
+                        <div class="ermsg" style="background-color: #f2f2f2 !important; color: #6a6a6a !important;width:100%;margin-top: -5px !important;margin-bottom:10px !important;">
+                            <span style="padding:0 14px;">No Records Found.</span>
+                        </div>
+                </div>
+                <div id="desktopActionButtons" class="row d-flex" style="padding-left:12px;padding-right:12px;">
+                    <div class="col-12 p-0">
+                        <a href="#" id="" class="print-btn:hover customLabel pull-right mR5" title="Print Consultation" onclick="window.open('../Patient/PrintConsents?&amp;patientID=2223997')"><i class="fas fa-print print-btn" style="color:#6a6c6f; font-size:20px !important"></i></a>
+                        <a id="editConsent" class="edit-btn:hover pull-right mR5" data-toggle="modal" data-target="#consentModal"><i class="fas fa-edit edit-btn" style="color:#6a6c6f; font-size:20px !important"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if (screen.availWidth >= 786) {
+            $('#mobileactionbuttons').remove();
+        }
+        else if (screen.availWidth < 767) {
+            $('#desktopActionButtons').remove();
+            $('#medicalConditionList').removeClass('scrollable');
+        }
+    });
+
+    $('#editMedicalCondition').click(function () {
+        var url = "../Patient/EditOtherInformation?PatientID=" + 2223997 + "&mflag=1";
+            showUrlInDialog(url, {error: function() { DisplayMessage("Something went wrong! Please try again.") }});
+    });
+
+    $(document).ready(function () {
+
+
+        $('.consentdescriptionpatientdetail').each(function () {
+
+            //  $('table#example>tbody>tr:nth-child(3)').each(function () {
+
+            var splitdata = $(this).html();
+            // var datanew = $("#jobdescriptionspan").text();
+            $(this).html(" ");
+            var text1 = splitdata.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;nbsp;/g, ' ');
+            // var text1 = splitdata.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;nbsp;/g, ' ');
+            var $log = $(this),
+                //str = splitdata.replace('&lt', '<').replace('&gt', '>'); //"<b>my name is</b> jQuery.",
+                html = $.parseHTML(text1),
+                nodeNames = [];
+            //Append the parsed HTML
+            $log.append(html);
+        });
+
+        var d = new Date();
+
+        $("#showImage").attr("src", "../Content/images/svg/AddPhotoIcon.svg?"+ d.getTime());
+
+        if (screen.availWidth < 980) {
+            $("#personalInformationImage").hide();
+        }
+
+        if (isMobile.apple.phone || isMobile.android.phone || isMobile.seven_inch) {
+            $("#personalInformationImage").hide();
+        }
+
+        $('#editPersonalInfo').click(function(){
+
+            var url = "../Patient/EditPersonalInformation?PatientID=" + 2223997;
+            showUrlInDialog(url, {error: function() { alert('Could not load form') }});
+            //alert('test edite');
+        });
+
+        if(active==false){
+            $("div").each(function(){
+                if($(this).hasClass("detailrightbox1")){
+                    $(this).addClass('disable');
+                }
+            });
+
+            $("button").each(function(){
+                if($(this).hasClass("btn-info")){
+                    $(this).removeClass('btn-info')
+                    $(this).addClass('disable');
+                    $(this).prop("disabled",true);
+                }
+            });
+        }
+
+        $('#showImage').click(function(){
+
+            $('#addImage').modal('show');
+
+            Webcam.set({
+                width: 320,
+                height: 240,
+                dest_width: 640,
+                dest_height: 480,
+                image_format: 'jpeg',
+                jpeg_quality: 90,
+                force_flash: false
+            });
+            Webcam.attach('#Camera');
+
+        });
+
+    });
+
+    $("body").click(function (e) {
+        $('.PatientDetailsLabel').removeClass("error-lable");
+    });
+
+    $(document).ready(function () {
+        var displayage1;
+
+        //toggle `popup` / `inline` mode
+        $.fn.editable.defaults.mode = 'inline';
+
+        //make Title editable
+        $('#title').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "0",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select Title',
+            placement: 'right',
+            success: function () {
+                $('.privacy_result').val($('.privacy-select').val());
+            },
+            source: [
+                { value: 1, text: 'Mr.' },
+                { value: 2, text: 'Mrs.' },
+                { value: 3, text: 'Ms.' },
+                { value: 4, text: 'Dr.' },
+                { value: 5, text: 'Prof.' },
+                { value: 6, text: 'Others.' }
+            ]
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        //make first name editable
+        $('#firstname').editable({
+            pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+            , validate: function (value) {
+                if (value === null || value === '') {
+                    DisplayMessage(ErrorCross + SpanStart + "Empty values not allowed" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#firstname').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            },
+            success: function (value, newvalue) {
+                $('#PatientFirstName').html(newvalue + ' ');
+            }
+        });
+
+        //make last name editable
+        $('#lastname').editable({
+            pk:"2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+            , validate: function (value) {
+                if (value === null || value === '') {
+                    DisplayMessage(ErrorCross + SpanStart + "Empty values not allowed" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#lastname').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            },
+            success: function (value, newvalue) {
+                $('#PatientLastName').html(newvalue + ' ');
+            }
+        });
+
+        //make Gender editable
+        $('#gender').editable({
+            type: 'select',
+            value: "2",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select Gender',
+            placement: 'right',
+            success: function () {
+                $('.privacy_result').val($('.privacy-select').val());
+            },
+            source: [
+                { value: 1, text: 'Male' },
+                { value: 2, text: 'Female' }
+            ]
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        //make BirthDate editable
+        $('#dob').editable({
+            emptytext: '--',
+            format: 'YYYY-MM-DD',
+            viewformat: 'DD-MM-YYYY',
+            template: 'D / MMMM / YYYY',
+            display: function (value, newValue) {
+                if (value == "") {
+                    value = "--"
+                    $(this).html(value);
+                }
+                else {
+                    var today = new Date();
+                    var birthDate = new Date(value);
+                    var month = birthDate.getMonth() + 1;
+                    var age = today.getFullYear() - birthDate.getFullYear();
+                    var m = today.getMonth() - birthDate.getMonth();
+                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                        age--;
+                    }
+                    var displayage = birthDate.getDate() + '-' + month + '-' + birthDate.getFullYear() + ' (' + age + ')';
+                    $(this).html(displayage);
+                }
+            },
+            combodate: {
+                minYear: 1900,
+                maxYear: (new Date()).getFullYear(),
+                minuteStep: 1
+            }
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        $('#dob1').editable({
+            emptytext: '--',
+            format: 'YYYY-MM-DD',
+            viewformat: 'DD-MM-YYYY',
+            template: 'D / MMMM / YYYY',
+            success: function (value, newvalue) {
+                    var today1 = new Date();
+                    var birthdate1 = new Date(newvalue);
+                    var month1 = birthdate1.getMonth() + 1;
+                    var age1 = today1.getFullYear() - birthdate1.getFullYear();
+                    var m1 = today1.getMonth() - birthdate1.getMonth();
+                    if (m1 < 0 || (m1 === 0 && today1.getDate() < birthdate1.getDate())) {
+                        age1--;
+                    }
+                    displayage1 = birthdate1.getDate() + '-' + month1 + '-' + birthdate1.getFullYear() + ' (' + age1 + ')';
+            },
+            display: function (value, newValue) {
+                if (value == "") {
+                    value = "--"
+                    $(this).html(value);
+                }
+                else {
+                    $(this).html(displayage1);
+                }
+            },
+            combodate: {
+                minYear: 1900,
+                maxYear: (new Date()).getFullYear(),
+                emptytext: '--',
+                minuteStep: 1
+            }
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        //make maritalStatus editable
+        $('#maritalStatus').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "0",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select maritalStatus',
+            placement: 'right',
+            success: function () {
+                $('.privacy_result').val($('.privacy-select').val());
+            },
+            source: [
+                { value: 1, text: 'Married' },
+                { value: 2, text: 'Single' },
+                { value: 3, text: 'Widowed' },
+                { value: 4, text: 'Separated' },
+                { value: 5, text: 'Divorced' }
+            ]
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        //make No of Children editable
+        $('#nochildren').editable({
+            min: '0',
+            max: '10',
+            pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+        //make patientAdded editable
+        $('#patientAdded').editable({
+            format: 'YYYY-MM-DD',
+            viewformat: 'DD-MM-YYYY',
+            template: 'D / MMMM / YYYY',
+            validate: function (value) {
+                if (value === null || value === '') {
+                    DisplayMessage(ErrorCross + SpanStart +"Empty values not allowed" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#patientAdded').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            },
+            combodate: {
+                minYear: 1900,
+                maxYear: (new Date()).getFullYear(),
+                minuteStep: 1
+            }
+            , pk: "2223997"
+            , url: '../Patient/EditPersonalInformationPK'
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('#editOtherInfo').click(function(){
+            var url = "../Patient/EditOtherInformation?PatientID=" + 2223997;
+            showUrlInDialog(url, {error: function() { alert('Could not load form') }});
+            //alert('test edite');
+        });
+    });
+    if(active==false){
+        $("div").each(function(){
+            if($(this).hasClass("detailrightbox1")){
+                $(this).addClass('disable');
+            }
+        });
+
+        $("button").each(function(){
+            if($(this).hasClass("btn-info")){
+                $(this).removeClass('btn-info')
+                $(this).addClass('disable');
+                $(this).prop("disabled",true);
+            }
+        });
+    }
+
+    $("body").click(function (e) {
+        $('.PatientDetailsLabel').removeClass("error-lable");
+    });
+
+    $(document).ready(function () {
+        var patientID = "2223997";
+
+        function auto_grow(element) {
+            element.style.height = "5px";
+            element.style.height = (element.scrollHeight) + "px";
+        }
+
+        //toggle `popup` / `inline` mode
+        $.fn.editable.defaults.mode = 'inline';
+
+        //make File number editable
+        $('#fname').editable({
+            pk:"2223997"
+            , url: '../Patient/EditOtherInformationPK'
+            , validate: function (value) {
+                if (value === null || value === '') {
+                    DisplayMessage(ErrorCross + SpanStart + "Empty values not allowed" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#fname').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else if (value.length > 0) {
+                    var url = "../home/CheckDuplicateFileNumber?FileNumber=" + value + "&patientid=" + patientID;
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        data: {},
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        async: false,
+                        success: function (result) {
+                            if (value.toLowerCase() == result.toLowerCase()) {
+                                //debugger;
+                                DisplayMessage(ErrorCross + SpanStart +"File Number Already Exists" + SpanEnd);
+                                $('#fname').parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                                $('#fname').next().find($('.editable-input input')).addClass("editable-error-control");
+                                $('#fname').next().find($('.editableform .control-group')).addClass("is-focused");
+                                $('#fname').next().find($('.editable-input input')).focus();
+                                //return 'This field is required';
+                                $(this).find($(".editable-submit")).stopPropagation();
+                            }
+                        },
+                    });
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            },
+            success: function (value, newvalue) {
+                $('#PatientFileNumber').html('- ' + newvalue);
+            }
+        });
+
+        //make Location editable
+        $('#location').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "1395",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select Location',
+            placement: 'right',
+            source: function () {
+                var result;
+                 $.ajax({
+                     url: '../Patient/LocationGet?patientID=' + patientID,
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         //console.log(data);
+                         result = data;
+                    }
+                });
+                return result;
+            },
+             pk: "2223997"
+             ,url: '../Patient/EditOtherInformationPK'
+        });
+
+        //make Group editable
+        $('#group').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "undefined",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select Group',
+            placement: 'right',
+            source: function () {
+                 var result;
+                 $.ajax({
+                     url: '../Patient/GroupGet?patientID=' + 0,
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         result = data;
+                     }
+                 });
+                return result;
+             },
+             pk: "2223997"
+            , url: '../Patient/EditOtherInformationPK'
+        });
+
+        //make notes editable
+        $('#Patientnote').editable({
+            emptytext: '',
+            type: 'textarea',
+            title: 'Enter comments',
+            rows: 3
+            ,pk: "2223997"
+            , url: '../Patient/EditOtherInformationPK'
+        });
+
+        //make Referred By editable
+        $('#referredBy').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "0",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select ReferredBy',
+            placement: 'right',
+            source: function () {
+                 var result;
+                 $.ajax({
+                     url: '../Patient/ReferredByGet',
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         result = data;
+                     }
+                 });
+                return result;
+            },
+             pk: "2223997"
+             ,url: '../Patient/EditOtherInformationPK'
+        });
+
+        //make conditions editable
+        $('#conditions').editable({
+            emptytext: '--',
+            type: 'checklist',
+            value: "",
+            source: function () {
+                var result;
+                $.ajax({
+                    url: '../Patient/ConditionsGet',
+                    type: "GET",
+                    global: false,
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+                        result = data;
+                    }
+                });
+                return result;
+            },
+            pk: "2223997"
+            ,url: function (params) {
+                MedicalCondition(params.value, params.pk);
+            }
+        });
+
+    });
+
+    function MedicalCondition(mPatientlist, PatientID) {
+        $.ajax({
+            url: '../Patient/AddPatientMedicalConditionsPK?medicalConditionList=' + mPatientlist + "&PatientID=" + PatientID,
+            type: "GET",
+            global: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                result = data;
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        if (screen.availWidth >= 786) {
+            $('#mobileactionbuttons').remove();
+            //$('#desktopActionButtons').show();
+        }
+        else if (screen.availWidth < 767) {
+            $('#desktopActionButtons').remove();
+            //$('#mobileactionbuttons').show();
+            
+        }
+
+        $('#editConsent').click(function(){
+            var url = "../Patient/EditConsentList?PatientID=" + 2223997;
+            showUrlInDialog(url, {error: function() { alert('Could not load form') }});
+            //alert('test edite');
+        });
+        if(active==false){
+            $("div").each(function(){
+                if($(this).hasClass("detailrightbox1")){
+                    $(this).addClass('disable');
+                    $(this).css("display", "block");
+                }
+            });
+
+            $("button").each(function(){
+                if($(this).hasClass("btn-info")){
+                    $(this).removeClass('btn-info')
+                    $(this).addClass('disable');
+                    $(this).prop("disabled",true);
+                }
+            });
+        }
+
+    });
+
+    function emailconsent(patientid) {
+
+        var url = "../patient/emailconsent?patientid=" + patientid;
+
+        $.ajax({
+            type: 'post',
+            url: url,
+
+            success: function (response) {
+                if (response == 'true') {
+
+                    displaymessage("consent has been mailed successfully.");
+                }
+                else {
+                    displaymessage("the email address for the patient is invalid.");
+                }
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#editContactDetail').click(function(){
+            var url = "../Patient/EditContactDetail?PatientID=" + 2223997;
+            showUrlInDialog(url, {error: function() { alert('Could not load form') }});
+            //alert('test edite');
+        });
+    });
+    if(active==false){
+        $("div").each(function(){
+            if($(this).hasClass("detailrightbox1")){
+                $(this).addClass('disable');
+            }
+        });
+
+        $("button").each(function(){
+            if($(this).hasClass("btn-info")){
+                $(this).removeClass('btn-info')
+                $(this).addClass('disable');
+                $(this).prop("disabled",true);
+            }
+        });
+    }
+
+    $("body").click(function (e) {
+        $('.PatientDetailsLabel').removeClass("error-lable");
+    });
+
+    $(document).ready(function () {
+        var countryid = "India";
+        var stateID =  "";
+
+        //toggle `popup` / `inline` mode
+        $.fn.editable.defaults.mode = 'inline';
+
+         //Make Cellphone Editable
+        $('#CellPhone').editable({
+            emptytext: '--',
+            type: 'text',
+            pk: "2223997"
+             , url: '../Patient/EditContactDetailPK'
+            , validate: function (value) {
+                if (value === null || value === '' || value.length < 10 || value.length > 10 || ($.isNumeric(value) == '')) {
+                    DisplayMessage(ErrorCross + SpanStart + "Enter a valid phone number" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#CellPhone').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            }
+        });
+
+        //Make Calling Editable
+        $(function () {
+            $.fn.editable.defaults.mode = 'inline';
+
+            $('#calling').editable({
+                emptytext: '--',
+                type: 'text',
+                toggle: 'manual',
+                pk: "2223997"
+                , url: '../Patient/EditContactDetailPK'
+                , validate: function (value) {
+                    if (value === null || value === '' || value.length < 10 || value.length > 10 || ($.isNumeric(value) == '')) {
+                        DisplayMessage(ErrorCross + SpanStart +"Enter a valid phone number" + SpanEnd);
+                        $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                        $('#calling').next().find($('.editable-input input')).addClass("editable-error-control");
+                        return ' ';
+                    }
+                    else {
+                        $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                        setTimeout(function () {
+                            GetContactDetail(2223997);
+                        }, 600);
+                    }
+                },                
+            });   
+
+            $('.editcall').on('click', function (e) {
+                $(".editcall").hide();
+                e.preventDefault();
+                e.stopPropagation();
+                $('#calling').editable('toggle');
+            });
+        });        
+
+        $(document).click(function (e) {
+            $(".editcall").show();
+        });
+
+         //Make email Editable
+        $('#email').editable({
+            emptytext: '',
+            type : 'email',
+            pk:"2223997"
+            , url: '../Patient/EditContactDetailPK'
+            , validate: function (value) {
+                var email = /^\w+(.)*(\w+)@\w+.\w+([-.]\w+)*$/;
+                if (!value.match(email)) {
+                    DisplayMessage(ErrorCross + SpanStart + "Please enter valid email address" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#email').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    if (screen.availWidth > 980) {
+                        if (flagF == 0) {
+                            GetPaymentRequests(2223997);
+                            GetLabReports(2223997);
+                            GetPatientFiles(2223997);
+                            GetConsultationList(2223997);
+                            GetBillingList(2223997);
+                            GetPrescription(2223997);
+                            GetAppontmentList(2223997);
+                            GetEstimate(2223997);
+                            GetPatientVitals(2223997);
+                            GetSMSList(2223997);
+                            GetPatientCommList(2223997);
+                        }
+                        else {
+                            GetTimelineView(flagA);
+                        }
+                    }
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            }
+         });
+
+         //Make Phone Editable
+        $('#ph1').editable({
+            emptytext: '',
+            pk: "2223997"
+            , url: '../Patient/EditContactDetailPK'
+            , validate: function (value) {
+                if (value.length > 10 || ($.isNumeric(value) == '') && ($.trim(value) !== '')) {
+                    DisplayMessage(ErrorCross + SpanStart +"Enter a valid phone number" + SpanEnd);
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                    $('#ph1').next().find($('.editable-input input')).addClass("editable-error-control");
+                    return ' ';
+                }
+                else {
+                    $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                }
+            }
+         });
+
+         //Make Fax Editable
+        $('#fx1').editable({
+            emptytext: '',
+            pk: "2223997"
+           ,url: '../Patient/EditContactDetailPK'
+         });
+
+       //Make Address1 Editable
+        $('#address1').editable({
+            emptytext: '',
+            type: 'textarea',
+            rows: 3
+            ,pk: "2223997"
+            ,url: '../Patient/EditContactDetailPK'
+        });
+
+         //Make Address2 Editable
+        $('#address2').editable({
+            emptytext: '',
+            type: 'textarea',
+            rows: 3
+            ,pk: "2223997"
+            ,url: '../Patient/EditContactDetailPK'
+        });
+
+         //Make Country Editable
+        $('#country').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "0",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select Country',
+            placement: 'right',
+             source: function () {
+                 var result;
+                 $.ajax({
+                     url: '../Home/CountryCityState',
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         result = data;
+                     }
+                 });
+                 return result;
+             },
+             success: function (value, newValue) {
+                 //console.log("country" + countryid);
+                 countryid = newValue;
+             },
+             pk: "2223997"
+             , url: '../Patient/EditContactDetailPK'
+        });
+
+       //Make State Editable
+        $('#state').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select State',
+            placement: 'right',
+            source: function () {
+                if (isNaN(countryid)) {
+                    $.ajax({
+                        url: "../Patient/GetCountryID?Country=" + countryid,
+                        type: "GET",
+                        global: false,
+                        async: false,
+                        dataType: 'json',
+                        success: function (data) {
+                            countryid = data;
+                        }
+                    });
+                }
+                 var result;
+                 $.ajax({
+                     url: "../Home/GetStates?CountryID=" + countryid,
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         result = data;
+                     }
+                 });
+                 return result;
+             },
+            success: function (value, newValue) {
+                 stateID = newValue;
+             },
+             pk: "2223997"
+            , url: '../Patient/EditContactDetailPK'
+        });
+
+        //Make City Editable
+        $('#city').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select State',
+            placement: 'right',
+             source: function () {
+                 var result;
+                 $.ajax({
+                     url: "../Home/GetCities?State=" + stateID,
+                     type: "GET",
+                     global: false,
+                     async: false,
+                     dataType: 'json',
+                     success: function (data) {
+                         result = data;
+                     }
+                 });
+                 return result;
+             },
+             pk: "2223997"
+            , url: '../Patient/EditContactDetailPK'
+        });
+
+         //Make Region Editable
+         $('#region').editable({
+             emptytext: '',
+            pk: "2223997"
+          , url: '../Patient/EditContactDetailPK'
+         });
+
+         //Make Zip Editable
+         $('#zip').editable({
+             emptytext: '',
+            pk: "2223997"
+             , url: '../Patient/EditContactDetailPK'
+             , validate: function (value) {
+                 var pin = /^([1-9])([0-9]){5}$/;
+                 if (!value.match(pin)) {
+                     DisplayMessage(ErrorCross + SpanStart + "Please enter valid Zip Code" + SpanEnd);
+                     $(this).parent().parent().find($('.PatientDetailsLabel')).addClass("error-lable");
+                     $('#zip').next().find($('.editable-input input')).addClass("editable-error-control");
+                     return ' ';
+                 }
+                 else {
+                     $(this).parent().parent().find($('.PatientDetailsLabel')).removeClass("error-lable");
+                 }
+             }
+         });
+
+         //Make SMS Language Editable
+        $('#language1').editable({
+            emptytext: '--',
+            type: 'select',
+            value: "ENU",
+            inputclass: 'input-medium privacy-select',
+            title: 'Select SMS Language',
+            placement: 'right',
+            success: function () {
+                $('.privacy_result').val($('.privacy-select').val());
+            },
+            source: [
+                { value: "ENU", text: 'English' },
+                { value: "HIN", text: 'Hindi' },
+                { value: "MAR", text: 'Marathi' },
+                { value: "GUJ", text: 'Gujarati' }
+            ]
+            , pk: "2223997"
+           , url: '../Patient/EditContactDetailPK'
+        });
+
+    });
+
+    function GetCities(obj) {
+        var length = obj.value.lastIndexOf("_");
+        var stateID = obj.value.substr(0, length);
+        if (stateID.toLowerCase() == "select one")
+            stateID = 0;
+        $.ajax(
+            {
+                url: "../Home/GetCities?State=" + stateID,
+                type: "GET",
+                async: "true",
+                success: function (data) {
+                    if (data != null) {
+                        $('#cityList').show();
+                        var select = document.getElementById("cityList");
+                        var arr = $.map(data, function (e) { return e; });
+                        for (var i = 0; i < arr.length; i++) {
+                            option = document.createElement("option");
+                            option.value = arr[i] + "_" + (i + 1);
+                            option.innerHTML = arr[i];
+                            select.appendChild(option);
+                            if (arr[i] == city) {
+                                option.selected = "selected";
+                            }
+                        }
+                    }
+                },
+                error: function () {
+                    document.getElementById("cityList").visible = false;
+                }
+            }
+        );
+    }
+
+    function GetStates(obj) {
+        var length = obj.value.lastIndexOf("_");
+        countryid = obj.value.substr(length + 1);
+        if (countryid.toLowerCase() == "select one")
+            countryid = 0;
+        $.ajax(
+            {
+                url: "../Home/GetStates?CountryID=" + countryid,
+                type: "GET",
+                async: "true",
+                success: function (data) {
+                    if (data != null) {
+                        $('#stateList').show();
+                        var select = document.getElementById("stateList");
+                        var arr = $.map(data, function (e) { return e; });
+                        //console.log('1');
+                        for (var i = 0; i < arr.length; i++) {
+                            option = document.createElement("option");
+                            option.value = arr[i] + "_" + (i + 1);
+                            option.innerHTML = arr[i];
+                            select.appendChild(option);
+                            //console.log(option);
+                            if (arr[i] == state) {
+                                option.selected = "selected";
+                                GetCities(option);
+                            }
+                            if (i == 1) {
+                                option1 = document.createElement("option");
+                                option1.value = arr[1] + "_" + i;
+                                option1.innerHTML = arr[1];
+                                GetCities(option1);
+                            }
+                            if (i == 0) {
+                                option2 = document.createElement("option");
+                                option2.value = arr[1] + "_" + i;
+                                option2.innerHTML = arr[1];
+                                GetCities(option2);
+                            }
+                        }
+                    }
+                },
+                error: function () {
+                    document.getElementById("stateList").visible = false;
+                }
+            }
+        );
+
+    }
+
+    function GetCountries() {
+        if (country.length == 0)
+            country = "India";
+        $.ajax({
+            url: "../Home/CountryCityState",
+            type: "GET",
+            datatype: "json",
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            success: function (data, jqXHR) {
+                var select = document.getElementById("countryList");
+                var arr = $.map(data, function (el) { return el; });
+                for (var i = 0; i < arr.length; i++) {
+                    option = document.createElement("option");
+                    option.value = arr[i] + "_" + (i + 1);
+                    option.innerHTML = arr[i];
+                    select.appendChild(option);
+                    if (arr[i] == country) {
+                        option.selected = "selected";
+                        GetStates(option);
+                    }
+                }
+            },
+            failure: function () {
+                DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd);
+            }
+        });
+    }
+
+    $("#PatientPersonalDetailAccordion .card-header").click(function () {
+        $(this).find($("#PatientPersonalDetailAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#PatientPersonalDetailAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+    $("#PatientContactDetailAccordion .card-header").click(function () {
+        $(this).find($("#PatientContactDetailAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#PatientContactDetailAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+    $("#PatientOtherDetailAccordion .card-header").click(function () {
+        $(this).find($("#PatientOtherDetailAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#PatientOtherDetailAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+    $("#PatientconsentDetailAccordion .card-header").click(function () {
+        $(this).find($("#PatientconsentDetailAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#PatientconsentDetailAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientMedicalConditionAccordion .card-header").find($("#PatientMedicalConditionAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#billingDetailAccordion .card-header").find($("#billingDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+    $("#PatientMedicalConditionAccordion .card-header").click(function () {
+        $(this).find($("#PatientMedicalConditionAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#PatientMedicalConditionAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+    $("#billingDetailAccordion .card-header").click(function () {
+        $(this).find($("#billingDetailAccordion .card-header>i")).toggleClass("fas fa-angle-down");
+        $(this).find($("#billingDetailAccordion .card-header>i")).toggleClass("fas fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientPersonalDetailAccordion .card-header").find($("#PatientPersonalDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientContactDetailAccordion .card-header").find($("#PatientContactDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientOtherDetailAccordion .card-header").find($("#PatientOtherDetailAccordion .card-header>i")).addClass("fa-angle-down");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).removeClass("fa-angle-up");
+        $("#PatientconsentDetailAccordion .card-header").find($("#PatientconsentDetailAccordion .card-header>i")).addClass("fa-angle-down");
+    });
+
+</script>

@@ -1,0 +1,1286 @@
+
+
+
+<style>
+
+    .btn-select-circle {
+        width: 30px !important;
+        height: 30px !important;
+        text-align: center !important;
+        padding: 6px 0 !important;
+        font-size: 12px !important;
+        line-height: 1.428571429 !important;
+        border-radius: 15px !important;
+        padding-top: 7px !important;
+    }
+
+    .opacityNone {
+        opacity: 0;
+    }
+
+    .opacityVisible {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 767px) {
+        #mobilePediatricChart .tooth>img{margin:0 !important}
+    }
+</style>
+
+<div class="row">
+
+
+    <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 teethchartContainer">
+        <div class="row">
+
+                <div class="col-lg-3 col-md-12 col-sm-6 col-xs-12 d-flex SelectConsultationDate">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text custom-inline-label">Consultation:</span>
+                        </div>
+                        <input class="form-control onFocus hasDatepicker" type="text" name="consultationDated" id="consultationDated" style="margin-left:0 !important" value="24/10/2026">
+                        <div class="dropdownjsInline">
+
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-6 col-xs-12">
+                <!--dental chart menu start-->
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text custom-inline-label">Dental chart:</span>
+                    </div>
+                    <select class="form-control" id="selectChart" name="selectChart" onchange="GetChartforSelectedValue(this)" data-dropdownjs="true">
+
+                        <option value="DC">Dental Chart</option>
+                        <option value="PDC">Pediatric Dental Chart</option>
+                        <option value="both">Both</option>
+                    </select>
+                    <div class="dropdownjsInline">
+
+                    </div>
+                </div>
+
+                <!--Mobile View select all and remove condition buttons start-->
+                
+                <!--Mobile View select all and remove condition buttons end-->
+                <!--condition button start-->
+                
+                <!--condition button end-->
+                <!--end-->
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                
+                
+                
+                
+                
+            </div>
+
+        </div>
+
+
+
+        
+        
+            <div id="desktopDentalChart" class="row chart">
+
+
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 12px;">
+                    <div class="row mb-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+                                <span id="18" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N18"></span>
+                                    <img src="/Content/images/dental/normal/18.svg" class="upper">
+                                </span>
+                                <span id="17" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N17"></span>
+                                    <img src="/Content/images/dental/normal/17.svg" class="upper">
+                                </span>
+                                <span id="16" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N16"></span>
+                                    <img src="/Content/images/dental/normal/16.svg" class="upper">
+                                </span>
+                                <span id="15" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N15"></span>
+                                    <img src="/Content/images/dental/normal/15.svg" class="upper">
+                                </span>
+                                <span id="14" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N14"></span>
+                                    <img src="/Content/images/dental/normal/14.svg" class="upper">
+                                </span>
+                                <span id="13" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N13"></span>
+                                    <img src="/Content/images/dental/normal/13.svg" class="upper">
+                                </span>
+                                <span id="12" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N12"></span>
+                                    <img src="/Content/images/dental/normal/12.svg" class="upper">
+                                </span>
+                                <span id="11" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N11"></span>
+                                    <img src="/Content/images/dental/normal/11.svg" class="upper ">
+                                </span>
+
+
+                                <span id="21" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N21"></span>
+                                    <img src="/Content/images/dental/normal/21.svg" class="upper ">
+                                </span>
+                                <span id="22" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N22"></span>
+                                    <img src="/Content/images/dental/normal/22.svg" class="upper">
+                                </span>
+                                <span id="23" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N23"></span>
+                                    <img src="/Content/images/dental/normal/23.svg" class="upper">
+                                </span>
+                                <span id="24" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N24"></span>
+                                    <img src="/Content/images/dental/normal/24.svg" class="upper">
+                                </span>
+                                <span id="25" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N25"></span>
+                                    <img src="/Content/images/dental/normal/25.svg" class="upper">
+                                </span>
+                                <span id="26" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N26"></span>
+                                    <img src="/Content/images/dental/normal/26.svg" class="upper">
+                                </span>
+                                <span id="27" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N27"></span>
+                                    <img src="/Content/images/dental/normal/27.svg" class="upper">
+                                </span>
+                                <span id="28" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N28"></span>
+                                    <img src="/Content/images/dental/normal/28.svg" class="upper">
+                                </span>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+
+                                <span id="48" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N48"></span>
+                                    <img src="/Content/images/dental/normal/48.svg" class="lower">
+                                </span>
+                                <span id="47" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N47"></span>
+                                    <img src="/Content/images/dental/normal/47.svg" class="lower">
+                                </span>
+                                <span id="46" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N46"></span>
+                                    <img src="/Content/images/dental/normal/46.svg" class="lower">
+                                </span>
+                                <span id="45" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N45"></span>
+                                    <img src="/Content/images/dental/normal/45.svg" class="lower">
+                                </span>
+                                <span id="44" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N44"></span>
+                                    <img src="/Content/images/dental/normal/44.svg" class="lower">
+                                </span>
+                                <span id="43" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N43"></span>
+                                    <img src="/Content/images/dental/normal/43.svg" class="lower">
+                                </span>
+                                <span id="42" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N42"></span>
+                                    <img src="/Content/images/dental/normal/42.svg" class="lower">
+                                </span>
+                                <span id="41" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N41"></span>
+                                    <img src="/Content/images/dental/normal/41.svg" class="lower ">
+                                </span>
+
+                                <span id="31" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N31"></span>
+                                    <img src="/Content/images/dental/normal/31.svg" class="lower ">
+                                </span>
+                                <span id="32" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N32"></span>
+                                    <img src="/Content/images/dental/normal/32.svg" class="lower">
+                                </span>
+                                <span id="33" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N33"></span>
+                                    <img src="/Content/images/dental/normal/33.svg" class="lower">
+                                </span>
+                                <span id="34" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N34"></span>
+                                    <img src="/Content/images/dental/normal/34.svg" class="lower">
+                                </span>
+                                <span id="35" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N35"></span>
+                                    <img src="/Content/images/dental/normal/35.svg" class="lower">
+                                </span>
+                                <span id="36" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N36"></span>
+                                    <img src="/Content/images/dental/normal/36.svg" class="lower">
+                                </span>
+                                <span id="37" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N37"></span>
+                                    <img src="/Content/images/dental/normal/37.svg" class="lower">
+                                </span>
+                                <span id="38" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N38"></span>
+                                    <img src="/Content/images/dental/normal/38.svg" class="lower">
+                                </span>
+
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="desktopPediatricChart" class="row chart" style="display: none">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 12px;">
+                    <div class="row mb-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+                                <span id="55" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N55"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/55.svg" class="upper">
+                                </span>
+
+                                <span id="54" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N54"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/54.svg" class="upper">
+                                </span>
+
+                                <span id="53" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N53"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/53.svg" class="upper">
+                                </span>
+
+                                <span id="52" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N52"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/52.svg" class="upper">
+                                </span>
+
+                                <span id="51" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N51"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/51.svg" class="upper">
+                                </span>
+
+                                <span id="61" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N61"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/61.svg" class="upper ">
+                                </span>
+
+                                <span id="62" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N62"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/62.svg" class="upper">
+                                </span>
+
+                                <span id="63" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N63"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/63.svg" class="upper">
+                                </span>
+
+                                <span id="64" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N64"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/64.svg" class="upper">
+                                </span>
+
+                                <span id="65" class="tooth">
+                                    <span class="infoIconUpper opacityNone" id="N65"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/65.svg" class="upper">
+                                </span>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+
+                                <span id="85" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N85"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/85.svg" class="lower">
+                                </span>
+
+                                <span id="84" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N84"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/84.svg" class="lower">
+                                </span>
+
+                                <span id="83" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N83"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/83.svg" class="lower">
+                                </span>
+
+                                <span id="82" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N82"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/82.svg" class="lower">
+                                </span>
+
+                                <span id="81" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N81"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/81.svg" class="lower">
+                                </span>
+
+
+                                <span id="71" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N71"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/71.svg" class="lower ">
+                                </span>
+
+                                <span id="72" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N72"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/72.svg" class="lower">
+                                </span>
+
+                                <span id="73" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N73"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/73.svg" class="lower">
+                                </span>
+
+                                <span id="74" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N74"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/74.svg" class="lower">
+                                </span>
+
+                                <span id="75" class="tooth">
+                                    <span class="infoIconLower opacityNone" id="N75"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/75.svg" class="lower">
+                                </span>
+
+
+
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div id="desktopBothDentalChart" class="row chart" style="display: none">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 12px;">
+                    <div class="row mb-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div style="padding:0 10%">
+                                <span id="55" class="tooth B55">
+                                    <span class="infoIconUpper opacityNone" id="NN55"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/55.svg" class="upper">
+                                </span>
+
+                                <span id="54" class="tooth B54">
+                                    <span class="infoIconUpper opacityNone" id="NN54"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/54.svg" class="upper">
+                                </span>
+
+                                <span id="53" class="tooth B53">
+                                    <span class="infoIconUpper opacityNone" id="NN53"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/53.svg" class="upper">
+                                </span>
+
+                                <span id="52" class="tooth B52">
+                                    <span class="infoIconUpper opacityNone" id="NN52"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/52.svg" class="upper">
+                                </span>
+
+                                <span id="51" class="tooth B51">
+                                    <span class="infoIconUpper opacityNone" id="NN51"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/51.svg" class="upper">
+                                </span>
+                                <span id="61" class="tooth B61">
+                                    <span class="infoIconUpper opacityNone" id="NN61"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/61.svg" class="upper ">
+                                </span>
+
+                                <span id="62" class="tooth B62">
+                                    <span class="infoIconUpper opacityNone" id="NN62"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/62.svg" class="upper">
+                                </span>
+
+                                <span id="63" class="tooth B63">
+                                    <span class="infoIconUpper opacityNone" id="NN63"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/63.svg" class="upper">
+                                </span>
+
+                                <span id="64" class="tooth B64">
+                                    <span class="infoIconUpper opacityNone" id="NN64"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/64.svg" class="upper">
+                                </span>
+
+                                <span id="65" class="tooth B65">
+                                    <span class="infoIconUpper opacityNone" id="NN65"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/65.svg" class="upper">
+                                </span>
+
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+                                <span id="18" class="tooth B18">
+                                    <span class="infoIconUpper opacityNone" id="NN18"></span>
+                                    <img src="/Content/images/dental/normal/18.svg" class="upper">
+                                </span>
+                                <span id="17" class="tooth B17">
+                                    <span class="infoIconUpper opacityNone" id="NN17"></span>
+                                    <img src="/Content/images/dental/normal/17.svg" class="upper">
+                                </span>
+                                <span id="16" class="tooth B16">
+                                    <span class="infoIconUpper opacityNone" id="NN16"></span>
+                                    <img src="/Content/images/dental/normal/16.svg" class="upper">
+                                </span>
+                                <span id="15" class="tooth B15">
+                                    <span class="infoIconUpper opacityNone" id="NN15"></span>
+                                    <img src="/Content/images/dental/normal/15.svg" class="upper">
+                                </span>
+                                <span id="14" class="tooth B14">
+                                    <span class="infoIconUpper opacityNone" id="NN14"></span>
+                                    <img src="/Content/images/dental/normal/14.svg" class="upper">
+                                </span>
+                                <span id="13" class="tooth B13">
+                                    <span class="infoIconUpper opacityNone" id="NN13"></span>
+                                    <img src="/Content/images/dental/normal/13.svg" class="upper">
+                                </span>
+                                <span id="12" class="tooth B12">
+                                    <span class="infoIconUpper opacityNone" id="NN12"></span>
+                                    <img src="/Content/images/dental/normal/12.svg" class="upper">
+                                </span>
+                                <span id="11" class="tooth B11">
+                                    <span class="infoIconUpper opacityNone" id="NN11"></span>
+                                    <img src="/Content/images/dental/normal/11.svg" class="upper ">
+                                </span>
+
+
+                                <span id="21" class="tooth B21">
+                                    <span class="infoIconUpper opacityNone" id="NN28"></span>
+                                    <img src="/Content/images/dental/normal/21.svg" class="upper ">
+                                </span>
+                                <span id="22" class="tooth B22">
+                                    <span class="infoIconUpper opacityNone" id="NN22"></span>
+                                    <img src="/Content/images/dental/normal/22.svg" class="upper">
+                                </span>
+                                <span id="23" class="tooth B23">
+                                    <span class="infoIconUpper opacityNone" id="NN23"></span>
+                                    <img src="/Content/images/dental/normal/23.svg" class="upper">
+                                </span>
+                                <span id="24" class="tooth B24">
+                                    <span class="infoIconUpper opacityNone" id="NN24"></span>
+                                    <img src="/Content/images/dental/normal/24.svg" class="upper">
+                                </span>
+                                <span id="25" class="tooth B25">
+                                    <span class="infoIconUpper opacityNone" id="NN25"></span>
+                                    <img src="/Content/images/dental/normal/25.svg" class="upper">
+                                </span>
+                                <span id="26" class="tooth B26">
+                                    <span class="infoIconUpper opacityNone" id="NN26"></span>
+                                    <img src="/Content/images/dental/normal/26.svg" class="upper">
+                                </span>
+                                <span id="27" class="tooth N27">
+                                    <span class="infoIconUpper opacityNone" id="NN27"></span>
+                                    <img src="/Content/images/dental/normal/27.svg" class="upper">
+                                </span>
+                                <span id="28" class="tooth N28">
+                                    <span class="infoIconUpper opacityNone" id="NN28"></span>
+                                    <img src="/Content/images/dental/normal/28.svg" class="upper">
+                                </span>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 mb-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="">
+
+                                <span id="48" class="tooth B48">
+                                    <span class="infoIconLower opacityNone" id="NN48"></span>
+                                    <img src="/Content/images/dental/normal/48.svg" class="lower">
+                                </span>
+                                <span id="47" class="tooth B47">
+                                    <span class="infoIconLower opacityNone" id="NN47"></span>
+                                    <img src="/Content/images/dental/normal/47.svg" class="lower">
+                                </span>
+                                <span id="46" class="tooth B46">
+                                    <span class="infoIconLower opacityNone" id="NN46"></span>
+                                    <img src="/Content/images/dental/normal/46.svg" class="lower">
+                                </span>
+                                <span id="45" class="tooth B45">
+                                    <span class="infoIconLower opacityNone" id="NN45"></span>
+                                    <img src="/Content/images/dental/normal/45.svg" class="lower">
+                                </span>
+                                <span id="44" class="tooth B44">
+                                    <span class="infoIconLower opacityNone" id="NN44"></span>
+                                    <img src="/Content/images/dental/normal/44.svg" class="lower">
+                                </span>
+                                <span id="43" class="tooth B43">
+                                    <span class="infoIconLower opacityNone" id="NN43"></span>
+                                    <img src="/Content/images/dental/normal/43.svg" class="lower">
+                                </span>
+                                <span id="42" class="tooth B42">
+                                    <span class="infoIconLower opacityNone" id="NN42"></span>
+                                    <img src="/Content/images/dental/normal/42.svg" class="lower">
+                                </span>
+                                <span id="41" class="tooth B41">
+                                    <span class="infoIconLower opacityNone" id="NN41"></span>
+                                    <img src="/Content/images/dental/normal/41.svg" class="lower ">
+                                </span>
+
+                                <span id="31" class="tooth B31">
+                                    <span class="infoIconLower opacityNone" id="NN31"></span>
+                                    <img src="/Content/images/dental/normal/31.svg" class="lower ">
+                                </span>
+                                <span id="32" class="tooth B32">
+                                    <span class="infoIconLower opacityNone" id="NN32"></span>
+                                    <img src="/Content/images/dental/normal/32.svg" class="lower">
+                                </span>
+                                <span id="33" class="tooth B33">
+                                    <span class="infoIconLower opacityNone" id="NN33"></span>
+                                    <img src="/Content/images/dental/normal/33.svg" class="lower">
+                                </span>
+                                <span id="34" class="tooth B34">
+                                    <span class="infoIconLower opacityNone" id="NN34"></span>
+                                    <img src="/Content/images/dental/normal/34.svg" class="lower">
+                                </span>
+                                <span id="35" class="tooth B35">
+                                    <span class="infoIconLower opacityNone" id="NN35"></span>
+                                    <img src="/Content/images/dental/normal/35.svg" class="lower">
+                                </span>
+                                <span id="36" class="tooth B36">
+                                    <span class="infoIconLower opacityNone" id="NN36"></span>
+                                    <img src="/Content/images/dental/normal/36.svg" class="lower">
+                                </span>
+                                <span id="37" class="tooth B37">
+                                    <span class="infoIconLower opacityNone" id="NN37"></span>
+                                    <img src="/Content/images/dental/normal/37.svg" class="lower">
+                                </span>
+                                <span id="38" class="tooth B38">
+                                    <span class="infoIconLower opacityNone" id="NN38"></span>
+                                    <img src="/Content/images/dental/normal/38.svg" class="lower">
+                                </span>
+
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div style="padding:0 10%">
+
+                                <span id="85" class="tooth B85">
+                                    <span class="infoIconLower opacityNone" id="NN85"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/85.svg" class="lower">
+                                </span>
+
+                                <span id="84" class="tooth B84">
+                                    <span class="infoIconLower opacityNone" id="NN84"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/84.svg" class="lower">
+                                </span>
+
+                                <span id="83" class="tooth B83">
+                                    <span class="infoIconLower opacityNone" id="NN83"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/83.svg" class="lower">
+                                </span>
+
+                                <span id="82" class="tooth B82">
+                                    <span class="infoIconLower opacityNone" id="NN82"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/82.svg" class="lower">
+                                </span>
+
+                                <span id="81" class="tooth B81">
+                                    <span class="infoIconLower opacityNone" id="NN81"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/81.svg" class="lower">
+                                </span>
+
+
+                                <span id="71" class="tooth B71">
+                                    <span class="infoIconLower opacityNone" id="NN71"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/71.svg" class="lower ">
+                                </span>
+
+                                <span id="72" class="tooth B72">
+                                    <span class="infoIconLower opacityNone" id="NN72"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/72.svg" class="lower">
+                                </span>
+
+                                <span id="73" class="tooth B73">
+                                    <span class="infoIconLower opacityNone" id="NN73"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/73.svg" class="lower">
+                                </span>
+
+                                <span id="74" class="tooth B74">
+                                    <span class="infoIconLower opacityNone" id="NN74"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/74.svg" class="lower">
+                                </span>
+
+                                <span id="75" class="tooth B75">
+                                    <span class="infoIconLower opacityNone" id="NN75"></span>
+                                    <img src="/Content/images/dental/normal/pediatric/75.svg" class="lower">
+                                </span>
+
+
+
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        <div class="row hideinmobiledevice">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+                <div class="btn-group pr-3 pl-3 mb-0 conditionBtnGroup">
+                    <div class="btnMobileHide">
+                        <a href="javascript:void(0)" id="selectAll" class="btn conditionMenuButton btn-primary mr-1 ml-1">Select All</a>
+                        
+                        <a href="javascript:void(0)" id="clearSelection" class="btn conditionMenuButton btn-primary mr-1 ml-1">Clear Selection</a>
+                        
+                    </div>
+                    <a href="javascript:void(0)" id="removeConditions" class="btn conditionMenuButton btn-primary action mr-1 ml-1 hideinmobiledevice" style="">Remove All Conditions</a>
+                    <div class="btnMobileHide btnTabHide">
+                        <a href="javascript:void(0)" id="teethNotesUpper" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="">Notes - Upper</a>
+                        <a href="javascript:void(0)" id="teethNotesLower" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="">Notes - Lower</a>
+                        <a href="javascript:void(0)" id="pediatricTeethNotesUpper" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="display:none;"> Notes - Upper </a>
+                        <a href="javascript:void(0)" id="pediatricTeethNotesLower" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="display:none;"> Notes - Lower </a>
+                        <a href="javascript:void(0)" id="BothTeethNotesUpper" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="display:none;"> Notes - Upper </a>
+                        <a href="javascript:void(0)" id="BothTeethNotesLower" class="btn conditionMenuButton btn-primary mr-1 ml-1" style="display:none;"> Notes - Lower </a>
+                    </div>
+                    <input type="text" style="display:none" id="mobileView" name="mobileView" value="0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-12 col-sm-4 col-xs-12 ConditionListContainer">
+
+        <div class="desktopConditionbutton" style="padding:10px" id="diseasebutton">
+            <div class="list-group ConditionList">
+                <a href="javascript:void(0)" id="caries" class="list-group-item list-group-item-action action" style="">
+                    <img id="cariesIcon" style="" class="" src="/Content/images/svg/Conditionicons/caries.svg" title="Caries">
+                    <div class="title">Caries</div>
+                </a>
+                <a href="javascript:void(0)" id="fracture" class="list-group-item list-group-item-action action" style="">
+                    <img id="fractureIcon" style="" class="" src="/Content/images/svg/Conditionicons/fracture.svg" title="Fracture">
+
+                    <div class="title">Fracture</div>
+                </a>
+                <a href="javascript:void(0)" id="mobility" class="list-group-item list-group-item-action action" style="">
+                    <img id="mobilityIcon" style="" class="" src="/Content/images/svg/Conditionicons/mobility.svg" title="Mobility">
+                    <div class="title">Mobility</div>
+                </a>
+                <a href="javascript:void(0)" id="rootStump" class="list-group-item list-group-item-action action" style="">
+                    <img id="rootStumpIcon" style="" class="" src="/Content/images/svg/Conditionicons/rootstump.svg" title="Root Stump">
+                    <div class="title">Root Stump</div>
+                </a>
+                <a href="javascript:void(0)" id="missingTooth" class="list-group-item list-group-item-action action" style="">
+                    <img id="missingToothIcon" style="" class="" src="/Content/images/svg/Conditionicons/missing.svg" title="Missing Tooth">
+                    <div class="title">Missing Tooth</div>
+                </a>
+                <a href="javascript:void(0)" style="display: none" id="abrasion" class=" list-group-item-action action">Abrasion</a>
+                <a href="javascript:void(0)" style="display: none" id="attrition" class=" list-group-item-action action">Attrition</a>
+                <a href="javascript:void(0)" id="impacted" class="list-group-item list-group-item-action action" style="">
+                    <img id="impactedIcon" style="" class="" src="/Content/images/svg/Conditionicons/impacted.svg" title="Impacted">
+                    <div class="title">Impacted</div>
+                </a>
+                <a href="javascript:void(0)" id="supraErupted" class="list-group-item list-group-item-action action" style="">
+                    <img id="supraEruptedIcon" style="" class="" src="/Content/images/svg/Conditionicons/supraerupted.svg" title="Supra Erupted">
+                    <div class="title">Supra Erupted</div>
+                </a>
+                <a href="javascript:void(0)" id="periapicalAbscess" class="list-group-item list-group-item-action action" style="">
+
+                    <img id="periapicalAbscessIcon" style="" class="" src="/Content/images/svg/Conditionicons/periapicalabscess.svg" title="Periapical Abscess">
+                    <div class="title">Periapical Abscess</div>
+                </a>
+            </div>
+        </div>
+
+
+        
+
+
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group label-static is-empty p-2" id="consultationNotes1">
+            <label for="consultationNotes" class="control-label ">Chief Complaints &nbsp;</label>
+            <textarea id="consultationNotes" name="consultationNote" class="form-control" style="z-index: 103"> </textarea>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group label-static is-empty p-2" id="consultationadvice1">
+            <label for="consultationadvice" class="control-label ">Advice &nbsp;</label>
+            <textarea id="consultationadvice" name="consultationadvices" class="form-control" style="z-index: 103"></textarea>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group label-static is-empty p-2" id="consultationonexamination1">
+            <label for="consultationonexamination" class="control-label ">On Examination &nbsp;</label>
+            <textarea id="consultationonexamination" name="consultationonexamination" class="form-control" style="z-index: 103"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-3 mt-2 mt-md-0 mt-lg-0 mb-md-0 mb-lg-0">
+    <div class="pull-right col-md-12 col-sm-12 col-xs-12" id="nextCondition1">
+        <button type="button" id="nextCondition" class="btn btn-lg btn-primary  mR5 pull-right savePrescription">Save And Continue <i style="padding-left: 3px" class="fa fa-arrow-circle-right"></i></button>
+    </div>
+</div>
+
+
+<div class="card hideinmobiledevice removeblockinmobile" style="margin-top: 15px;">
+    <div id="detailConditions">
+    </div>
+</div>
+
+<div class="modal fade in modalopenmobile" id="viewteethfiledetail" style="" aria-hidden="false">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: left;">Notes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:10px !important">
+                <div class="card">
+                    <div id="detailConditions">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    var Teeths1 = [];
+    Teeths1 = [];
+    Notes1 = [];
+
+    $(document).ready(function () {
+        if (screen.availWidth <= 767) {
+            $('.desktopviewcondition').remove();
+             $('#nextCondition').click(function (e) {
+             $('#section1').css('display', 'none');
+                 $('#section2').css('display', 'block');
+                 $('#changelabelonclick').html('Procedures');
+                 GetTreatmentPlan();
+             });
+        }
+        else {
+            $('.mobileviewcondition').remove();
+             $('#nextCondition').click(function (e) {
+             e.preventDefault();
+             $('#tabs1 a[href="#section2"]').tab('show');
+             });
+        }
+
+
+
+
+        if (screen.availWidth >= 980) {
+            $('#mobileConditionbutton').show();
+            $('.MobileSelectAllClearSelection').remove();
+            $('.mobileConditionbutton').remove();
+        }
+        if (screen.availWidth == 768) {
+            $('.desktopConditionbutton').remove();
+            $('#mobileConditionbutton').show();
+           // $('.MobileSelectAllClearSelection').remove();
+            //$('.mobileConditionbutton').remove();
+        }
+
+        if (screen.availWidth <= 767) {
+            $('.desktopConditionbutton').remove();
+            $('.removeblockinmobile').remove();
+
+        }
+
+        var IsPediatric = "False";
+
+        DetailConditions();
+        TeethNotes();
+
+        if (IsPediatric.toLocaleLowerCase()=="true")
+        {
+            $('#selectChart').val("PDC");
+
+            $('#desktopDentalChart').hide();//hide dental chart
+            $('#desktopPediatricChart').show();//show pediatric dental chart
+            $('#desktopBothDentalChart').hide();//show Both dental chart
+            $('#mobileDentalChart').hide();//hide dental chart
+            $('#mobileBothDentalChart').hide()//hide Both dental chart
+            $('#mobilePediatricChart').show();//show pediatric dental chart
+
+            //pulse 3.0
+            $('#teethNotesUpper').hide();
+            $('#teethNotesLower').hide();
+            $('#BothTeethNotesUpper').hide();
+            $('#BothTeethNotesLower').hide();
+            $('#pediatricTeethNotesUpper').show();
+            $('#pediatricTeethNotesLower').show();
+            $('#diseasebutton').show();
+
+            DetailConditions();
+        }
+
+        $(function () {
+            $("#consultationDated").datepicker({
+                minDate: "-90Y",
+                maxDate: "-1D",
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                yearRange: "-100:+0",
+                onSelect: function (date) {
+                    $("#consultationDate").val(date);
+                },
+            });
+        });
+
+    });
+
+    function TeethNotes() {
+        $('.infoIconUpper').addClass('opacityNone');
+        $('.infoIconUpper').removeClass('opacityVisible');
+        $('.infoIconLower').addClass('opacityNone');
+        $('.infoIconLower').removeClass('opacityVisible');
+        
+        var i = 0;
+        $.each(Teeths1, function (value, data) {
+            $('#N' + data).removeClass('opacityNone');
+            $('#N' + data).addClass('opacityVisible');
+            $('#N' + data).parent().attr("title", Notes1[i]);
+            $('#NN' + data).removeClass('opacityNone');
+            $('#NN' + data).addClass('opacityVisible');
+            $('#NN' + data).parent().attr("title", Notes1[i]);
+            i++;
+        });
+    }
+
+    $('.tooth').on("click", function () {
+        if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $(this).addClass('selected');
+        }
+    });
+
+    $('#selectAll').on("click", function () {
+        $('.tooth').addClass('selected');
+    });
+
+    $('#clearSelection').on("click", function () {
+        $('.tooth').removeClass('selected');
+    });
+
+    $('#teethNotesUpper').on("click", function () {
+
+        var url = "../dental/patientdentalnotesUpper?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('#pediatricTeethNotesUpper').on("click", function () {
+        var url = "../dental/patientdentalnotesUpper?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        //console.log(url);
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('#BothTeethNotesUpper').on("click", function () {
+
+        var url = "../dental/patientdentalnotesUpper?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('#teethNotesLower').on("click", function () {
+
+        var url = "../dental/patientdentalnotesLower?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('#pediatricTeethNotesLower').on("click", function () {
+
+        var url = "../dental/patientdentalnotesLower?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('#BothTeethNotesLower').on("click", function () {
+
+        var url = "../dental/patientdentalnotesLower?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        showUrlInDialog(url, { error: function () { DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd) } });
+        //alert('test edite');
+    });
+
+    $('.action').on("click", function () {
+        var selected = "";
+        var dentalCondition = "";
+        var actionClicked = "";
+        $(".selected").each(function (index) {
+            selected += $(this).attr('id') + ",";
+        });
+        $('#loadingConsultation').show();
+        actionClicked = $(this).attr('id');
+
+        switch (actionClicked) {
+            case "caries":
+                dentalCondition = "1";
+                break;
+            case "fracture":
+                dentalCondition = "2";
+                break;
+            case "mobility":
+                dentalCondition = "3";
+                break;
+            case "rootStump":
+                dentalCondition = "4";
+                break;
+            case "missingTooth":
+                dentalCondition = "5";
+                break;
+            case "abrasion":
+                dentalCondition = "6";
+                break;
+            case "attrition":
+                dentalCondition = "7";
+                break;
+            case "impacted":
+                dentalCondition = "8";
+                break;
+            case "supraErupted":
+                dentalCondition = "9";
+                break;
+            case "periapicalAbscess":
+                dentalCondition = "10";
+                break;
+
+            case "removeConditions":
+                dentalCondition = "0";
+                break;
+        }
+
+        var formData = {
+            'CreateDateTime': $("#consultationDate").val(),
+            'consultationID': $('#consultationID').val(),
+            'patientID': $('#patientID').val(),
+            'dentalConditionID': dentalCondition,
+            'teethNumbers': selected,
+        }
+
+        // process the form
+        $.ajax({
+            type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url: '../dental/PatientDentalDetailConditions', // the url where we want to POST
+            data: formData, // our data object
+            async: true,
+            encode: true,
+            success: function (data, textStatus, jqXHR) {
+
+                $(".selected").each(function (index) {
+                    GetTeethImage($(this).attr('id'), dentalCondition);
+                });
+                $('#loadingConsultation').hide();
+                $('.tooth').removeClass('selected');
+                DetailConditions();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                DisplayMessage(SuccessCheck + SpanStart + "Something went wrong! Please try again." + SpanEnd);
+                //alert("Failed to get data. Please contact support team.")
+                //if fails
+            }
+        });
+
+
+    });
+
+
+
+    function GetTeethImage(teethNumber, dentalCondition) {
+        var mobile = $('#mobileView').val();
+        var url = '';
+
+        if (mobile != "1") {
+            url = "../dental/GetTeethImage?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&teethNumber=" + teethNumber;
+        }
+        else {
+            url = "../dental/GetTeethImage?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&teethNumber=" + teethNumber + "&mobile=1";
+        }
+
+        $.get(url, function (data) {
+            $('#' + teethNumber).html(data);
+            $('.B' + teethNumber).html(data);
+
+            if (dentalCondition == "0") {
+
+                if ($("#selectChart").val() == 'both') {
+                    if (teethNumber[0] == "1" || teethNumber[0] == "2") {
+                        $("<span class='infoIconUpper opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "3" || teethNumber[0] == "4") {
+                        $("<span class='infoIconLower opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "5" || teethNumber[0] == "6") {
+                        $("<span class='infoIconUpper opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else {
+                        $("<span class='infoIconLower opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                }
+                else {
+                    if (teethNumber[0] == "1" || teethNumber[0] == "2") {
+                        $("<span class='infoIconUpper opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "3" || teethNumber[0] == "4") {
+                        $("<span class='infoIconLower opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "5" || teethNumber[0] == "6") {
+                        $("<span class='infoIconUpper opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else {
+                        $("<span class='infoIconLower opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                }
+
+                if ($.inArray(parseInt(teethNumber), Teeths1) !== -1) {
+                    var teethindex = parseInt(teethNumber.trim('"'));
+                    var index = Teeths1.indexOf(teethindex);
+                    Teeths1.splice(index, 1);
+                    Notes1.splice(index, 1);
+                    $('#N' + teethindex).parent().removeAttr("title");
+                    $('#NN' + teethindex).parent().removeAttr("title");
+                }
+
+                TeethNotes1(Teeths1, Notes1);
+            }
+            else {
+                if ($("#selectChart").val() == 'both') {
+                    if (teethNumber[0] == "1" || teethNumber[0] == "2") {
+                        $("<span class='infoIconUpper opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "3" || teethNumber[0] == "4") {
+                        $("<span class='infoIconLower opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "5" || teethNumber[0] == "6") {
+                        $("<span class='infoIconUpper opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                    else {
+                        $("<span class='infoIconLower opacityNone' id='NN" + teethNumber + "'></span>").prependTo(".B" + teethNumber).children();
+                    }
+                }
+                else {
+                    if (teethNumber[0] == "1" || teethNumber[0] == "2") {
+                        $("<span class='infoIconUpper opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "3" || teethNumber[0] == "4") {
+                        $("<span class='infoIconLower opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else if (teethNumber[0] == "5" || teethNumber[0] == "6") {
+                        $("<span class='infoIconUpper opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                    else {
+                        $("<span class='infoIconLower opacityNone' id='N" + teethNumber + "'></span>").prependTo("#" + teethNumber).children();
+                    }
+                }
+                TeethNotes();
+            }
+        });
+    }
+
+    function TeethNotes1(Teeths1, Notes1) {
+        var i = 0;
+        $.each(Teeths1, function (value, data) {
+            $('#N' + data).removeClass('opacityNone');
+            $('#N' + data).addClass('opacityVisible');
+            $('#N' + data).parent().attr("title", Notes1[i]);
+            $('#NN' + data).removeClass('opacityNone');
+            $('#NN' + data).addClass('opacityVisible');
+            $('#NN' + data).parent().attr("title", Notes1[i]);
+            i++;
+        });
+    }
+
+    $("#nextCondition").click(function () {
+        $("#nextCondition").attr('disabled', 'disabled');
+        // debugger;
+        var dataToSend = {
+            'consultationNote': $("#consultationNotes").val().trim(),
+            'consultationAdvice': $("#consultationadvice").val().trim(),
+            'consultationOnExamination': $("#consultationonexamination").val().trim(),
+        };
+
+        console.log(dataToSend);
+
+        $.ajax({
+            type: "POST",
+            url: '../dental/conditions?consultationID=' + $("#consultationID").val() + '&patientID=' + $("#patientID").val() + "&selectChart=" + $("#selectChart").val() + "&CreateDateTime=" + $("#consultationDate").val(),
+            data: JSON.stringify(dataToSend),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#nextCondition").removeAttr('disabled');
+                DisplayMessage(SuccessCheck + SpanStart +"Consultation notes have been saved successfully." + SpanEnd);
+            }
+        })
+
+    });
+
+
+    //function to get data according to selected dental chart from dropdown
+    var selectedValue;
+    function GetChartforSelectedValue(selectChart) {
+        selectedValue = selectChart.value;
+        if (selectedValue == "DC") {
+            $('#desktopPediatricChart').hide();//hide pediatric dental chart
+            $('#desktopDentalChart').show();//show dental chart
+            $('#desktopBothDentalChart').hide();//show Both dental chart
+            $('#mobilePediatricChart').hide();//hide mobile pediatric dental chart
+            $('#mobileBothDentalChart').hide()//hide Both dental chart
+            $('#mobileDentalChart').show();//show mobile dental chart
+            //$('#pediatricDentalDetailView').hide();//hide pediatric dental chart notes table
+            //$('#dentalDetailView').show();//show dental chart notes table
+
+            //pulse 3.0
+
+            $('#pediatricTeethNotesUpper').hide();
+            $('#pediatricTeethNotesLower').hide();
+            $('#BothTeethNotesUpper').hide();
+            $('#BothTeethNotesLower').hide();
+            $('#teethNotesUpper').show();
+            $('#teethNotesLower').show();
+
+            $('#diseasebutton').show();
+            DetailConditions();
+        }
+        if (selectedValue == "PDC") {
+
+
+            $('#desktopDentalChart').hide();//hide dental chart
+            $('#desktopPediatricChart').show();//show pediatric dental chart
+            $('#desktopBothDentalChart').hide();//show Both dental chart
+            $('#mobileDentalChart').hide();//hide dental chart
+            $('#mobileBothDentalChart').hide()//hide Both dental chart
+            $('#mobilePediatricChart').show();//show pediatric dental chart
+            //$('#dentalDetailView').hide();//hide dental chart notes table
+            //$('#pediatricDentalDetailView').show();//show pediatric dental chart notes table
+
+            //pulse3.0
+            $('#teethNotesUpper').hide();
+            $('#teethNotesLower').hide();
+            $('#BothTeethNotesUpper').hide();
+            $('#BothTeethNotesLower').hide();
+            $('#pediatricTeethNotesUpper').show();
+            $('#pediatricTeethNotesLower').show();
+
+            $('#diseasebutton').show();
+            DetailConditions();
+
+        }
+
+        if (selectedValue == "both") {
+
+
+            $('#desktopDentalChart').hide();//hide dental chart
+            $('#desktopPediatricChart').hide();//show pediatric dental chart
+
+            $('#mobileDentalChart').hide();//hide dental chart
+            $('#mobilePediatricChart').hide();//show pediatric dental chart
+            $('#desktopBothDentalChart').show();//show Both dental chart
+            $('#mobileBothDentalChart').show()//show Both dental chart
+            //$('#dentalDetailView').hide();//hide dental chart notes table
+            //$('#pediatricDentalDetailView').show();//show pediatric dental chart notes table
+
+            //pulse3.0
+            $('#teethNotesUpper').hide();
+            $('#teethNotesLower').hide();
+            $('#pediatricTeethNotesUpper').hide();
+            $('#pediatricTeethNotesLower').hide();
+            $('#BothTeethNotesUpper').show();
+            $('#BothTeethNotesLower').show();
+            $('#diseasebutton').show();
+            DetailConditions();
+
+        }
+
+    }
+
+    //function end
+
+    function DetailConditions() {
+        url = "../dental/GetDentalConditions?consultationID=" + $("#consultationID").val() + "&patientID=" + $("#patientID").val() + "&selectChart=" + $("#selectChart").val();
+        $('#loadingConsultation').show();
+
+
+
+
+        //console.log(url);
+        //var arr = url.split('&');
+        //console.log(arr[0]);
+        //console.log(arr[1]);
+        //console.log(arr[2]);
+        //if (arr[2] == "PDC")
+        //{
+        //    $('#desktopDentalChart').hide();//hide dental chart
+        //    $('#desktopPediatricChart').show();//show pediatric dental chart
+        //}
+        //if (arr[2] == "DC") {
+        //    $('#desktopPediatricChart').hide();//hide pediatric dental chart
+        //    $('#desktopDentalChart').show();//show dental chart
+        //}
+
+        $.ajax(
+        {
+            url: url,
+            type: "GET",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $("#detailConditions").html(data);
+                $('#loadingConsultation').hide();
+                //data: return data from server
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd);
+                //alert("Failed to get data. Please contact support team.")
+                //if fails
+            }
+        });
+    }
+
+
+
+</script>

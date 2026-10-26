@@ -1,0 +1,112 @@
+
+
+
+
+<div class="consultationhistorydesktop">
+    <div class="p-2">
+
+        <div class="row">
+            <div class="col-md-4 col-sm-2 col-xs-12 p-0">
+                <!-- block -->
+                <div class=" ">
+                    <div class="card ">
+
+                        <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                            <div class="cardHeadingText">
+                                Consultation List
+
+                                <div class="pull-right"><span class="badge badge-pill badge-danger">0</span> </div>
+
+                            </div>
+                        </div>
+                        <div class="table-responsive" style="max-height:420px;overflow-y:scroll;">
+                            <table class="table gridtable table-condensed" id="history">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50% !important; padding-left:1.000rem !important;">ID</th>
+                                        <th style="width: 50% !important">Date</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-8 col-sm-10 col-xs-12 p-0">
+                <!-- block -->
+                <div class=" ">
+                    <div class="card">
+                        <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                            <div class="cardHeadingText">Consultation Detail</div>
+                        </div>
+                        <div class="">
+                            
+                        </div>
+                    </div>
+                    <!-- /block -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="historySection" style="display: none">
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            if (screen.availWidth <= 767) {
+                $('.consultationhistorydesktop').remove();
+               $("#history").find('tbody tr').first().addClass('selectedTableRow');
+                $("#history").find('tr').click(function () {
+                    $("#history").find('tr').removeClass('selectedTableRow');
+                    $(this).addClass('selectedTableRow');
+                    var row = $(this).find('td:first').text().trim();
+                    var date = $(this).find('td:nth-child(2)').text().trim();
+
+
+                    $('#historyDetail').html($('#h-' + row).html());
+                    $('#historyDate').text(date);
+                });
+            }
+            else {
+                $('.consultationhistorymobile').remove();
+                $("#history").find('tbody tr').first().addClass('selectedTableRow');
+                 $("#history").find('tr').click(function () {
+            $("#history").find('tr').removeClass('selectedTableRow');
+            $(this).addClass('selectedTableRow');
+            var row = $(this).find('td:first').text().trim();
+            var date = $(this).find('td:nth-child(2)').text().trim();
+
+
+            $('#historyDetail').html($('#h-' + row).html());
+            $('#historyDate').text(date);
+
+
+
+        });
+            }
+
+
+        });
+
+
+
+
+        
+
+    </script>

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Log in - PULSE</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="PMS System">
+    <meta name="author" content="Ashish Durve">
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Pulse">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+
+
+    <link href="/Content/Site_min.css" rel="stylesheet"/>
+
+
+
+    <link href="../Content/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="../Content/vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+
+    <link href="/Content/assets/login_home.css" rel="stylesheet" />
+    
+    <link href="../../Content/bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    
+    <link href="../../Content/assets/fontawesome-all.css" rel="stylesheet" type="text/css" />
+
+    <link rel="manifest" href="/manifest.json"> 
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="../Content/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="../../Content/vendors/jquery-1.9.1.min.js"></script>
+
+
+    <script src="../../Content/bootstrap/js/popper.min.js"></script>
+    <script src="../../Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../Content/assets/bootstrap-material-design.js"></script>
+
+
+
+    <!--/.fluid-container-->
+    
+    <script src="../../Content/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
+    <script src="../../Content/assets/scripts.js"></script>
+    <script src="../../Content/vendors/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="../../Content/assets/rhinoslider-1.05.min.js"></script>
+    <script src="../../Content/assets/mousewheel.js"></script>
+    <script src="../../Content/assets/easing.js"></script>
+
+    <!-- Material Design fonts -->
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap Material Design -->
+    <link href="../../Content/assets/bootstrap-material-design.css" rel="stylesheet">
+    <link href="../../Content/assets/ripples.min.css" rel="stylesheet">
+
+    
+
+    <script src="../../Content/assets/material.js"></script>
+    
+    <script src="../../Content/assets/ripples.min.js"></script>
+
+    <!--iphone PWA AppIcon Reference -->
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <!--End-->
+    <!--iphone PWA Splash Screen Reference -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
+    <link rel="apple-touch-startup-image" href="/launch.png">
+
+
+    <!-- iPhone X (1125px x 2436px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="/apple-launch-1125x2436.png">
+    <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/apple-launch-750x1334.png">
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/apple-launch-1242x2208.png">
+    <!-- iPhone 5 (640px x 1136px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/apple-launch-640x1136.png">
+    <!-- iPad Mini, Air (1536px x 2048px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="/apple-launch-1536x2048.png">
+    <!-- iPad Pro 10.5" (1668px x 2224px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="/apple-launch-1668x2224.png">
+    <!-- iPad Pro 12.9" (2048px x 2732px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="/apple-launch-2048x2732.png">
+
+
+    <!--End-->
+
+
+
+    <script>
+        $.material.init();
+    </script>
+
+    
+
+    <style>
+        @media all and (display-mode: standalone) {
+            body {
+                background-color: yellow;
+            }
+        }
+        /*.add-button {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }*/
+    </style>
+
+</head>
+<body class="pattern">
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+
+            <!--/span-->
+            
+
+
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        height: 100% !important;
+        overflow: hidden !important;
+        background: url('../Content/images/background.png') center center / cover no-repeat fixed !important;
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh !important;
+    }
+
+        /* Full page wrapper to guarantee gradient covers everything */
+        body::after {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../Content/images/background.png') center center / cover no-repeat;
+            z-index: -1;
+        }
+
+    /* ─── NAVBAR ─────────────────────────────── */
+    .top-nav {
+        height: 52px;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        gap: 12px;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 100;
+    }
+
+        .top-nav .brand img {
+            height: 34px;
+            display: block;
+        }
+
+        .top-nav .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+            .top-nav .nav-links a {
+                font-size: 12px;
+                font-weight: 500;
+                color: #555;
+                text-decoration: none;
+                padding: 5px 10px;
+                border-radius: 5px;
+                transition: color .2s, background .2s;
+            }
+
+                .top-nav .nav-links a:hover {
+                    color: #512da8;
+                    background: #f3f0fc;
+                }
+
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 4px 9px;
+        cursor: pointer;
+        font-size: 16px;
+        color: #444;
+        margin-left: auto;
+    }
+
+    .nav-links.open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 16px;
+        gap: 4px;
+        z-index: 999;
+    }
+
+    /* ─── LOGIN SECTION ──────────────────────── */
+    .login-section {
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 16px;
+        min-height: calc(100vh - 52px - 120px);
+    }
+
+    .login-box {
+        display: flex;
+        width: 680px;
+        max-width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.16);
+        background: #fff;
+    }
+
+    /* Left panel */
+    .login-left {
+        width: 42%;
+        background: linear-gradient(160deg, #512da8, #5dbdb9);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 20px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+        .login-left .logo {
+            height: 42px;
+            margin-bottom: 14px;
+            filter: brightness(0) invert(1);
+        }
+
+        .login-left h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .login-left p {
+            font-size: 12px;
+            opacity: .9;
+            line-height: 1.5;
+        }
+
+    /* Right panel */
+    .login-right {
+        width: 58%;
+        padding: 28px 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+        .login-right h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #222;
+        }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 9px 12px;
+        border-radius: 7px;
+        border: none;
+        background: #eee;
+        font-size: 13px;
+        outline: none;
+        color: #333;
+        font-family: 'Montserrat', sans-serif;
+        transition: background .2s;
+    }
+
+        .form-control:focus {
+            background: #e0e0f0;
+        }
+
+    .forgot-link {
+        text-align: right;
+        margin: 6px 0 14px;
+    }
+
+        .forgot-link a {
+            font-size: 12px;
+            color: #512da8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .forgot-link a:hover {
+                text-decoration: underline;
+            }
+
+    .btn-login {
+        width: 100%;
+        padding: 10px;
+        background: #512da8;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        transition: background .25s;
+    }
+
+        .btn-login:hover {
+            background: #3f2b96;
+        }
+
+    /* Validation */
+    .text-danger {
+        color: #c0392b;
+        font-size: 11px;
+        margin-top: 3px;
+        display: block;
+    }
+
+    div.validation-summary-errors ul {
+        list-style: none;
+        padding: 0;
+        font-size: 12px;
+        color: #c0392b;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    .site-footer {
+        background: #fff;
+        border-top: 1px solid #e0e0e0;
+        padding: 12px 20px 8px;
+        flex-shrink: 0;
+    }
+
+    .footer-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+        justify-content: space-between;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .footer-col h5 {
+        font-size: 10px;
+        font-weight: 600;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+        margin-bottom: 6px;
+    }
+
+    .footer-col p,
+    .footer-col a {
+        font-size: 11px;
+        color: #666;
+        line-height: 1.7;
+        text-decoration: none;
+        display: block;
+    }
+
+        .footer-col a:hover {
+            color: #512da8;
+        }
+
+    .app-badges a {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .app-badges img {
+        height: 40px;
+    }
+
+    .footer-bottom {
+        font-size: 11px;
+        color: #999;
+        text-align: center;
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+        padding-top: 8px;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 768px) {
+        html, body {
+            overflow: auto !important;
+        }
+
+        .top-nav .nav-links {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: block;
+        }
+
+        .login-box {
+            flex-direction: column;
+            max-width: 380px;
+            border-radius: 14px;
+        }
+
+        .login-left {
+            width: 100%;
+            padding: 18px 20px;
+        }
+
+            .login-left h2 {
+                font-size: 16px;
+            }
+
+        .login-right {
+            width: 100%;
+            padding: 22px 24px;
+        }
+
+        .footer-col {
+            min-width: calc(50% - 10px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .login-section {
+            padding: 8px 10px;
+        }
+
+        .footer-col {
+            min-width: 100%;
+        }
+    }
+
+    /* hide old styles */
+    .main-box, .slider-cont, .form-cont, .signup-slider {
+        display: none !important;
+    }
+</style>
+
+<!-- Navbar -->
+<nav class="top-nav">
+    <a class="brand" href="https://pulsedigitalclinic.com/home" target="_blank">
+        <img src="/Content/images/Pulse-logo.png" alt="Pulse Digital">
+    </a>
+    <button class="nav-toggle" onclick="document.getElementById('mainNav').classList.toggle('open')">&#9776;</button>
+    <div class="nav-links" id="mainNav">
+        <a href="https://pulsedigitalclinic.com/home" target="_blank">Home</a>
+        <a href="https://pulsedigitalclinic.com/about" target="_blank">About</a>
+        <a href="https://pulsedigitalclinic.com/data-security" target="_blank">Data Security</a>
+        <a href="https://pulsedigitalclinic.com/services" target="_blank">Services</a>
+        <a href="https://pulsedigitalclinic.com/dental" target="_blank">Plans</a>
+    </div>
+</nav>
+
+<!-- Login -->
+<div class="login-section">
+    <div class="login-box">
+
+        <div class="login-left">
+            <img src="/Content/images/Pulse-logo.png" class="logo" alt="Pulse Digital" />
+            <h2>Welcome Back</h2>
+            <p>Please <strong>Sign In</strong> to continue</p>
+        </div>
+
+        <div class="login-right">
+<form action="/account/login" method="post"><input name="__RequestVerificationToken" type="hidden" value="q5NlyfKe5mjjAlD91SKzc7ehQi_LCceSWk2-5l1CXalMyCYdqtXnbAXFsH3nXQy_KxDWBbJNv6erp3RcSLKzqFXReqFbpL2wSM4mASQKwxh71ltIxQGHDi5jSUZM1KgYiqS5rZ8GuKF1KKioeKInewPj1_q3Ym8D3CFrDcY36Yw1" />                <h1>Sign In</h1>
+                <div class="form-group">
+                    <label for="UserName">User name</label>
+                    <input class="form-control" data-val="true" data-val-required="The User name field is required." id="UserName" name="UserName" placeholder="Username" type="text" value="" />
+                    <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input class="form-control" data-val="true" data-val-required="The Password field is required." id="Password" name="Password" placeholder="Password" type="password" />
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                </div>
+                <div class="forgot-link">
+                    <a href="../Account/resetpassword">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+</form>        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-grid">
+
+        <div class="footer-col">
+            <h5>Get in Touch</h5>
+            <p>TF 306 Sakar Complex, Makarapura Rd,<br />Manjalpur, Vadodara, Gujarat 390011</p>
+            <p>+91 9408008792</p>
+            <p>support@pulsedigital.in</p>
+        </div>
+
+        <div class="footer-col">
+            <h5>Quick Links</h5>
+            <a href="https://pulsedigitalclinic.com/home" target="_blank">Home</a>
+            <a href="https://pulsedigitalclinic.com/about" target="_blank">About</a>
+            <a href="https://pulsedigitalclinic.com/data-security" target="_blank">Data Security</a>
+            <a href="https://pulsedigitalclinic.com/services" target="_blank">Services</a>
+        </div>
+
+        <div class="footer-col">
+            <h5>Policies</h5>
+            <a href="https://pulsedigitalclinic.com/termsofservice" target="_blank">Terms of Service</a>
+            <a href="https://pulsedigitalclinic.com/privacypolicy" target="_blank">Privacy Policy</a>
+            <a href="https://pulsedigitalclinic.com/refundpolicy" target="_blank">Refund Policy</a>
+            <a href="https://pulsedigitalclinic.com/contact" target="_blank">Contact</a>
+        </div>
+
+        <div class="footer-col">
+            <h5>Follow Us</h5>
+            <a href="https://www.instagram.com/pulsedigital_pms/" target="_blank">Instagram</a>
+            <a href="https://www.linkedin.com/company/pulse-digital-clinic-india/" target="_blank">LinkedIn</a>
+        </div>
+
+        <div class="footer-col">
+            <h5>Mobile Apps</h5>
+            <div class="app-badges">
+                <a href="https://play.google.com/store/apps/details?id=com.shlokadigi.pulselite" target="_blank">
+                    <img src="/Content/images/andriodimage.png" alt="Android App" />
+                </a>
+                <a href="https://apps.apple.com/in/app/pulse-digital/id1562328185" target="_blank">
+                    <img src="/Content/images/iosimage.png" alt="iOS App" />
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2025 Pulse Digital. All Rights Reserved.
+    </div>
+</footer>
+
+
+<!-- Terms Modal -->
+<div id="myModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-lg" style="overflow-y: initial !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms Of Use</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh; overflow-y: auto;">
+                <p><strong>Subscriber Terms</strong></p>
+                <p>Terms of Use for Practitioners, Practices and Healthcare Providers for the use of Pulse and the other Services provided by Pulse Digital.</p>
+                <p>Please refer to <a href="https://pulsedigitalclinic.com/termsofservice" target="_blank">https://pulsedigitalclinic.com/termsofservice</a> for the full Terms of Service.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-info pull-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Modal -->
+<div id="privacyModal" class="modal fade bd-example-modal-lg">
+    <div class="modal-dialog modal-lg" style="overflow-y: initial !important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Privacy Policy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 80vh; overflow-y: auto;">
+                <p>Please refer to <a href="https://pulsedigitalclinic.com/privacypolicy" target="_blank">https://pulsedigitalclinic.com/privacypolicy</a> for the full Privacy Policy.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-info pull-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#terms").click(function () { $("#myModal").modal('show'); });
+    $("#privacy").click(function () { $("#privacyModal").modal('show'); });
+</script>
+
+
+        </div>
+
+        <footer></footer>
+    </div>
+
+    
+
+    <script type="text/javascript">
+
+        var err = 0;
+        var handleError;
+
+        $(document).ready(function () {
+            //add to home screen code
+
+            window.addEventListener("beforeinstallprompt", function (e) {                
+                e.preventDefault();
+                
+                // log the platforms provided as options in an install prompt
+                console.log(e.platforms); // e.g., ["web", "android", "windows"]
+                e.userChoice.then(function (outcome) {
+
+                    if (choiceResult.outcome === 'accepted')
+                    {
+                        console.log('User accepted the A2HS prompt');
+                        //e.preventDefault();
+                    }
+                    else
+                    {
+                        console.log('User dismissed the A2HS prompt');
+                        //e.preventDefault();
+                        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                            for (let registration of registrations) {
+                                registration.unregister()
+                            }
+                        });
+                    }
+                    //console.log(outcome); // either "accepted" or "dismissed"
+                }, handleError);
+            });
+
+            //window.addEventListener('appinstalled', (evt) => {
+            //    app.logEvent('a2hs', 'installed');
+            //});
+            /////////////////////////////////
+            //    //uncomment the below code
+            //   let deferredPrompt;
+
+            //window.addEventListener('beforeinstallprompt', (e) => {
+                
+            //    // Prevent Chrome 67 and earlier from automatically showing the prompt
+            //    e.preventDefault();
+
+            //    // Stash the event so it can be triggered later.
+            //    deferredPrompt = e;
+
+            //    //deferredPrompt.prompt();
+            //    deferredPrompt.prompt();
+
+
+            //    deferredPrompt.userChoice
+            //        .then((choiceResult) => {
+            //            if (choiceResult.outcome === 'accepted') {
+            //                console.log('User accepted the A2HS prompt');
+            //            } else {
+            //                e.preventDefault();
+            //                navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            //                for (let registration of registrations) {
+            //                    registration.unregister()
+            //                }
+            //                });
+            //                console.log('User dismissed the A2HS prompt');
+            //            }
+            //            deferredPrompt = null;
+            //        });
+            //});
+            window.addEventListener('appinstalled', (evt) => {
+                
+                app.logEvent('a2hs', 'installed');
+            });
+
+            
+            ////    notify the user your app can be installed
+            //    window.addEventListener('beforeinstallprompt', (e) => {
+            //        e.preventDefault();ss
+            //        deferredPrompt = e;
+            //        // Update UI notify the user they can add to home screen
+            //        btnAdd.style.display = 'block';
+            //    });
+
+            //////Show prompt
+
+            //btnAdd.addEventListener('click', (e) => {
+            //    // hide our user interface that shows our A2HS button
+            //    btnAdd.style.display = 'none';
+            //    // Show the prompt
+            //    deferredPrompt.prompt();
+            //    // Wait for the user to respond to the prompt
+            //    deferredPrompt.userChoice
+            //        .then((choiceResult) => {
+            //            if (choiceResult.outcome === 'accepted') {
+            //                console.log('User accepted the A2HS prompt');
+            //            } else {
+            //                console.log('User dismissed the A2HS prompt');
+            //            }
+            //            deferredPrompt = null;
+            //        });
+            //});
+
+            $('#slider').rhinoslider({
+                controlsPlayPause: false,
+                showControls: 'always',
+                showBullets: 'always',
+                controlsMousewheel: false,
+                prevText: 'Back',
+                nextText: 'Proceed',
+                slidePrevDirection: 'toRight',
+                slideNextDirection: 'toLeft',
+                cycled: 'false',
+                controlsKeyboard: 'false'
+            });
+
+
+            $(".rhino-prev").hide();
+            $('.rhino-next').after('<a class="form-submit" href="javascript:void(0);" >Proceed</a>');
+            $(".rhino-next").hide();
+
+
+
+
+            var info = ["PERSONAL DETAILS", "ACCOUNT DETAILS", "ORGANIZATION DETAILS"];
+            var images = ["../../Content/Images/personal-details-icon.png", "../../Content/Images/account-details.png", "../../Content/Images/contact-details.png"];
+            $('.rhino-bullet').each(function (index) {
+                $(this).html('<p style="margin: 0pt; font-size: 13px; font-weight: bold;"><img src="./img/' +
+                    images[index] + '"></p><p class="bullet-desc">' + info[index] + '</p></a>');
+            });
+
+
+
+
+
+        });
+
+        $('body').on('click', '.form-submit', function () {
+            //            $('.form-submit').on("click",function(){
+
+            $('.form-error').html("");
+            err = 0;
+            var current_tab = $('#slider').find('.rhino-active').attr("id");
+
+            switch (current_tab) {
+                case 'rhino-item0':
+                    step1_validation();
+                    break;
+                case 'rhino-item1':
+                    step2_validation();
+                    break;
+                case 'rhino-item2':
+                    step3_validation();
+                    if (err == 0) {
+                        //alert(err);
+                        $("#freeRegister").submit();
+                    }
+                    break;
+            }
+        });
+
+        var step1_validation = function () {
+
+            //var err = 0;
+
+            if ($('#fname').val() == '') {
+                $('#fname').parent().find('.form-error').html("Please enter first name.");
+                err++;
+            }
+            if ($('#lname').val() == '') {
+                $('#lname').parent().find('.form-error').html("Please enter last name.");
+                err++;
+            }
+            if ($('#mobile').val() == '') {
+                $('#mobile').parent().find('.form-error').html("Please enter mobile phone number.");
+                err++;
+            }
+            else {
+                var x = $('#mobile').val();
+                var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                if (!x.match(phoneno)) {
+                    $('#mobile').parent().find('.form-error').html("Please enter valid mobile phone number.");
+                    err++;
+                }
+            }
+
+
+            if (err == 0) {
+                $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                $(".rhino-next").show();
+                $('.form-submit').hide();
+                $('.rhino-next').trigger('click');
+            } else {
+                $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+            }
+
+
+        };
+
+        var step2_validation = function () {
+            //var err = 0;
+
+            if ($('#username').val() == '') {
+                $('#username').parent().find('.form-error').html("Please enter UserName/Email.");
+                err++;
+            }
+            else {
+                var x = $('#username').val();
+                var userName = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+                if (!x.match(userName)) {
+                    $('#username').parent().find('.form-error').html("Please enter valid Email.");
+                    err++;
+                }
+                if (!checkUserName(x)) {
+                    $('#username').parent().find('.form-error').html("This user is already registered with us.");
+                    err++;
+                }
+            }
+
+            if ($('#pass').val() == '') {
+                $('#pass').parent().find('.form-error').html("Please enter password");
+                err++;
+            }
+            if ($('#cpass').val() == '') {
+                $('#cpass').parent().find('.form-error').html("Please enter confirm password.");
+                err++;
+            }
+            else {
+                var pass = $('#pass').val();
+                var cpass = $('#cpass').val();
+
+                if (pass != cpass) {
+                    $('#cpass').parent().find('.form-error').html("Confirm password should match password field.");
+                    err++;
+                }
+            }
+
+            if (err == 0) {
+                $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                $(".rhino-next").show();
+                $('.form-submit').hide();
+                $('.rhino-next').trigger('click');
+            } else {
+                $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+            }
+
+        };
+
+        var step3_validation = function () {
+            //var err = 0;
+
+            if ($('#orgName').val() == '') {
+                $('#orgName').parent().find('.form-error').html("Please enter organization name.");
+                err++;
+            }
+            if (err == 0) {
+                $(".rhino-active-bullet").removeClass("step-error").addClass("step-success");
+                $(".rhino-next").show();
+                $('.form-submit').hide();
+                $('.rhino-next').trigger('click');
+            } else {
+                $(".rhino-active-bullet").removeClass("step-success").addClass("step-error");
+            }
+
+        };
+
+        function checkUserName(userName) {
+            valid = false;
+            url = "../Account/VerifyUserName?userName=" + userName;
+            $.ajax(
+                {
+                    url: url,
+                    type: "GET",
+                    async: false,
+                    success: function (data, textStatus, jqXHR) {
+                        if (data == "0") {
+
+                            valid = false;
+                        }
+                        else {
+                            valid = true;
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        alert("Failed to get data. Please contact support team.")
+                        return false;
+                    }
+                });
+
+            return valid;
+        }
+
+    </script>
+
+    
+</body>
+</html>
+      
+
+<script>
+    // code for service worker of pwa start
+    if ('serviceWorker' in navigator) {
+        console.log("Will the service worker register?");
+     
+        navigator.serviceWorker.register('../serviceWorker.js')
+            .then(function (reg) {
+                console.log(reg);
+                console.log("Yes, it did.");
+            }).catch(function (err) {
+                console.log("No it didn't. This happened: ", err)
+            });
+    }
+
+    
+    // code for service worker of pwa end
+
+</script>  
+
+
+<script>
+     //  final code
+   
+    //window.addEventListener("beforeinstallprompt", function (e) {
+    //    // log the platforms provided as options in an install prompt 
+    //    console.log(e.platforms); // e.g., ["web", "android", "windows"] 
+    //    e.userChoice.then(function (outcome) {
+    //        console.log(outcome); // either "accepted" or "dismissed"
+    //    }, handleError);
+    //});
+
+   // final code end
+ 
+
+    //second code
+
+    //let deferredPrompt;
+    //const addBtn = document.querySelector('.add-button');
+    //addBtn.style.display = 'none';
+
+    //window.addEventListener('beforeinstallprompt', (e) => {
+    //    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    //    e.preventDefault();
+    //    // Stash the event so it can be triggered later.
+    //    deferredPrompt = e;
+    //    // Update UI to notify the user they can add to home screen
+    //    addBtn.style.display = 'block';
+
+    //    addBtn.addEventListener('click', (e) => {
+    //        // hide our user interface that shows our A2HS button
+    //        addBtn.style.display = 'none';
+    //        // Show the prompt
+    //        deferredPrompt.prompt();
+    //        // Wait for the user to respond to the prompt
+    //        deferredPrompt.userChoice.then((choiceResult) => {
+    //            if (choiceResult.outcome === 'accepted') {
+    //                console.log('User accepted the A2HS prompt');
+    //            } else {
+    //                console.log('User dismissed the A2HS prompt');
+    //            }
+    //            deferredPrompt = null;
+    //        });
+    //    });
+    //});
+
+
+    // second code end
+
+    // for ios
+    // Detects if device is on iOS 
+    //const isIos = () => {
+    //    const userAgent = window.navigator.userAgent.toLowerCase();
+    //    return /iphone|ipad|ipod/.test(userAgent);
+    //}
+    //// Detects if device is in standalone mode
+    //const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+    //// Checks if should display install popup notification:
+    //if (isIos() && !isInStandaloneMode()) {
+    //    this.setState({ showInstallMessage: true });
+    //}
+//end ios code
+
+
+    // third solution
+
+
+    //var deferredPrompt;
+
+    //window.addEventListener('beforeinstallprompt', function (e) {
+    //    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    //    e.preventDefault();
+    //    // Stash the event so it can be triggered later.
+    //    deferredPrompt = e;
+
+    //    showAddToHomeScreen();
+
+    //});
+
+</script>
+
+                                

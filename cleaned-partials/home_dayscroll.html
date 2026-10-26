@@ -1,0 +1,51 @@
+
+                            <div class="d-flex" style="padding:0 10px;background-color:#ffffff;max-height:50px;overflow:hidden;box-shadow: rgba(0,0,0,.117647) 0px 3px 4px 0px !important;border-bottom: 1px solid #b6c2ff !important;">
+                                <div class="mr-auto dayScrollLeft" style="width:4%;cursor:pointer;" onclick="previousDate()">
+                                    <span class="fa fa-chevron-left text-left "></span>
+                                </div>
+                                <div class="d-flex row text-center DayScrollContainer" style="width:96%; overflow-x: auto;">
+    <div class="col-2 DayScrollItem" data-appointmentdate="24/10/2026" onclick="GetAppointmentTimings(('24/10/2026'),this)" style="border-bottom: 2px solid rgb(29, 127, 255);"><span class="daySpan">Saturday</span> <span class="dateSpan badge badge-pill badge-danger BaToday">24</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="25/10/2026" onclick="GetAppointmentTimings(('25/10/2026'),this)"><span class="daySpan">Sunday</span> <span class="dateSpan">25</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="26/10/2026" onclick="GetAppointmentTimings(('26/10/2026'),this)"><span class="daySpan">Monday</span> <span class="dateSpan">26</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="27/10/2026" onclick="GetAppointmentTimings(('27/10/2026'),this)"><span class="daySpan">Tuesday</span> <span class="dateSpan">27</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="28/10/2026" onclick="GetAppointmentTimings(('28/10/2026'),this)"><span class="daySpan">Wednesday</span> <span class="dateSpan">28</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="29/10/2026" onclick="GetAppointmentTimings(('29/10/2026'),this)"><span class="daySpan">Thursday</span> <span class="dateSpan">29</span></div>
+    <div class="col-2 DayScrollItem" data-appointmentdate="30/10/2026" onclick="GetAppointmentTimings(('30/10/2026'),this)"><span class="daySpan">Friday</span> <span class="dateSpan">30</span></div>
+<script>
+    $(document).ready(function (e) {
+
+       
+        var date = $(".DayScrollItem").attr("data-appointmentDate").valueOf(0);
+        //console.log(date);
+        
+          ////pulse 3.0 script to replace first alphabet with day name in dashboard appointment widget
+        $(".DayScrollItem").each(function (e) {
+                //    debugger;
+                    var text = $(this).text();
+                    var res = text.split(" ");
+                    var day = res[0];
+                    var date = res[1];
+
+                   
+            if (date == "24") {
+
+              //  $((this).find($('.daySpan'))).html("Today");
+             
+                        $(this).find($('.dateSpan')).addClass("badge");
+                        $(this).find($('.dateSpan')).addClass("badge-pill");
+                        $(this).find($('.dateSpan')).addClass("badge-danger");
+                $(this).find($('.dateSpan')).addClass("BaToday");
+                //$(this).addClass('selectedDayScrollItem');
+                        $(this).css('border-bottom', '2px solid #1d7fff');
+                    }
+                   
+                });
+
+                // //pulse 3.0 end script to replace first alphabet with day name in dashboard appointment widget
+    });
+    </script></div>
+                                <div class="ml-auto text-right dayScrollRight" style="width:4%;cursor:pointer;" onclick="nextDate()"><span class="fa fa-chevron-right"></span></div>
+                            </div>
+                            <span class="bmd-form-group is-filled"><input style="display: none" type="text" id="number" value="0"></span>
+                            <span class="bmd-form-group is-filled"><input style="display: none" type="text" id="number1" value="7"></span>
+                        

@@ -1,0 +1,128 @@
+
+
+
+<style>
+    #dropdownMenuButton i {
+        color: #6a6c6f !important;
+    }
+
+    #dropdownMenuButton:active {
+        background-color: transparent !important;
+    }
+
+    #dropdownMenuButton::after {
+        border-left: none !important;
+        border-right: none !important;
+    }
+</style>
+
+    <div class="ermsg" style="background-color: #f2f2f2 !important; color: #6a6a6a !important;width:100%;margin-top: -5px !important;margin-bottom:10px !important;">
+        <span style="padding:0 14px;">No Records Found.</span>
+    </div>
+<script>
+
+    //show billing opertation buttons on click
+    //$('.fileThumb1').hover(function () {
+    //    debugger;
+    //    $(this).parent().find('.billOperationButtonsContainer').show();
+    //},
+
+    //function showBillingIcons(div) {
+    //   // debugger;
+    //    console.log($(div).parent());
+    //    $(div).parent().parent().find($('.billOperationButtonsContainer')).show();
+
+    //}
+                //function () {
+
+                //    $(this).find('.billOperationButtonsContainer').hide();
+                //});
+
+
+    function GetPaymentEdit(billID,pendingAmount)
+    {
+      //  debugger;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+
+        url = "../Patient/GetPaymentBill?billID=" + billID + "&pendingAmount=" + pendingAmount + "&patientID=" + 2223997;
+        $.ajax({
+            url: url,
+            type: "GET",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $('#AccordianContainer').removeClass('fixedColumnSize-24');
+                $('#LoadForms').html('');
+                $('#LoadForms').html(data);
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd)
+                //if fails
+            }
+            });
+
+    }
+    function GetEditBill(billID,consultationID)
+    {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        if (billID > 0) {
+
+
+
+            url = "../Patient/GetAddBill?patientID=" + 2223997+"&mode='Edit'" + "&billID=" + billID;
+        $.ajax({
+            url: url,
+            type: "GET",
+            async: true,
+            success: function (data, textStatus, jqXHR) {
+                $('#AccordianContainer').removeClass('fixedColumnSize-24');
+                $('#LoadForms').html('');
+                $('#LoadForms').html(data);
+            }, error: function (jqXHR, textStatus, errorThrown) {
+                DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd)
+                //if fails
+            }
+            });
+        }
+    }
+
+
+
+    function DeleteBill(billID, patientID)
+    {
+
+        var url = "../patient/DeleteBill?billID=" + billID;
+            $.ajax({
+                url: url,
+                type: "POST",
+                async: true,
+                success: function (data, textStatus, jqXHR) {
+
+                    if (data == "1") {
+                        //GetBillingDetail
+                        GetBillingDetail(patientID);
+                        GetPendingAmount(patientID);
+                        DisplayMessage(SuccessCheck + SpanStart + "Bill deleted successfully" + SpanEnd)
+                        if (flagF == 0) {
+                            GetBillingList(patientID);  // call both the methods for
+                        }
+                        else {
+                            GetTimelineView(flagA);
+                        }
+                    }
+                    else {
+
+                        DisplayMessage(ErrorCross + SpanStart +"Bill could be deleted as some amount is collected for this bill" + SpanEnd)
+                    }
+
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd)
+                    //if fails
+                }
+            });
+
+        }
+
+
+    //call to itself
+</script>

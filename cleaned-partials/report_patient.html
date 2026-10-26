@@ -1,0 +1,222 @@
+<form name="myForm" id="myform">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 p-0">
+            <div class="card">
+                <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                    <div class="cardHeadingText">Patient Filter</div>
+                </div>
+                <div class="pl-3 pr-3" style="">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="DateOfBirthStart" class="control-label"> From Date Created</label>
+                                <input class="form-control ll-skin-nigran " name="DateOfBirthStart" id="DateOfBirthStart" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="DateOfBirthEnd" class="control-label">To Date Created</label>
+                                <input class="form-control " name="DateOfBirthEnd" id="DateOfBirthEnd" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label class="control-label">Gender</label>
+                                <div class="dropdownjs">
+                                    <select name="Gender" id="Gender" class="form-control" data-dropdownjs="true">
+                                        <option value="0" selected="selected">Select one</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label class="control-label">Number Of Children</label>
+                                <div class="dropdownjs">
+                                    <select name="NoOfChildren" class="form-control" data-dropdownjs="true">
+                                        <option value="0" selected="selected">Select one</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label class="control-label">Marital Status</label>
+                                <div class="dropdownjs">
+                                    <select name="MaritalStatus" class="form-control" data-dropdownjs="true">
+                                        <option value="0" selected="selected">Select one</option>
+                                        <option value="1">Married</option>
+                                        <option value="2">Single</option>
+                                        <option value="3">Widowed</option>
+                                        <option value="4">Separated</option>
+                                        <option value="5">Divorced</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label class="control-label"> File Location</label>
+                                <div class="dropdownjs">
+                                    <select name="fileLocation" id="FileLocation" class="form-control" data-dropdownjs="true">
+                                        <option value="N/A">Select one</option>
+                                        <option id="1396" name="Band lane, ooty" value="Band lane, ooty">Band lane, ooty</option>
+                                        <option id="1395" name=" Vaiyapuri Nagar,Kurumbpalayam" value=" Vaiyapuri Nagar,Kurumbpalayam"> Vaiyapuri Nagar,Kurumbpalayam</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="CreatedDate" class="control-label"> Created Date</label>
+                                <input class="form-control ll-skin-nigran " name="CreatedDate" id="CreatedDate" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="Group" class="control-label"> Group</label>
+                                <div class="dropdownjs">
+                                    <select name="Group" id="Group" class="form-control" data-dropdownjs="true">
+                                        <option value="N/A">Select one</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="patient" class="control-label">Patient status</label>
+                                <div class="dropdownjs">
+                                    <select name="patient" id="patient" class="form-control" data-dropdownjs="true">
+                                        <option value="1">Active</option>
+                                        <option value="0">Deactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group label-static is-empty">
+                                <label for="BirthDate" class="control-label"> Birth Date</label>
+                                <input class="form-control ll-skin-nigran " name="BirthDate" id="BirthDate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 " style="margin-right:10px;">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary pull-right" id="GenerateReport" value="Generate Report" style="margin-right:10px;margin-bottom:10px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 p-0">
+            <div class="card">
+                <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                    <div class="cardHeadingText">Report Results</div>
+                </div>
+                <div class="p-3">
+                    <div class="table-responsive">
+                        <table id="example" class="table gridtable table-condensed dataTable no-footer" cellspacing="0" width="100%" style="border: 1px solid rgb(224, 224, 224); width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>File No.</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Gender</th>
+                                    <th>Date Of Birth</th>
+                                    <th>Location</th>
+                                    <th>Mobile</th>
+                                    <th>Email</th>
+                                    <th>Patient Added Date</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#GenerateReport").click(function (e) {
+            e.preventDefault();
+            Generatereport();
+        });
+    });
+
+    function Generatereport(){
+        $('#example').show();
+        var postdata = $("#myform").serializeArray();
+        $('#example').DataTable({
+            "destroy": true,
+            "searching": false,
+            "processing": true,
+            "serverSide": true,
+            "responsive": true,
+            "dom": 'lfrtip',
+            "sorting": true,
+            "info": true,
+            "stateSave": false,
+            "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+            "ajax": {
+                "url": "../Report/PatientReportResult",
+                "type": "POST",
+                "data": postdata
+            },
+            "columns": [
+                { "data": "FileNumber", "orderable": true },
+                { "data": "FirstName", "orderable": false },
+                { "data": "LastName", "orderable": false },
+                { "data": "Gender", "orderable": false },
+                {
+                    "data": null, "orderable": true,
+                    render: function (data, type, row) {
+                        return row.DOB || "";
+                    }
+                },
+                { "data": "FileLocation", "orderable": false },
+                { "data": "Mobile", "orderable": false },
+                { "data": "Email", "orderable": false },
+                {
+                    "data": null, "orderable": true,
+                    render: function (data, type, row) {
+                        return row.CreatedDate || "";
+                    }
+                },
+                {
+                    "data": "Active", "orderable": false,
+                    render: function (data) {
+                        return data ? 'Active' : 'Deactive';
+                    }
+                }
+            ],
+            "order": [[0, "desc"]]
+        });
+    }
+</script>

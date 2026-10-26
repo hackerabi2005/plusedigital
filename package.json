@@ -1,0 +1,15 @@
+{
+  "name": "pulse-digital-clinic-clone",
+  "version": "1.0.0",
+  "description": "1:1 Full-Fidelity Verified Clone of Pulse PMS (mydigitalclinic.net)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "verify": "node verify.js"
+  },
+  "author": "Reverse Engineer Anything (REA)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "playwright": "^1.64.1"
+  }
+}

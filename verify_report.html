@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pulse Digital Clinic Clone Verification Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 2rem; background: #f8fafc; color: #1e293b; }
+    .card { background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.85rem; }
+    .badge-success { background: #dcfce7; color: #15803d; }
+    .badge-danger { background: #fee2e2; color: #b91c1c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f1f5f9; }
+    .summary { display: flex; gap: 2rem; font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Pulse Digital Clinic 1:1 Clone Verification Report</h1>
+    <p>Target: <code>http://localhost:3000</code> | Tested at: 2026-10-26T05:39:03.205Z</p>
+    <div class="summary">
+      <div>Total Tests: 42</div>
+      <div style="color: #15803d;">Passed: 42</div>
+      <div style="color: #b91c1c;">Failed: 0</div>
+    </div>
+    
+      <h2>Primary Routes</h2>
+      <table>
+        <thead><tr><th>Test</th><th>Result</th><th>Notes</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td>Route /account/login (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 37375</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/index (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 370527</td>
+            </tr>
+          
+            <tr>
+              <td>Route /calendar/index (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 256825</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/videos (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 820418</td>
+            </tr>
+          
+            <tr>
+              <td>Route /lab/laboratory (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 199392</td>
+            </tr>
+          
+            <tr>
+              <td>Route /patientconnect/index (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 435148</td>
+            </tr>
+          
+            <tr>
+              <td>Route /report/reports (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 170285</td>
+            </tr>
+          
+            <tr>
+              <td>Route /social/index (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 233199</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/settings (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 159545</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/search (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 209176</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/profileview (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 150061</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/support (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 149105</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/faq (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 161833</td>
+            </tr>
+          
+            <tr>
+              <td>Route /patient/detail?patientid=2223997 (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 369107</td>
+            </tr>
+          
+            <tr>
+              <td>Route /dental/consultation?patientid=2223997 (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 283568</td>
+            </tr>
+          
+            <tr>
+              <td>Route /home/appointmentlist (200 OK + Payload)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 173233</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    
+      <h2>Backend APIs</h2>
+      <table>
+        <thead><tr><th>Test</th><th>Result</th><th>Notes</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td>API /report/homeweekly2</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1381</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getappointmentdays?start=0</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1513</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getappointmenttimings?date=24/10/2026</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 42996</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getappointmentdetailspopover?date=24/10/2026&time=10:30%20AM</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1314</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/todayappointments</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 24060</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/todaycheckins</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 22202</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getdoctor</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 569</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getpatientqueue</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 456</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getalertdetails</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 47243</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getnotificationcount</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getpatientcheckincount</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1</td>
+            </tr>
+          
+            <tr>
+              <td>API /home/getrecentactivity</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 36636</td>
+            </tr>
+          
+            <tr>
+              <td>API /calendar/procedureautocomplete</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 137</td>
+            </tr>
+          
+            <tr>
+              <td>API /calendar/getdiaryevents</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 426</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/getteethimage?teethNumber=16</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 148</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/conditions</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 65353</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/procedures</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 3257</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/prescriptionremedies</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 3123</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/billing</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 1476</td>
+            </tr>
+          
+            <tr>
+              <td>API /dental/previewandprint</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>Status: 200, Length: 2137</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    
+      <h2>Asset Integrity</h2>
+      <table>
+        <thead><tr><th>Test</th><th>Result</th><th>Notes</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td>Assets Manifest Loaded (288 items)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+            <tr>
+              <td>Critical Assets HTTP 200 Delivery (30/30 verified)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    
+      <h2>Interactive Replay</h2>
+      <table>
+        <thead><tr><th>Test</th><th>Result</th><th>Notes</th></tr></thead>
+        <tbody>
+          
+            <tr>
+              <td>Patient Check-in Workflow</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+            <tr>
+              <td>Patient Search Autocompletion</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+            <tr>
+              <td>Dental Odontogram Condition Update</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+            <tr>
+              <td>Dashboard Day Scroller (+7 days navigation)</td>
+              <td><span class="badge badge-success">PASS</span></td>
+              <td>-</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    
+  </div>
+</body>
+</html>

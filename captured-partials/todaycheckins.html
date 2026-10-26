@@ -1,0 +1,534 @@
+<style>
+
+    .pending {
+        color: red;
+        padding-right: 10px;
+    }
+
+    .btn-group a {
+        padding-left: 0 !important;
+    }
+</style>
+
+
+    <div class="card-header pt-2 pb-2 pr-3 pl-3" style="/*border-left:1px solid rgba(0, 0, 0, 0.12);border-right:1px solid rgba(0, 0, 0, 0.12);*/">
+        <div class="cardHeadingText">Current Check Ins</div>
+    </div>
+    <table class="table AppointmentListTable" style="table-layout: fixed; ">
+
+
+        <tbody>
+
+            <tr>
+                
+
+                
+
+                <td class="  btnAppointment" style="width:4%; background-color:#ffffff !important;border-top:none!important;" align="center" valign="middle">
+                    <button type="button" class="btn define_btn define-Appointment-circle today_color color1" style="background:#9b6ce8;"></button>
+                </td>
+
+                <td class="list-group-heading AppointmentListContainer" valign="middle" style="border-top:none!important;">
+                    <div class="row ml-3 pb-2 pt-2" style="border-bottom:1px solid #ececec;">
+                        <div class="w-85" style="padding-right:10px;">
+                            <div style="display:flex;" class="atDetails">
+                                <a href="../patient/detail?patientid=2223997" style="padding-left:3px !important" class="heading_today AlPatientName w-75">Ms.  Yalini</a>
+                                <!--Timing slot start-->
+                                <div class="AlTime d-flex w-25" style=""><i class="far fa-clock AlIcons"></i> <span class=" pl-2">11:33 PM</span></div>
+                                <!--Timing Slot End-->
+                            </div>
+
+                            <div class="collapse" id="1281426" style="padding-top:5px;">
+
+                            <div class="subheading_today desktopMobileLink AlPatientMobile" style="padding-bottom:5px;"><i class="fas fa-mobile-alt AlIcons" style="padding-left:3px;padding-right:3px;"></i> <span class="pl-2">7548801024</span></div>
+                            <a class="mobileCallLink AlPatientMobile" href="tel:7548801024"><i class="fas fa-mobile-alt AlIcons" style="padding-left:3px;padding-right:3px;"></i><span class="pl-2"> 7548801024</span></a>
+
+
+                            <div class="subheading_today desktopMobileLink AlPatientMobile" style="padding-bottom:5px;">
+                                
+                                <img src="/Content/images/svg/doctor.svg" style="width:18px;height:18px;">
+                                <span class="pl-2">Dr. Naveena Ramnath</span>
+                            </div>
+                             
+
+
+
+
+                                
+
+
+
+
+                                <div class="pull-left mt-2">
+                                    
+                                    <div id="CPButtons" class="btn-group m-0" role="group" aria-label="Basic example">
+
+                                        
+
+                                        <a class="checkedInPay " value="Pay" title="Patient Payment">
+
+                                            
+                                            <img id="Payment" style="" class="IconButtons" src="../../Content/images/svg/PaymentRequest.svg" title="Payment">
+
+                                        </a>
+                                        
+
+                                        
+                                            <a class="checkedInConsultation" id="consultation" value="Consultation" title="Start Consultation">
+                                                
+
+                                                <img id="ConsultationIcon" style="" class="IconButtons" src="../../Content/images/svg/consultation.svg" title="consultation">
+                                            </a>
+                                            <a class="checkedInCheckOut" id="CheckOut" value="Check Out" title="Patient Checkout">
+                                                
+                                                <img id="CheckoutIcon" style="" class="IconButtons" src="../../Content/images/svg/checkout.svg" title="Checkout">
+                                            </a>
+                                            
+
+                                            
+                                            <a class="Removecheckinsclass" id="RemoveCheckin" value="Remove Checkin" title="Remove Checkout">
+                                                <img id="Closeicon" class="IconButtons" src="../../Content/images/svg/closeDark.svg" title="Remove Checkin">
+                                            </a>
+                                            
+
+
+
+
+
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display:none" class="checkedInUserID" value="17472"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display:none" class="checkedInPatientID" value="2223997"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display:none" class="checkedInPatientCheckInID" value="1281426"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display: none" class="checkedInConsultationCode" value="dental"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display: none" class="checkedInbillPending" value="0"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display: none" class="checkedInbillpatientName" value="Ms.  Yalini"></span>
+                                            <span class="bmd-form-group is-filled"><input type="text" style="display:none" class="checkedInPatientMobile" value="7548801024"></span>
+                                            <span class="bmd-form-group"><input type="text" style="display:none" class="checkedInPatientEmail" value=""></span>
+                                            <span class="bmd-form-group"><input type="text" style="display:none" class="checkedInPatientRequest"></span>
+
+
+                                        </div>
+                                </div>
+
+
+
+                            </div>
+                            </div>
+                        <div class="w-15" style="padding-right:16px;">
+
+
+                            <img id="btnCollapse" src="../../Content/images/svg/Plus.svg" class="CollapseIcon" title="collapse Details" data-toggle="collapse" href="#1281426" aria-expanded="false" aria-controls="1281426">
+
+
+
+
+
+                            
+
+                        </div>
+
+                        </div>
+                </td>
+
+
+                
+
+
+
+                
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div class=" " style="">
+
+
+        <div class="modal fade bs-example-modal-sm followupModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Follow Up
+
+                            
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="col-md-12 col-xs-12 col-sm-12 p-0">
+
+                            <div class="form-group label-static is-empty  is-filled">
+
+                                <label for="DateOfBirth2" class="control-label">Follow up date</label>
+                                <input class="form-control hasDatepicker" name="followDate" id="followDate" type="text" value="24/10/2026">
+                            </div>
+
+
+                        </div>
+
+
+
+
+                        <div class="col-md-12 col-xs-12 col-sm-12 p-0">
+                            <div class="form-group label-static is-empty">
+                                <label for="Appnote" class="control-label">Note</label>
+                                <textarea class="form-control" rows="1" id="Appnote" name="Appnote"></textarea>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-12 col-xs-12 col-sm-12 p-0">
+                            <div class="form-group is-filled">
+                                <label class="bmd-label-static">Location</label>
+                                <div class="dropdownjs">
+                                    <select class="form-control" id="Lname" data-dropdownjs="true">
+
+                                        <option value="Band lane, ooty" selected="">Band lane, ooty</option>
+                                        <option value=" Vaiyapuri Nagar,Kurumbpalayam" selected=""> Vaiyapuri Nagar,Kurumbpalayam</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="followupSave" class="btn btn-sm btn-primary mr-1">Submit</button>
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-primary  ">Cancel</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div id="paymentForm" class="modal fade ">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <h5 class="modal-title">
+                            Payment Request
+
+
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body content_modal">
+
+                        <form id="EventForm">
+ <div>
+
+                                    <p style="color:red; font-size:18px"> Your Digital Payment Service Is Pending "Document Submission".</p>
+                                    <p>Please submit following documents on <b>support@pulsedigitalclinic.com at</b> your earliest convenience.</p>
+                                    <ul>
+                                        <li>Photo of your <b>PAN Card</b></li>
+                                        <li>Photo of the <b>first page of Bank Cheque Book</b></li>
+                                        <li>Photo of <b>Clinic Registration Certificate</b></li>
+                                    </ul>
+
+
+                                    <p>Once these documents are submitted by you, we will proceed with getting them verified by the service provider. We will keep you updated on the completion.</p>
+
+                                    <p>  If you have any query or doubt, please speak with one of our representatives on <b>+919408008792 </b></p>
+
+
+
+                                </div>
+</form>
+                    </div>
+                    <div class="modal-footer" style="overflow: hidden;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+    $(document).ready(function () {
+
+       
+
+        $(".checkedInCheckOut").click(function () {
+           // debugger;
+            var patientCheckInID = $(this).parent().parent().find('.checkedInPatientCheckInID').val();
+            $.ajax({
+                url: '../home/patientcheckout?patientCheckInID=' + patientCheckInID,
+                type: 'GET',
+                success: function (data, textStatus, jqXHR) {
+                    DisplayMessage(SuccessCheck + SpanStart + "Patient checkout successful." + SpanEnd);
+                    //$('#todayCheckin').load($('#tabs li.active a[data-toggle="tab"]').attr('data-url'));//chirayu's code pulse 2.0
+                    $('#todayCheckin').load($('#tabs a.active[data-toggle="tab"]').attr('data-url'));//new pulse 3.0 code, update today's patient list after patient checkout
+                    //alert($('#tabs li.active a[data-toggle="tab"]').attr('data-url'));
+
+                    //var $link = $('li.active a[data-toggle="tab"]');
+                    //$link.parent().removeClass('active');
+                    //var tabLink = $link.attr('href');
+
+                    //$('#tabs a[href="' + tabLink + '"]').tab('show');
+                    //$('#tabs a[href="#todayCheckin"]').tab('show');
+                }
+            });
+        });
+
+        $(".Removecheckinsclass").click(function () {
+            // debugger;
+            var patientCheckInID = $(this).parent().parent().find('.checkedInPatientCheckInID').val();
+            $.ajax({
+                url: '../home/patientremovecheckin?patientCheckInID=' + patientCheckInID,
+                type: 'GET',
+                success: function (data, textStatus, jqXHR) {                    
+                    DisplayMessage(SuccessCheck + SpanStart + "Patient removed successfully." + SpanEnd);
+                    //$('#todayCheckin').load($('#tabs li.active a[data-toggle="tab"]').attr('data-url'));//chirayu's code pulse 2.0
+                    $('#todayCheckin').load($('#tabs a.active[data-toggle="tab"]').attr('data-url'));//new pulse 3.0 code, update today's patient list after patient checkout
+                    //alert($('#tabs li.active a[data-toggle="tab"]').attr('data-url'));
+                    CheckInCountGet();
+                    //var $link = $('li.active a[data-toggle="tab"]');
+                    //$link.parent().removeClass('active');
+                    //var tabLink = $link.attr('href');
+
+                    //$('#tabs a[href="' + tabLink + '"]').tab('show');
+                    //$('#tabs a[href="#todayCheckin"]').tab('show');
+                }
+            });
+        });
+
+
+
+        $(function () {
+        $("#chkboxtax").click(function () {
+            calculate();
+            $("#taxfee").toggle();
+            }).change();
+        })
+
+
+        $(".checkedInConsultation").click(function () {
+
+            var patientID = $(this).parent().find('.checkedInPatientID').val();
+            var userID = $(this).parent().find('.todayApptUserID').val();
+            var consultationCode = $(this).parent().find('.checkedInConsultationCode').val();
+
+            window.location = "/" + consultationCode + "/consultation?patientid=" + patientID;
+        });
+        var checkedInPatientID, checkedInUserID;
+
+        $(".checkedInPay").click(function () {
+            $('#patientAmount').parent().removeClass("has-error");
+            $("#requested").hide();
+            $("#paymentForm").modal('show');
+            $('#patientName').val($(this).parent().find('.checkedInbillpatientName').val());
+            $('#patientMobile').val($(this).parent().find('.checkedInPatientMobile').val());
+
+            if ($(this).parent().find('.checkedInbillPending').val() > 0) {
+                $('#patientAmount').val($(this).parent().find('.checkedInbillPending').val());
+                calculate();
+            }
+            else {
+                $('#patientAmount').val("");
+                calculate();
+            }
+            if ($(this).parent().find('.checkedInPatientRequest').val()) {
+                $("#requested").show();
+            }
+            // $('#patientAmount').val($(this).parent().find('.checkedInbillPending').val());
+            $('#patientEmail').val($(this).parent().find('.checkedInPatientEmail').val());
+            $("#patientPurpose").val("");
+            //console.log($('#patientEmail').val());
+
+
+            checkedInPatientID = $(this).parent().find('.checkedInPatientID').val();
+            checkedInUserID = $(this).parent().find('.checkedInUserID').val();
+
+        });
+
+        //$('#patientAmount').on('input', function () {
+        //    calculate();
+        //});
+        function calculate() {
+            if ($('#patientAmount').val() != '') {
+                var convenienceFees=2;
+                var taxOnConvenienceFees= 15;
+                var totalfees=convenienceFees+(((convenienceFees * taxOnConvenienceFees)/100));
+                var value = Math.ceil((parseFloat($('#patientAmount').val()) / (100-totalfees)) * 100);
+                var taxfee = (value-parseFloat($('#patientAmount').val()))
+
+                    //Math.round((parseFloat(value) / 100) * 15);
+
+                //var finalamount = parseFloat($('#patientAmount').val()) + (parseFloat(value) );//+ parseFloat(taxfee));
+                //$('#conveniencefee').text(value.toFixed(2));
+                $('#servicetax').text(taxfee.toFixed(2));
+                $('#finalAmount').text(value.toFixed(2));
+
+            }
+            else {
+                $('#finalAmount').text("0");
+                $('#conveniencefee').text("0");
+                $('#servicetax').text("0");
+            }
+        }
+
+        $("#btnRequest").click(function () {
+
+
+            if( $("#patientAmount").val()>0)
+            {
+                //var tax= parseFloat(parseFloat($('#servicetax').text()));
+                //var finalAmount= parseFloat($('#finalAmount').text());
+
+
+
+                url = "../Patient/payment?patientName=" + $("#patientName").val() + "&purpose=" + $("#patientPurpose").val() + "&mobile=" + $("#patientMobile").val() + "&email=" + $("#patientEmail").val() + "&amount=" + $("#patientAmount").val() + "&patientID=" + checkedInPatientID + "&userID=" + checkedInUserID+ "&tax=" + 0;
+                $.ajax(
+                {
+                    url: url,
+                    type: "GET",
+                    async: false,
+
+                    success: function (data, textStatus, jqXHR) {
+                        DisplayMessage(SuccessCheck + SpanStart +"Payment request is sent successfully." + SpanEnd);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+
+                    }
+                });
+
+                $('#patientName').val($(this).parent().find('.checkedInbillpatientName').val());
+                $('#patientMobile').val($(this).parent().find('.checkedInPatientMobile').val());
+                $('#patientAmount').val($(this).parent().find('.checkedInbillPending').val());
+
+
+                $("#paymentForm").modal('hide');
+            }
+            else{
+                $('#patientAmount').parent().addClass("has-error");
+            }
+        });
+
+        $(".checkedInNewAppt").click(function () {
+
+            var patientID = $(this).parent().find('.checkedInPatientID').val();
+            var url = "../Calendar/BookPatientAppointment?patientid=" + patientID;
+            var name = $(this).parent().find('.checkedInPatientName').val();
+            GetPatientAppointment1(url, name);
+            // showUrlInDialog1('../Calendar/BookPatientAppointment?patientID= ' + patientID, 'Book an appointment', { error: function () { alert('Could not load form') } });
+
+
+        });
+        function GetPatientAppointment1(url, name) {
+
+            $('#patientNameLayout').html(name).addClass("modal-title ");
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data, textStatus, jqXHR) {
+                    if (typeof data == "object" && data.html) {
+
+                        $("#patientAppointmentLayout").html(data);
+                        $("#dialogAppointmentLayout").modal('show');
+
+
+
+                    } else {
+
+                        $("#patientAppointmentLayout").html(data);
+                        $("#dialogAppointmentLayout").modal('show');
+
+
+                    }
+
+                }
+            });
+        }
+
+        var patientID, UserID;
+
+        $(".checkedInFollowUp").click(function () {
+
+            patientID = $(this).parent().find('.checkedInPatientID').val();
+            UserID = $(this).parent().find('.checkedInUserID').val();
+            //$("#followDate").val(date);
+            $("#Appnote").val("");
+
+
+        });
+
+        $("#followupSave").click(function () {
+            url = "../home/savefollowup?patientID=" + patientID + "&consulationID=" + 0 + "&followupDate=" + $("#followDate").val() + "&location=" + $("#Lname").val() + "&note=" + $("#Appnote").val() + "&UserID=" + UserID;
+            //console.log(url);
+
+            //console.log($("#followDate").val());
+
+            $.ajax(
+            {
+                url: url,
+                async: false,
+                success: function (data, textStatus, jqXHR) {
+                    $(".followupModal").modal('hide');
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Failed to get data. Please contact support team.")
+                    $(".followupModal").modal('hide');
+                    //if fails
+                }
+            });
+        });
+
+
+
+
+
+
+
+
+    });
+    $(function () {
+        $("#followDate").datepicker({
+            minDate: "-1D",
+            maxDate: "1Y",
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            yearRange: "-100:+0"
+        });
+    });
+
+
+
+    $('.CollapseIcon').click(function () {
+            if ($(this).attr('src') == '../../Content/images/svg/minus.svg') {
+                $(this).attr('src', '../../Content/images/svg/Plus.svg');
+            }
+            else {
+                $(this).attr('src', '../../Content/images/svg/minus.svg');
+            }
+
+    });
+
+        function CheckInCountGet() {
+            
+             $.ajax({
+            type: "POST",
+            url: '../home/GetPatientCheckInCount',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+               $(".todayCheckInCount").html(data);
+            }
+        })
+        }
+    </script>

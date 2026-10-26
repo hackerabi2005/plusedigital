@@ -1,0 +1,491 @@
+
+
+
+<script src="../../Content/assets/sidebar_menu.js"></script>
+<link href="../../Content/assets/simple-sidebar.css" rel="stylesheet">
+
+<style>
+    .ui-autocomplete {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1051 !important;
+        float: left;
+        display: none;
+        min-width: 160px;
+        _width: 160px;
+        padding: 4px 0;
+        margin: 2px 0 0 0;
+        list-style: none;
+        background-color: #ffffff;
+        border-color: #ccc;
+        border-color: rgba(0, 0, 0, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+        *border-right-width: 2px;
+        *border-bottom-width: 2px;
+    }
+
+    #ordertable_filter label {
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        color: #5e5e5e !important;
+    }
+    /*media query for tablet*/
+    @media only screen and (min-width: 600px) {
+        /*.table-responsive {
+        overflow-x:hidden;
+
+        }*/
+    }
+    /*media query for mobile*/
+    @media only screen and (min-width: 420px) {
+        /*.table-responsive {
+        overflow-x:scroll;
+
+        }*/
+    }
+
+    /*media query for 5.5 inch*/
+    @media (device-width: 720px) {
+        /*.table-responsive {
+        overflow-x:scroll;
+
+        }*/
+    }
+</style>
+
+
+<div class="laborderdesktopview">
+    <div class="card mr-0 mb-0 ml-0 mt-3">
+
+        <div class="card-header pt-2 pb-2 pr-3 pl-3">
+            <h5 class="cardHeadingText mb-0">Lab Order List </h5>
+        </div>
+
+        <div class="p-3">
+            <div class="table-responsive ">
+                <table id="ordertable" class="display table gridtable table-condensed" cellspacing="0" width="100%" style="border: 1px solid rgb(215, 224, 241); margin-bottom: 10px !important; width: 100%;" role="grid" aria-describedby="ordertable_info">
+
+                    <thead>
+                        <tr role="row"><th style="display: none; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">Lab ID</th><th style="display: none; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">LabOrderID</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 251.6px;">Date Of Order</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 250.6px;">Patient Name</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 189.6px;">Lab Name</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 195.6px;">Order Title</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 231.6px;">Order Status</th><th style="display: none; width: 0px;" class="sorting_disabled" rowspan="1" colspan="1">Message</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 11.6px;"></th></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr role="row">
+                            <td style="display: none;">3422</td>
+                            <td style="display: none;">101</td>
+                            <td>24/10/2026</td>
+                            <td>Ms.  Yalini</td>
+                            <td>Dentcare</td>
+                            <td>Zirconia Crown - Upper Right #16</td>
+                            <td><span class="badge badge-warning" style="background:#ff9800;color:#fff;padding:4px 8px;border-radius:3px;font-size:12px;">Pending</span></td>
+                            <td style="display: none;">Shade A2, standard margin fit</td>
+                            <td style="text-align: center;"><a href="javascript:void(0)" onclick="EditOrder('Ms.  Yalini', 'Dentcare', '3422', 'Zirconia Crown - Upper Right #16', 'Pending', 'Shade A2, standard margin fit', '24/10/2026', '101')" data-toggle="modal" data-target="#popuporderedit" title="Edit Order"><i class="fas fa-pencil-alt" style="color:#009688;"></i></a></td>
+                        </tr>
+                        <tr role="row">
+                            <td style="display: none;">3422</td>
+                            <td style="display: none;">102</td>
+                            <td>22/10/2026</td>
+                            <td>Mr.  Abrahamthomas</td>
+                            <td>Dentcare</td>
+                            <td>Complete Acrylic Denture (Upper &amp; Lower)</td>
+                            <td><span class="badge badge-success" style="background:#4caf50;color:#fff;padding:4px 8px;border-radius:3px;font-size:12px;">Received</span></td>
+                            <td style="display: none;">Gingival shade 2, medium tooth mold</td>
+                            <td style="text-align: center;"><a href="javascript:void(0)" onclick="EditOrder('Mr.  Abrahamthomas', 'Dentcare', '3422', 'Complete Acrylic Denture (Upper &amp; Lower)', 'Received', 'Gingival shade 2, medium tooth mold', '22/10/2026', '102')" data-toggle="modal" data-target="#popuporderedit" title="Edit Order"><i class="fas fa-pencil-alt" style="color:#009688;"></i></a></td>
+                        </tr>
+                        <tr role="row">
+                            <td style="display: none;">3422</td>
+                            <td style="display: none;">103</td>
+                            <td>23/10/2026</td>
+                            <td>Mr.  Ramkumar S</td>
+                            <td>Dentcare</td>
+                            <td>PFM Bridge (3-unit #24-#26)</td>
+                            <td><span class="badge badge-warning" style="background:#ff9800;color:#fff;padding:4px 8px;border-radius:3px;font-size:12px;">Pending</span></td>
+                            <td style="display: none;">Porcelain fused to metal, shade B1</td>
+                            <td style="text-align: center;"><a href="javascript:void(0)" onclick="EditOrder('Mr.  Ramkumar S', 'Dentcare', '3422', 'PFM Bridge (3-unit #24-#26)', 'Pending', 'Porcelain fused to metal, shade B1', '23/10/2026', '103')" data-toggle="modal" data-target="#popuporderedit" title="Edit Order"><i class="fas fa-pencil-alt" style="color:#009688;"></i></a></td>
+                        </tr>
+                        <tr role="row">
+                            <td style="display: none;">3422</td>
+                            <td style="display: none;">104</td>
+                            <td>24/10/2026</td>
+                            <td>Ms.  Yalini</td>
+                            <td>Dentcare</td>
+                            <td>Night Guard / Occlusal Splint</td>
+                            <td><span class="badge badge-info" style="background:#00bcd4;color:#fff;padding:4px 8px;border-radius:3px;font-size:12px;">New</span></td>
+                            <td style="display: none;">Hard/soft 3mm clear acrylic</td>
+                            <td style="text-align: center;"><a href="javascript:void(0)" onclick="EditOrder('Ms.  Yalini', 'Dentcare', '3422', 'Night Guard / Occlusal Splint', 'New', 'Hard/soft 3mm clear acrylic', '24/10/2026', '104')" data-toggle="modal" data-target="#popuporderedit" title="Edit Order"><i class="fas fa-pencil-alt" style="color:#009688;"></i></a></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="popuporderedit" class="modal fade ">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Lab Order</h5>
+                    <button type="button" id="CancelOrderedit" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="Eventedit">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="plab" class="control-label">lab</label>
+                                    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="form-control " type="text" id="pLab" autocomplete="off">
+                                    <input type="hidden" id="pLabId">
+                                    <span class="help-block text-muted">Please enter lab full name</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <input class="form-control" type="text" id="labOrderID" style="display: none">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="otitle" class="control-label">Order Title</label>
+                                    <input class="form-control" type="text" id="otitle">
+                                    <input style="display: none" id="patientID">
+                                    <span class="help-block text-muted">Please enter order title</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="pname" class="control-label">Patient</label>
+                                    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input class="form-control " type="text" id="pname" autocomplete="off">
+                                    <span class="help-block text-muted">Please enter patient full name</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="clearfix"></div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="omessage" class="control-label">Message </label>
+                                    <input class="form-control" type="text" id="omessage">
+                                    <span class="help-block text-muted">Please enter message</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="clearfix"></div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="ostatus" class="control-label">Order Status</label>
+                                    <div class="dropdownjs">
+                                        <select name="orderStatus" class="form-control" data-dropdownjs="true" id="ostatus">
+                                            
+                                            <option value="New">New</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Received">Received</option>
+                                        </select>
+                                        <span class="help-block text-muted">Please select order status</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group label-static is-empty">
+                                    <label for="odate" class="control-label">Date Of Order </label>
+                                    <input class="form-control" type="text" id="odate" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="ordersaveedit" class="btn btn-sm btn-primary mr-1 ml-1" style="">Update Lab Order</button>
+                    <button type="button" id="ordercancleedit" data-dismiss="modal" class="btn btn-sm btn-primary ml-1" style="">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        if (screen.availWidth <= 767) {
+            $('.laborderdesktopview').remove();
+
+        }
+        else {
+            $('.labordermobileview').remove();
+            $('#ordertable').DataTable({
+
+                "ordering": false
+
+            });
+
+        }
+
+
+
+
+
+
+        if (screen.availWidth > 980) {
+            $("#mobscreen").html("");
+
+            $("#bigscreen").show();
+        }
+        else {
+            $("#bigscreen").html("");
+            $("#mobscreen").show();
+        }
+
+        if (isMobile.apple.tablet) {
+            if (screen.availWidth == 768) {
+                $('#ipadSearch').show();
+                $("#mobSearch").hide();
+                $(".modal-dialog").css('width', 510);
+            }
+
+        }
+
+        if (isMobile.apple.phone || isMobile.android.phone || isMobile.seven_inch) {
+            $("#bigscreen").html("");
+            $("#mobscreen").show();
+        }
+
+    });
+
+    function EditOrder(patientname, lab, pLabId, orderTitle, orderStatus, orderMessage, Orderdate, labOrderID) {
+
+        $("#pname").val(patientname);
+        $("#pLab").val(lab);
+        $('#pLabId').val(pLabId);
+        $("#otitle").val(orderTitle);
+        $("#ostatus").val(orderStatus);
+        $("#omessage").val(orderMessage);
+        $("#odate").val(Orderdate);
+        $("#labOrderID").val(labOrderID);
+
+        //console.log(patientID);
+    }
+
+    $(document).ready(function () {
+
+
+        $("#ordersaveedit").on("click", function () {
+
+            if (ValidateeditOrder()) {
+                $('#popuporderedit').modal('hide');
+                var editorder = {}
+
+                editorder.Title = $('#otitle').val();
+                editorder.PatientName = $('#pname').val();
+                editorder.LabName = $('#pLab').val();
+                editorder.Message = $('#omessage').val();
+                editorder.OrderStatus = $('#ostatus').val();
+                editorder.OrderDate = $('#odate').val();
+                editorder.LabID = $('#pLabId').val();
+                editorder.LabOrderID = $('#labOrderID').val();
+
+
+                $.post("../Lab/AddLabOrder", editorder, function (msg) {
+
+                    $("#msg").html("<strong>" + msg + "</strong>");
+
+
+                });
+                setTimeout(function () { LabOrder() }, 1000)
+
+                // GetLabs($('#Labs').val());
+                DisplayMessage(SuccessCheck + SpanStart + "Lab Order has been updated successfully." + SpanEnd);
+            }
+
+        });
+
+
+
+        $('#pname').autocomplete({
+            source: "../Calendar/PatientNameAutoComplete",
+            minLength: 1,
+            dataType: "json",
+            success: function (data) {
+                response($.map(data, function (item) {
+                    debugger
+                    return item.value;
+                }))
+            },
+            select: function (event, ui) {
+
+            }
+        });
+        //$('#pLab').autocomplete({
+        //    source: "../Lab/LabNameAutoComplete",
+        //    minLength: 1,
+        //    dataType: "json",
+        //    success: function (data) {
+        //        response($.map(data, function (item) {
+        //            debugger;
+        //            return item.value;
+        //        }))
+        //    },
+        //    select: function (event, ui) {
+
+        //    }
+        //});
+
+        $("#pLab").autocomplete({
+
+            source: function (request, response) {
+
+                $.ajax({
+                    url: "../Lab/LabNameAutoComplete?term=" + $("#pLab").val(),
+                    data: {
+
+                    },
+                    dataType: 'json'
+                }).success(function (data) {
+                    var results = $.map(data, function (item) {
+                        temp = item.split("-");
+                        //return temp[0]+"-"+temp[1]+"-"+temp[2];
+                        return item;
+                    });
+
+                    response(results);
+                });
+            }
+            , select: function (event, ui) {
+                event.preventDefault();
+                if (ui.item) {
+                    //console.log(ui.item.value)
+                    var data = ui.item.value;
+                    var splitdata = data.split("-");
+                    $(this).val(ui.item.value);
+                    $('#pLabId').val(splitdata[0]);
+                    $('#pLab').val(splitdata[1]);
+
+                }
+            }
+            , change: function (event, ui) {
+
+                var searched = this.value;
+                //console.log("Searched: " + searched);
+                if (ui.item) {
+                    var data = ui.item.value;
+                    var splitdata = data.split("-");
+                    var name = "";
+                    for (i = 1; i < splitdata.length; i++) {
+                        name = name + "-" + splitdata[i];
+                    }
+                    var name1 = name.substr(2);
+                    var name2 = splitdata[1];
+                    //$("#pLab").val(splitdata[1]+"-"+splitdata[2]);
+                    $('#pLabId').val(splitdata[0]);
+                    $("#pLab").val(name2);
+                }
+            },
+
+            open: function (event, ui) {
+
+
+
+
+            }
+        });
+
+
+        function LabOrder() {
+
+            $.ajax({
+                url: "../Lab/LabOrders?LabID=" + $('#Labs').val(),
+                type: 'GET',
+                success: function (data, textStatus, jqXHR) {
+                    if (typeof data == "object" && data.html) {
+
+                        $("#divlaborder").html(data.html);
+
+                    } else {
+
+                        $("#divlaborder").html(data);
+
+                    }
+
+                }
+            });
+
+        }
+
+        function ValidateeditOrder() {
+
+            var valid = true;
+
+            $('#pname').parent().removeClass("has-error");
+            var x = $('#pname').val()
+            if (x == null || x == "") {
+                $('#pname').parent().addClass("has-error");
+                $('#pname').focus();
+                valid = false;
+
+            }
+
+            $('#otitle').parent().removeClass("has-error");
+            var x = $('#otitle').val()
+            if (x == null || x == "") {
+                $('#otitle').parent().addClass("has-error");
+                $('#otitle').focus();
+                valid = false;
+
+            }
+            $('#omessage').parent().removeClass("has-error");
+            var x = $('#omessage').val()
+            if (x == null || x == "") {
+                $('#omessage').parent().addClass("has-error");
+                $('#omessage').focus();
+                valid = false;
+
+            }
+
+            return valid;
+
+        }
+
+        function GetLabs(LabID) {
+            $.ajax({
+                url: "../Lab/GetLabs?LabID=" + LabID,
+                type: 'GET',
+                success: function (data, textStatus, jqXHR) {
+                    if (typeof data == "object" && data.html) {
+                        $("#divlab").html(data.html);
+
+                    } else {
+
+                        $("#divlab").html(data);
+
+                    }
+                }
+            });
+        }
+
+    });
+</script>
