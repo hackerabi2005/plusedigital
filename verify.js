@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -31,7 +32,8 @@ function fetchUrl(pathname, method = 'GET', body = null, headers = {}) {
       opts.headers['Content-Length'] = Buffer.byteLength(body);
     }
 
-    const req = http.request(opts, (res) => {
+    const client = parsedBase.protocol === 'https:' ? https : http;
+    const req = client.request(opts, (res) => {
       let data = [];
       res.on('data', chunk => data.push(chunk));
       res.on('end', () => {

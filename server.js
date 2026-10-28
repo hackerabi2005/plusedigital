@@ -5,15 +5,23 @@ const url = require('url');
 const querystring = require('querystring');
 
 const PORT = process.env.PORT || 3000;
-const ROOT_DIR = fs.existsSync(path.join(__dirname, 'captured-public-assets'))
-  ? __dirname
-  : (fs.existsSync(path.join(process.cwd(), 'captured-public-assets'))
-      ? process.cwd()
-      : path.join(__dirname, '..'));
-const ASSETS_DIR = path.join(ROOT_DIR, 'captured-public-assets');
-const PAGES_DIR = path.join(ROOT_DIR, 'cleaned-pages');
-const PARTIALS_DIR = path.join(ROOT_DIR, 'cleaned-partials');
-const CAPTURED_PAGES_DIR = path.join(ROOT_DIR, 'captured-pages');
+function findDir(dirName) {
+  const candidates = [
+    path.join(__dirname, dirName),
+    path.join(__dirname, '..', dirName),
+    path.join(process.cwd(), dirName),
+    path.join(process.cwd(), 'api', dirName)
+  ];
+  for (const c of candidates) {
+    if (fs.existsSync(c)) return c;
+  }
+  return path.join(__dirname, dirName);
+}
+
+const ASSETS_DIR = findDir('captured-public-assets');
+const PAGES_DIR = findDir('cleaned-pages');
+const PARTIALS_DIR = findDir('cleaned-partials');
+const CAPTURED_PAGES_DIR = findDir('captured-pages');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
