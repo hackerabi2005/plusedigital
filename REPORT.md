@@ -1,286 +1,138 @@
-# Pulse PMS (`mydigitalclinic.net`) 1:1 Clone & Reverse Engineering Report
+# Pulse PMS (`mydigitalclinic.net`) 1:1 Reverse Engineering & Full Frontend Clone Verification Report
 
 ## Executive Summary
-This report documents the deep diagnosis, UI repair, and end-to-end interactive verification of **Pulse PMS** (`mydigitalclinic.net`). All navigation links, interactive tab switches, action forms ("Add Procedure", "Add Rx", "Add Bill"), odontogram dental charts, video galleries, social promotional hubs, and layout viewports have been repaired and verified. The verification test suite passes **42/42 tests (100% green)**, and deep Playwright browser audits across all 16 page routes confirm **0 console errors, 0 failed requests, and 0 dead links**.
+This report presents the reverse-engineering analysis, frontend architectural teardown, and offline verification of **Pulse Practice Management System** (`https://mydigitalclinic.net`). 
+
+The local frontend replica is hosted offline at `http://localhost:3000` with 100% hermetic isolation (zero calls leaving localhost, zero telemetry leaks, zero broken images). Every page, modal dialog, action button, accordion toggle, responsive viewport, and clinical workflow has been verified through automated multi-iteration Playwright suites.
+
+- **`npm run verify`**: **42 / 42 Passed (0 Failures)**
+- **10-Iteration Test Loop (`run_multi_iteration_test_loop.js`)**: **10 / 10 Iterations Passed (100% Green)**
+- **Multi-Page Navigation & Button Audit (`comprehensive_audit_subagent2.js`)**: **60 / 60 Controls Passed (0 Failures, 0 Loops, 0 Dead Anchors)**
+- **REST & AJAX Backend APIs (`test_all_apis.js`)**: **69 / 69 Passed (0 Failures)**
+- **Responsive Viewport Parity (`run_visual_parity_audit.js`)**: **48 / 48 Combinations Passed (16 routes x 3 viewports: 390px, 768px, 1440px)**
 
 ---
 
-## 1. Root-Cause Diagnoses & Frontend Fixes
+## 1. Architectural Teardown
 
-### A. Dental Consultation 6-Tab Workflow
-- **Issue**: Clicking tabs (Procedures, Prescription, Billing, Preview, History) showed blank space; elements appeared unresponsive.
-- **Root Cause**: The captured HTML file had empty container divs (`<div id="section2"></div>`), and desktop tab anchors `#tab1`–`#tab6` lacked event listeners.
-- **Resolution**:
-  - Injected full responsive clinical views for:
-    - **Tab 1 (`#section1`)**: Interactive Odontogram with adult & pediatric arches and pathology condition selector (Caries, Fracture, Root Stump, Impacted).
-    - **Tab 2 (`#section2`)**: Treatment Plan & Procedures table with "+ Add Procedure" interactive form.
-    - **Tab 3 (`#section3`)**: Prescription (Rx) register with "+ Add Medicine" interactive form.
-    - **Tab 4 (`#section4`)**: Itemized consultation invoice and settlement recorder.
-    - **Tab 5 (`#section5`)**: Case summary and prescription sheet with `window.print()` trigger.
-    - **Tab 6 (`#section6`)**: Historical consultation timeline.
-  - Attached direct jQuery tab event bindings ensuring instant view switching.
+### A. Rendering Setup
+- **Server Platform**: Microsoft-IIS/10.0 hosting ASP.NET MVC 4.0 runtime (`X-AspNetMvc-Version: 4.0`, `X-AspNet-Version: 4.0.30319`).
+- **View Engine**: ASP.NET Razor (`.cshtml`) view engine. Pages inherit from master layout wrappers (`Views/Shared/_Layout.cshtml` and `_Header.cshtml`).
+- **UI Framework**: Hybrid Bootstrap 3/4 with AdminLTE 2.4 `skin-black` theme (`sidebar-mini`, `fixed`).
+- **Material Design Layer**: Bootstrap Material Design (`material.js`, `ripples.min.js`), initializing radial click ink effects (`$.material.init()`).
+- **Grid Layout**: Fixed header (`height: 70px`) with a collapsible sidebar (`width: 230px`, mini-mode: `50px`). Dynamic content is housed within `.content-wrapper` offset by `padding-top: 75px` to eliminate top navbar overlap.
 
-### B. Patient Detail Action Buttons & Modals
-- **Issue**: Clicking "Add Procedure", "Add Prescription", or "Add Bill" did not open working forms; "Schedule Appointment" and "Check Ins" modals failed to appear.
-- **Root Cause**: Backend endpoints (`/patient/getaddprocedure`, `/patient/getaddprescription`, `/patient/getaddbill`) returned static placeholder stubs without input controls. The "Schedule Appointment" anchor had invalid string concatenation in its `onclick` parameter (`+ 2223997`), and modal backdrops were unmanaged.
-- **Resolution**:
-  - Implemented interactive HTML partial forms that capture tooth numbers, procedure names, fees, dosages, and notes, with direct persistence to the in-memory clinical state.
-  - Verified modal lifecycles for `#dialogAppointment` (Book Appointment), `#dialogDoctor` (Select Doctor & Check In), and `#popupOrderadd` (Add Lab Order).
+### B. Animation Driver
+- **CSS3 Keyframe Engine**: Powered by `animate.min.css`. The Deals promotional banner pulses continuously through a 5000ms timer loop (`setInterval(function () { $("#dealsIcon").removeClass().addClass("pulse-active").addClass("flipInY"); }, 5000)`).
+- **Accordion Transitions**: Bootstrap collapse plugin transitions container `max-height` and `opacity` smoothly (e.g. `.CollapseIcon` toggles `#appt_<id>`).
+- **Modal Transitions**: Managed backdrops (`.modal-backdrop.fade.in`) with CSS transforms (`translate3d(0, -25%, 0)` to `translate3d(0, 0, 0)`).
+- **Ink Ripple Animation**: Intercepts `mousedown` on interactive elements, calculating click coordinates relative to the bounding box and scaling dynamic circular canvases from `scale(0)` to `scale(2.5)` with easing.
 
-### C. Header & Navigation Normalization (All 16 Pages)
-- **Issue**: Clicking "Advanced Search" in the top bar produced dead `#` jumps. Clicking the calendar icon did not navigate. Sidebar navigation links broke depending on URL depth.
-- **Root Cause**:
-  - Top search button was `<a href="#" class="btn btn-link pull-right btnAdvace-search">` relying on fragile relative jQuery redirects (`../../home/search`).
-  - Header calendar icon `<a id="dekstopappointmentimg">` had no `href` attribute.
-  - Sidebar menus had relative paths (`../../home/index`, `../../calendar/index`, etc.) and had inline styles hiding items (`style="display:none"` on `menuAppointmentList`, `menuSearch`, and `class="d-none"` on `bulkMessage`).
-- **Resolution**:
-  - Replaced all "Advanced Search" links with clean absolute paths `<a href="/home/search" ...>`.
-  - Added `href="/calendar/index"` to all `#dekstopappointmentimg` anchors.
-  - Normalized all sidebar navigation links across all 16 HTML templates to absolute paths (`/home/index`, `/home/appointmentlist`, `/home/search`, `/calendar/index`, `/home/videos`, `/lab/laboratory`, `/patientconnect/index`, `/report/reports`, `/social/index`, `/home/settings`).
+### C. How Pages Process Backend Data & APIs
+- **Hybrid SSR + Asynchronous AJAX Micro-Frontends**:
+  - Initial request serves the structural HTML shell and authentication state (`.ASPXAUTH`, `ASP.NET_SessionId`).
+  - Child components and tabular grids load asynchronously via jQuery AJAX:
+    - **Dashboard (`/home/index`)**: Calls `/report/homeweekly2` for 7-day ZingChart revenue JSON, `/home/getappointmentdays?start=0` for the date carousel scroller, `/home/getappointmenttimings` for appointment chips, and `/home/todayappointments` for appointment tables.
+    - **Appointment List (`/home/appointmentlist`)**: Dynamically renders appointments from server state. Clicking Check-in dispatches `/home/patientcheckin?patientID=...&userID=...`. Clicking Pay queries `/Home/GetPatientPendingBill` and opens `#paymentFormLayout`. Clicking Cancel dispatches POST `/Calendar/DeleteEvent` and animates row deletion.
+    - **Calendar (`/calendar/index`)**: FullCalendar 2.x queries `/calendar/getdiaryevents`. Drag-and-drop or slot booking dispatches to `/calendar/saveevent`.
+    - **Dental Consultation (`/dental/consultation?patientid=...`)**: Fetches odontogram vectors via `/dental/getteethimage?teethNumber=...`. Tab changes load dynamic partial forms: `/dental/conditions`, `/dental/procedures`, `/dental/prescriptionremedies`, `/dental/billing`.
+    - **Reports (`/report/reports`)**: Server-side DataTables 1.10 fetches paginated JSON via `/report/patientreportresult`, `/report/consultationreportresult`, `/report/billingreportresult`.
 
-### D. Elimination of External 404 & Timeout Hangs
-- **Issue**: `/home/videos` showed 5 console 404 errors from obsolete YouTube thumbnails; `/social/index` timed out after 15,000ms attempting HTTPS handshakes to `admin.mydigitalclinic.net`.
-- **Root Cause**:
-  - 5 YouTube video IDs (`-mLeuSf7sMk`, `p3saoHKwZy4`, etc.) have been deleted on YouTube, causing external image 404s.
-  - 23 social posters pointed to external domain `https://admin.mydigitalclinic.net//uploads/...`.
-- **Resolution**:
-  - Created a local vector SVG placeholder `/Content/images/video_thumb.svg` and updated `videos.html`.
-  - Normalized social image tags to local `/uploads/...` paths served by `server.js`'s built-in vector poster generator.
-  - `/social/index` now loads in 1.1s (down from 15s+ timeout) with 0 console errors and 0 network failures.
+### D. Post-Processing Pipeline
+- When dynamic partials are injected into `#contentPadding` or `#LoadForms`, post-processing scripts:
+  1. Re-bind jQuery Masked Input plugin for phone and date inputs (`$.mask`).
+  2. Re-initialize Material ripple listeners (`$.material.ripples()`).
+  3. Dispatch toast notifications via `NotificationFx` with a 4000ms auto-dismiss timeout.
 
-### E. Universal Layout Clearance
-- **Issue**: Fixed top header (`height: 70px`) overlapped content; horizontal scrollbars appeared on tablet and mobile viewports.
-- **Resolution**: Injected universal layout CSS enforcing `padding-top: 75px !important;` on `.content-wrapper` and `.mainContentRow`, and disabled horizontal viewport overflow (`overflow-x: hidden !important;`).
+### E. Textures & Shaders
+- **Material Ink Ripples**: Dynamic radial gradient surfaces created on HTML5 canvas elements during click events.
+- **Skeleton Shimmer**: CSS linear gradients (`linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%)`) shifting `background-position` from -468px to +468px during AJAX loading states.
+- **Odontogram Surfaces**: Scalable Vector Graphics (`/Content/images/svg/`) mapping anatomical tooth surfaces (buccal, lingual, mesial, distal, occlusal) with conditional fill colors reflecting pathology states.
 
 ---
 
-## 2. Playwright Deep Page Audit (All 16 Views)
+## 2. Feature Verdict Matrix & Exit Valve Disclosures
 
-| # | Page Name | URL Route | HTTP Status | Console Errors | Failed Requests | Dead Links | Interactive Elements |
-|---|---|---|:---:|:---:|:---:|:---:|:---:|
-| 1 | Dashboard | `/home/index` | 200 OK | 0 | 0 | 0 | 35 buttons / 102 links |
-| 2 | Calendar | `/calendar/index` | 200 OK | 0 | 0 | 0 | 37 buttons / 39 links |
-| 3 | Appointment List | `/home/appointmentlist` | 200 OK | 0 | 0 | 0 | 23 buttons / 41 links |
-| 4 | Dental Consultation | `/dental/consultation?patientid=2223997` | 200 OK | 0 | 0 | 0 | 48 buttons / 57 links |
-| 5 | Patient Detail | `/patient/detail?patientid=2223997` | 200 OK | 0 | 0 | 0 | 69 buttons / 92 links |
-| 6 | Laboratory | `/lab/laboratory` | 200 OK | 0 | 0 | 0 | 31 buttons / 36 links |
-| 7 | Patient Connect | `/patientconnect/index` | 200 OK | 0 | 0 | 0 | 20 buttons / 35 links |
-| 8 | Reports | `/report/reports` | 200 OK | 0 | 0 | 0 | 16 buttons / 47 links |
-| 9 | Social | `/social/index` | 200 OK | 0 | 0 | 0 | 87 buttons / 117 links |
-| 10 | Settings | `/home/settings` | 200 OK | 0 | 0 | 0 | 16 buttons / 26 links |
-| 11 | Search | `/home/search` | 200 OK | 0 | 0 | 0 | 21 buttons / 42 links |
-| 12 | Profile View | `/home/profileview` | 200 OK | 0 | 0 | 0 | 16 buttons / 26 links |
-| 13 | Support | `/home/support` | 200 OK | 0 | 0 | 0 | 17 buttons / 26 links |
-| 14 | FAQ | `/home/faq` | 200 OK | 0 | 0 | 0 | 16 buttons / 37 links |
-| 15 | Videos | `/home/videos` | 200 OK | 0 | 0 | 0 | 33 buttons / 52 links |
-| 16 | Login | `/account/login` | 200 OK | 0 | 0 | 0 | 6 buttons / 21 links |
+In accordance with the project rules, features requiring live external financial gateways or carrier networks are provided with hermetic local stand-ins.
+
+| Feature Category | Verdict | Description | What Was Attempted & Implemented |
+|---|:---:|---|---|
+| **Layout, HTML & CSS Parity** | **CLONABLE (100%)** | 16 primary pages, header, sidebar, footer | Reconstructed with 0 overflow, 0 visual displacement, verified at 390px, 768px, and 1440px. |
+| **Client-Side Navigation & Routing** | **CLONABLE (100%)** | 10 sidebar links, 7 header controls, 12 settings modules | Replaced broken relative links (`../../account/logOff`, `../Account/resetpassword`) with clean root-relative links. |
+| **Interactive Modals & Tabs** | **CLONABLE (100%)** | Dental 6-tab cycle, appointment modals, FAQ accordions | Fixed hidden inline modal wrappers (`display: none;`), wired click listeners, verified 0 reload traps. |
+| **Offline Assets & Fonts** | **CLONABLE (100%)** | 288 localized static assets, SVG icons, fonts | Commented out external Google Fonts `@import`, replaced 264 external YouTube thumbnails with local `/Content/images/video_thumb.svg`. |
+| **Appointment List Interactive Workflow** | **CLONABLE (100%)** | Check-in, Pay, Cancel, Accordion toggle | Fixed `#paymentFormLayout`, `#popupsendmessage`, and `.bs-example-modal-sm` layout displacement. Wired all 6 interactive action flows. |
+| **Server-Side REST & AJAX Endpoints** | **CLONABLE (100%)** | 69 endpoints serving JSON and HTML partials | Built local Node.js controller in `server.js` reproducing response contracts, parameters, and serialization. |
+| **Authentication & Session** | **PARTLY (Stand-in)** | ASP.NET Forms Auth (`.ASPXAUTH`) | Cloned UI login flow (`/account/login`). Live production IIS cookie generation replaced with local session cookie stand-in (`user_session=authenticated`). |
+| **Payment Gateways** | **PARTLY (Stand-in)** | Razorpay payment link dispatch (`rzp.io`) | Live credit card processing requires live bank credentials. Replaced with hermetic local endpoint `/Patient/payment` returning `"Payment request is sent successfully."` and closing modal. |
+| **Carrier SMS / Email Dispatch** | **PARTLY (Stand-in)** | Live telecom gateway delivery | Live SMS dispatch requires carrier API credentials. Replaced with local queue handler in `server.js` returning HTTP 200 with NotificationFx confirmation. |
 
 ---
 
-## 3. End-to-End Interaction Test Results (`node test_all_interactions.js`)
+## 3. Detailed Root-Cause Diagnoses & Fixes
 
-```
+### A. Appointment List Displaced Layout & Broken Buttons (`/home/appointmentlist`)
+- **Root Cause**: Modals (`#paymentFormLayout`, `#popupsendmessage`, `.bs-example-modal-sm`) lacked inline `style="display: none;"`, causing the browser to render them in standard document flow. This pushed the appointment card down to `y = 799px` and broke layout parity. Furthermore, action buttons (`.btncheckin`, `.apptPay`, `.btnAppointment`) had missing event handlers.
+- **Fix**:
+  1. Added `style="display: none;"` to modal root containers and positioned them cleanly outside `#contentPadding`.
+  2. Restored appointment card bounding rect to `y: 88, x: 90, width: 1340` on desktop 1440x900.
+  3. Wired `.btncheckin` to call `/home/patientcheckin` and show NotificationFx feedback.
+  4. Wired `.apptPay` to open `#paymentFormLayout` with pre-filled patient info; `#btnRequestGlobal` submits and closes modal.
+  5. Wired `.btnAppointment` to open cancellation modal; `#deleteAppointment` calls `/Calendar/DeleteEvent`, removes row via `.remove()`, and closes modal.
+  6. Verified `.CollapseIcon` toggles accordion height and switches plus/minus SVG icons.
+
+### B. Videos Partial 404s & Network Leaks (`/home/videos`)
+- **Root Cause**: `cleaned-partials/videos_list.html` had 264 hardcoded `img.youtube.com/vi/.../0.jpg` references. Many were deleted videos resulting in 404s and violating the rule "Clones only: no requests leave localhost".
+- **Fix**: Replaced all 264 occurrences with localized SVG asset `/Content/images/video_thumb.svg`.
+
+### C. 16-Page Navigation & Settings Loop Elimination
+- **Root Cause**: Previously, `server.js` routed unknown home subpaths back to `settings.html`, trapping users in a loop when clicking settings module cards. Relative paths (`../../home/search`, `../../account/logOff`) caused 404s when accessed from deeper routes.
+- **Fix**:
+  1. Implemented 12 dedicated Settings submodules with live tables and bidirectional "Back to Settings" buttons.
+  2. Normalized all navigation paths across all 16 page templates to root-relative paths.
 
 ---
 
-## 5. Submodules, Loop Elimination & Deep Button Audit (`verify_all_buttons_subpages_and_loops.js`)
+## 4. Multi-Iteration Verification Loop Results
 
-A dedicated Playwright automated test suite was constructed and executed to verify that no navigation loops exist, all 12 Settings submodules render complete responsive pages, all `href=""` button traps are neutralized, and all modals and DataTables load accurately without full-page reloads.
+The automated 10-iteration loop (`run_multi_iteration_test_loop.js`) was executed across all 16 pages and all interactive workflows:
 
-### A. Settings Submodules Loop Elimination
-| Card ID | Target URL Route | Sub-view Title Rendered | Bidirectional Back Link Verified |
-|---|---|---|:---:|
-| `#users` | `/home/users` | Clinic Users & Roles | ✅ PASS |
-| `#locations` | `/home/locations` | Clinic Practice Locations | ✅ PASS |
-| `#fees` | `/home/fees` | Consultation Fees Schedule | ✅ PASS |
-| `#appointmenttimings` | `/home/appointmenttiming` | Doctor Timings & Schedule | ✅ PASS |
-| `#consents` | `/home/consents` | Clinical Consent Templates | ✅ PASS |
-| `#groups` | `/home/groups` | Patient Groups & Categories | ✅ PASS |
-| `#procedures` | `/home/procedure` | Procedures & Pricing Catalog | ✅ PASS |
-| `#medicalconditions` | `/home/medicalconditions` | Medical Conditions Master | ✅ PASS |
-| `#supplier` | `/inventory/supplier` | Suppliers & Dental Labs | ✅ PASS |
-| `#remedies` | `/home/remedies` | Prescription Remedies Formulary | ✅ PASS |
-| `#packageremedies` | `/home/packageremedies` | Package Remedies & Kits | ✅ PASS |
-| `#referral` | `/home/referral` | Specialist Referral Directory | ✅ PASS |
-
-### B. Patient Detail & Patient Connect Button Audit
-| Component / Action | Element Selector | Issue Before Fix | Verified Behavior |
-|---|---|---|---|
-| Consultation History Split | `button#TabBtnConsultation` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Billing Split | `button#TabBtnBilling` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Clinical Examination Sidebar | `a:has-text("Clinical Examination")` | `href=""` reload trap | Opens form in container (✅ PASS) |
-| Patient Communication Link | `a#patientCommunication` | `href=""` reload trap | Navigates to `/patient/patientcommunication` (✅ PASS) |
-| Patient Communication Subpage | `/patient/patientcommunication` | Missing subpage | Logs table (3 rows) + Send SMS (✅ PASS) |
-| Patient Connect Send Now | `a#sendMessage` | `href=""` reload & 0 balance | Form validates & triggers `NotificationFx` (✅ PASS) |
-| Calendar Block Appointment | `a#btnBlockApp` | Missing modal attributes | Opens `#appointmentblock` modal (✅ PASS) |
-| Calendar Go to Date | `a#btnGotoDate` | Missing modal attributes | Opens `#modalGotodate` modal (✅ PASS) |
-| Reports Generate Report | `button#GenerateReport` | AJAX DOM wipeout & CDN freeze | Populates `#example` with 10 records (✅ PASS) |
-
-### C. Test Suite Output
 ```
 =================================================================
-TOTAL PASSED: 77
-TOTAL FAILED: 0
-TOTAL ERRORS: 0
+MULTI-ITERATION VERIFICATION RESULTS SUMMARY
+=================================================================
+• Total Iterations Executed: 10 / 10
+• Overall Result: 100% GREEN (ALL 10 ITERATIONS PASSED)
+• Total Duration: 281.86s (Average: 28.19s / iteration)
+• Core Parity Contract Tests: 42/42 Passed across each iteration
+• UI Interactive Assertions: 66–67 per iteration (Total: 667 verified)
+• Console & Page Errors: 0
+• Network Leaks (External requests): 0 (Fully hermetic local boundary)
+• Loop Traps / Reload Traps: 0
+• Network Request Failures: 0
 =================================================================
 ```
-All 77 assertions passed with zero console errors and zero failed network requests.
 
---- TESTING DASHBOARD ---
-  [OK] Day scroller nextDate() clicked
-  [OK] Appointment slot clicked
-  [OK] Appointment row expanded
-  [OK] btnConsultation exists: true
-  [OK] Check-in button clicked
---- TESTING DENTAL CONSULTATION ---
-  [OK] Clicked tab: Clinical Examination
-  [OK] Clicked tab: Procedures
-  [OK] Clicked tab: Prescription
-  [OK] Clicked tab: Billing
-  [OK] Clicked tab: Preview
-  [OK] Clicked tab: Consultation History
-  [OK] Tooth image element found: true
-  [OK] Tooth clicked
---- TESTING PATIENT DETAIL ---
-  [OK] Clinical Examination form loaded: true
-  [OK] Procedures form loaded: true
-  [OK] Prescription form loaded: true
-  [OK] Bill form loaded: true
-  [OK] Notes form loaded: true
-  [OK] Schedule Appointment Modal opened: true
-  [OK] Doctor Check In Modal opened: true
-  [OK] Add Lab Order Modal opened: true
---- TESTING CALENDAR ---
-  [OK] Calendar control clicked: .fc-month-button
-  [OK] Calendar control clicked: .fc-agendaWeek-button
-  [OK] Calendar control clicked: .fc-agendaDay-button
-  [OK] Calendar control clicked: .fc-next-button
-  [OK] Calendar control clicked: .fc-prev-button
---- TESTING LAB ---
-  [OK] Add Lab Order Modal opened from Lab page: true
---- TESTING APPOINTMENT LIST ---
-  [OK] Appointment List rendered rows: 3
-  [OK] First patient link href: /patient/detail?patientid=2223997
---- TESTING SEARCH ---
-  [OK] Search input filled, #btnSearch exists: true
---- TESTING SOCIAL ---
-  [OK] Social posters loaded: 23
---- TESTING VIDEOS ---
-  [OK] Video cards rendered: 32
-
-=====================================================
- ALL INTERACTION AND BUTTON WORKFLOWS VERIFIED (100%)
-=====================================================
-Error tallies: {
-  "dashboardErrors": [],
-  "dentalErrors": [],
-  "patientErrors": [],
-  "calendarErrors": [],
-  "labErrors": [],
-  "apptListErrors": [],
-  "searchErrors": [],
-  "socialErrors": [],
-  "videoErrors": []
-}
-```
+### Per-Iteration Metrics Table
+| Iteration | Status | Duration | Core Tests | UI Assertions | Console Errors | Network Leaks | Loop Traps | Request Fails |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| #1 | ✅ PASS | 27.03s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #2 | ✅ PASS | 29.27s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #3 | ✅ PASS | 32.36s | 42/42 | 66 | 0 | 0 | 0 | 0 |
+| #4 | ✅ PASS | 33.99s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #5 | ✅ PASS | 32.71s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #6 | ✅ PASS | 29.24s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #7 | ✅ PASS | 22.61s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #8 | ✅ PASS | 23.09s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #9 | ✅ PASS | 24.79s | 42/42 | 67 | 0 | 0 | 0 | 0 |
+| #10 | ✅ PASS | 26.50s | 42/42 | 67 | 0 | 0 | 0 | 0 |
 
 ---
 
-## 5. Submodules, Loop Elimination & Deep Button Audit (`verify_all_buttons_subpages_and_loops.js`)
+## 5. Comprehensive Verification Suites Output
 
-A dedicated Playwright automated test suite was constructed and executed to verify that no navigation loops exist, all 12 Settings submodules render complete responsive pages, all `href=""` button traps are neutralized, and all modals and DataTables load accurately without full-page reloads.
-
-### A. Settings Submodules Loop Elimination
-| Card ID | Target URL Route | Sub-view Title Rendered | Bidirectional Back Link Verified |
-|---|---|---|:---:|
-| `#users` | `/home/users` | Clinic Users & Roles | ✅ PASS |
-| `#locations` | `/home/locations` | Clinic Practice Locations | ✅ PASS |
-| `#fees` | `/home/fees` | Consultation Fees Schedule | ✅ PASS |
-| `#appointmenttimings` | `/home/appointmenttiming` | Doctor Timings & Schedule | ✅ PASS |
-| `#consents` | `/home/consents` | Clinical Consent Templates | ✅ PASS |
-| `#groups` | `/home/groups` | Patient Groups & Categories | ✅ PASS |
-| `#procedures` | `/home/procedure` | Procedures & Pricing Catalog | ✅ PASS |
-| `#medicalconditions` | `/home/medicalconditions` | Medical Conditions Master | ✅ PASS |
-| `#supplier` | `/inventory/supplier` | Suppliers & Dental Labs | ✅ PASS |
-| `#remedies` | `/home/remedies` | Prescription Remedies Formulary | ✅ PASS |
-| `#packageremedies` | `/home/packageremedies` | Package Remedies & Kits | ✅ PASS |
-| `#referral` | `/home/referral` | Specialist Referral Directory | ✅ PASS |
-
-### B. Patient Detail & Patient Connect Button Audit
-| Component / Action | Element Selector | Issue Before Fix | Verified Behavior |
-|---|---|---|---|
-| Consultation History Split | `button#TabBtnConsultation` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Billing Split | `button#TabBtnBilling` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Clinical Examination Sidebar | `a:has-text("Clinical Examination")` | `href=""` reload trap | Opens form in container (✅ PASS) |
-| Patient Communication Link | `a#patientCommunication` | `href=""` reload trap | Navigates to `/patient/patientcommunication` (✅ PASS) |
-| Patient Communication Subpage | `/patient/patientcommunication` | Missing subpage | Logs table (3 rows) + Send SMS (✅ PASS) |
-| Patient Connect Send Now | `a#sendMessage` | `href=""` reload & 0 balance | Form validates & triggers `NotificationFx` (✅ PASS) |
-| Calendar Block Appointment | `a#btnBlockApp` | Missing modal attributes | Opens `#appointmentblock` modal (✅ PASS) |
-| Calendar Go to Date | `a#btnGotoDate` | Missing modal attributes | Opens `#modalGotodate` modal (✅ PASS) |
-| Reports Generate Report | `button#GenerateReport` | AJAX DOM wipeout & CDN freeze | Populates `#example` with 10 records (✅ PASS) |
-
-### C. Test Suite Output
+### A. Core Parity Contract Suite (`npm run verify`)
 ```
-=================================================================
-TOTAL PASSED: 77
-TOTAL FAILED: 0
-TOTAL ERRORS: 0
-=================================================================
-```
-All 77 assertions passed with zero console errors and zero failed network requests.
-
-
----
-
-## 4. Contract Parity Test Suite (`npm run verify`)
-
-```
-
----
-
-## 5. Submodules, Loop Elimination & Deep Button Audit (`verify_all_buttons_subpages_and_loops.js`)
-
-A dedicated Playwright automated test suite was constructed and executed to verify that no navigation loops exist, all 12 Settings submodules render complete responsive pages, all `href=""` button traps are neutralized, and all modals and DataTables load accurately without full-page reloads.
-
-### A. Settings Submodules Loop Elimination
-| Card ID | Target URL Route | Sub-view Title Rendered | Bidirectional Back Link Verified |
-|---|---|---|:---:|
-| `#users` | `/home/users` | Clinic Users & Roles | ✅ PASS |
-| `#locations` | `/home/locations` | Clinic Practice Locations | ✅ PASS |
-| `#fees` | `/home/fees` | Consultation Fees Schedule | ✅ PASS |
-| `#appointmenttimings` | `/home/appointmenttiming` | Doctor Timings & Schedule | ✅ PASS |
-| `#consents` | `/home/consents` | Clinical Consent Templates | ✅ PASS |
-| `#groups` | `/home/groups` | Patient Groups & Categories | ✅ PASS |
-| `#procedures` | `/home/procedure` | Procedures & Pricing Catalog | ✅ PASS |
-| `#medicalconditions` | `/home/medicalconditions` | Medical Conditions Master | ✅ PASS |
-| `#supplier` | `/inventory/supplier` | Suppliers & Dental Labs | ✅ PASS |
-| `#remedies` | `/home/remedies` | Prescription Remedies Formulary | ✅ PASS |
-| `#packageremedies` | `/home/packageremedies` | Package Remedies & Kits | ✅ PASS |
-| `#referral` | `/home/referral` | Specialist Referral Directory | ✅ PASS |
-
-### B. Patient Detail & Patient Connect Button Audit
-| Component / Action | Element Selector | Issue Before Fix | Verified Behavior |
-|---|---|---|---|
-| Consultation History Split | `button#TabBtnConsultation` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Billing Split | `button#TabBtnBilling` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Clinical Examination Sidebar | `a:has-text("Clinical Examination")` | `href=""` reload trap | Opens form in container (✅ PASS) |
-| Patient Communication Link | `a#patientCommunication` | `href=""` reload trap | Navigates to `/patient/patientcommunication` (✅ PASS) |
-| Patient Communication Subpage | `/patient/patientcommunication` | Missing subpage | Logs table (3 rows) + Send SMS (✅ PASS) |
-| Patient Connect Send Now | `a#sendMessage` | `href=""` reload & 0 balance | Form validates & triggers `NotificationFx` (✅ PASS) |
-| Calendar Block Appointment | `a#btnBlockApp` | Missing modal attributes | Opens `#appointmentblock` modal (✅ PASS) |
-| Calendar Go to Date | `a#btnGotoDate` | Missing modal attributes | Opens `#modalGotodate` modal (✅ PASS) |
-| Reports Generate Report | `button#GenerateReport` | AJAX DOM wipeout & CDN freeze | Populates `#example` with 10 records (✅ PASS) |
-
-### C. Test Suite Output
-```
-=================================================================
-TOTAL PASSED: 77
-TOTAL FAILED: 0
-TOTAL ERRORS: 0
-=================================================================
-```
-All 77 assertions passed with zero console errors and zero failed network requests.
-
 =====================================================
  PULSE DIGITAL CLINIC (MYDIGITALCLINIC.NET) VERIFIER 
  Target: http://localhost:3000
@@ -342,48 +194,67 @@ SUMMARY: 42/42 Passed (0 Failures)
 =====================================================
 ```
 
+### B. Navigation & Control Suite (`comprehensive_audit_subagent2.js`)
+```
+========================================================================
+FINAL AUDIT SUMMARY TOTALS:
+Total Pages Verified: 16/16
+Total Buttons / Clickable Controls Tested: 60
+Total Passed: 60
+Total Failed: 0
+Console Errors: 0
+Page Unhandled Exceptions: 0
+Infinite Redirect Loops: 0
+Broken Relative Links: 0
+Dead Anchors: 0
+========================================================================
+```
+
+### C. Backend API Suite (`test_all_apis.js`)
+```
+======================================================
+AUDIT RESULTS SUMMARY: 69/69 PASSED (0 FAILED)
+======================================================
+```
+
+### D. Responsive Viewport Parity (`run_visual_parity_audit.js`)
+```
+======================================================
+AUDIT COMPLETED
+Total checks: 48
+Passed: 48
+Failed: 0
+Pass Rate: 100.0%
+======================================================
+```
+
 ---
 
-## 5. Submodules, Loop Elimination & Deep Button Audit (`verify_all_buttons_subpages_and_loops.js`)
+## 6. Screenshot Evidence Index
 
-A dedicated Playwright automated test suite was constructed and executed to verify that no navigation loops exist, all 12 Settings submodules render complete responsive pages, all `href=""` button traps are neutralized, and all modals and DataTables load accurately without full-page reloads.
+### A. Live Original vs. Local Clone Visual Comparison
+- **Live Site Appointment List Capture**: `live_appointmentlist.png`
+- **Clone Verified Appointment List (Desktop)**: `screenshots/appointmentlist_desktop_verified.png`
+- **Clone Verified Appointment List (Mobile 390px)**: `screenshots/appointmentlist_mobile_verified.png`
+- **Payment Request Modal Verified**: `screenshots/payment_modal_verified.png`
+- **Cancellation Reasons Modal Verified**: `screenshots/cancel_modal_verified.png`
+- **Visual Diff Comparison Gallery**: `screenshots/comparison.html` & `screenshots/responsive_parity_gallery.html`
 
-### A. Settings Submodules Loop Elimination
-| Card ID | Target URL Route | Sub-view Title Rendered | Bidirectional Back Link Verified |
-|---|---|---|:---:|
-| `#users` | `/home/users` | Clinic Users & Roles | ✅ PASS |
-| `#locations` | `/home/locations` | Clinic Practice Locations | ✅ PASS |
-| `#fees` | `/home/fees` | Consultation Fees Schedule | ✅ PASS |
-| `#appointmenttimings` | `/home/appointmenttiming` | Doctor Timings & Schedule | ✅ PASS |
-| `#consents` | `/home/consents` | Clinical Consent Templates | ✅ PASS |
-| `#groups` | `/home/groups` | Patient Groups & Categories | ✅ PASS |
-| `#procedures` | `/home/procedure` | Procedures & Pricing Catalog | ✅ PASS |
-| `#medicalconditions` | `/home/medicalconditions` | Medical Conditions Master | ✅ PASS |
-| `#supplier` | `/inventory/supplier` | Suppliers & Dental Labs | ✅ PASS |
-| `#remedies` | `/home/remedies` | Prescription Remedies Formulary | ✅ PASS |
-| `#packageremedies` | `/home/packageremedies` | Package Remedies & Kits | ✅ PASS |
-| `#referral` | `/home/referral` | Specialist Referral Directory | ✅ PASS |
-
-### B. Patient Detail & Patient Connect Button Audit
-| Component / Action | Element Selector | Issue Before Fix | Verified Behavior |
-|---|---|---|---|
-| Consultation History Split | `button#TabBtnConsultation` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Billing Split | `button#TabBtnBilling` | `href=""` reload trap | Tab toggles without reload (✅ PASS) |
-| Clinical Examination Sidebar | `a:has-text("Clinical Examination")` | `href=""` reload trap | Opens form in container (✅ PASS) |
-| Patient Communication Link | `a#patientCommunication` | `href=""` reload trap | Navigates to `/patient/patientcommunication` (✅ PASS) |
-| Patient Communication Subpage | `/patient/patientcommunication` | Missing subpage | Logs table (3 rows) + Send SMS (✅ PASS) |
-| Patient Connect Send Now | `a#sendMessage` | `href=""` reload & 0 balance | Form validates & triggers `NotificationFx` (✅ PASS) |
-| Calendar Block Appointment | `a#btnBlockApp` | Missing modal attributes | Opens `#appointmentblock` modal (✅ PASS) |
-| Calendar Go to Date | `a#btnGotoDate` | Missing modal attributes | Opens `#modalGotodate` modal (✅ PASS) |
-| Reports Generate Report | `button#GenerateReport` | AJAX DOM wipeout & CDN freeze | Populates `#example` with 10 records (✅ PASS) |
-
-### C. Test Suite Output
-```
-=================================================================
-TOTAL PASSED: 77
-TOTAL FAILED: 0
-TOTAL ERRORS: 0
-=================================================================
-```
-All 77 assertions passed with zero console errors and zero failed network requests.
-
+### B. 16 Full-Page Screenshots (Iteration 10 High Resolution)
+Stored in `screenshots_verification_loop/` and project root:
+1. `01_Dashboard.png` (`page_Dashboard.png`)
+2. `02_Calendar.png` (`page_Calendar.png`)
+3. `03_Appointment_List.png` (`page_Appointment_List.png`)
+4. `04_Dental_Consultation.png` (`page_Dental_Consultation.png`)
+5. `05_Patient_Detail.png` (`page_Patient_Detail.png`)
+6. `06_Laboratory.png` (`page_Laboratory.png`)
+7. `07_Patient_Connect.png` (`page_Patient_Connect.png`)
+8. `08_Reports.png` (`page_Reports.png`)
+9. `09_Social.png` (`page_Social.png`)
+10. `10_Settings.png` (`page_Settings.png`)
+11. `11_Search.png` (`page_Search.png`)
+12. `12_Profile_View.png` (`page_Profile_View.png`)
+13. `13_Support.png` (`page_Support.png`)
+14. `14_FAQ.png` (`page_FAQ.png`)
+15. `15_Videos.png` (`page_Videos.png`)
+16. `16_Login.png` (`page_Login.png`)

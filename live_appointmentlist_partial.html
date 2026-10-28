@@ -1,0 +1,411 @@
+
+
+
+
+<style>
+     .small_btn {
+        border-radius: 50% !important;
+    }
+
+        .small_btn:hover {
+            background-color: #54c7c3 !important;
+        }
+
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+        padding-top: 7px;
+    }
+
+        .btn-circle.btn-lg {
+            width: 50px;
+            height: 50px;
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.33;
+            border-radius: 25px;
+        }
+
+        .btn-circle.btn-xl {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            font-size: 24px;
+            line-height: 1.33;
+            border-radius: 35px;
+        }
+
+    btn-circle:hover {
+        background-color: #54c7c3 !important;
+    }
+     /*media query to set Font size and tab height in tablet view*/
+    @media screen and (min-width:420px) and (max-width:768px) {
+       .pagetitle {
+            margin-top:-40px !important;
+            
+        }
+    }
+
+       /*media query to set margin in mobile view*/
+    @media screen and (min-width:320px) and (max-width:500px) {
+       .pagetitle {
+            margin-top:-40px !important;
+            
+        }
+       /*css to hide sms remider button in mobile view*/
+        .btnSMS {
+            display:none;
+        }
+    }
+</style>
+
+<div class="content-wrapper fxset" style="padding-top: 70px; min-height: 100% !important; height: 100%;" id="contentPadding">
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+                
+
+                <div class="card">
+                    <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                        <div class="cardHeadingText">Appointment List</div>
+                    </div>
+
+                    <div class="">
+                    </div>
+                </div>
+
+             
+
+
+            </div>
+
+            <div id="popupsendmessage" style="" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="btn btn-sm pull-right btn-primary" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 id="">Send Message</h3>
+            </div>
+            <div class="modal-body">
+                <div id="sendmessage"></div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="row">
+                            <h5 class="modal-title" style="display:inline">Appointment Cancellation Reasons
+
+                            </h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            </div>
+                        <div class="modal-body">
+
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="form-group">
+
+                                    <select class="form-control" id="selectreason">
+                                        <option value="Patient No-show">Patient No-Show</option>
+                                        <option value="Cancelled by Doctor">Cancelled By Doctor</option>
+                                        <option value="Cancelled by Patient">Cancelled By Patient</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+
+                                </div>
+
+
+
+                                <div class="col-md-12 col-xs-12 col-sm-12" id="divreason" style="display: none">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" id="reason">
+                                        <span id="errorreason" class="text-danger">Please Enter Reason</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="overflow: hidden">
+                                <button type="button" id="deleteAppointment" class="btn btn-sm btn-primary mr-1 ml-1">Submit</button>
+                                <button type="button" id="" data-dismiss="modal" class="btn btn-sm btn-primary ml-1 ">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    
+        <script>
+            $(document).ready(function () {
+                $('#errorreason').hide();
+                $(".btncheckin").click(function (e) {
+                   // debugger;
+                    e.preventDefault();
+                    var patientID = $(this).parent().find('.todayApptPatientID').val();
+                    var userID = $(this).parent().find('.todayApptUserID').val();
+
+                    $.ajax({
+                        url: '../home/patientcheckin?patientID=' + patientID + '&userID=' + userID,
+                        type: 'GET',
+                        success: function (data, textStatus, jqXHR) {
+                            if (data == "False") {
+                                DisplayMessage(Warning + SpanStart + "Patient already checked in." + SpanEnd);
+                            }
+                            else {
+                                DisplayMessage(SuccessCheck + SpanStart + "Patient check in successful." + SpanEnd);
+                            }
+                        }
+                    });
+                });
+
+                $(".btnConsultation").click(function (e) {
+                    
+                    e.preventDefault();
+                    var patientID = $(this).parent().find('.todayApptPatientID').val();
+                    var userID = $(this).parent().find('.todayApptUserID').val();
+                    var consultationCode = $(this).parent().find('.todayApptConsultationCode').val();
+                    //console.log(consultationCode);
+                    window.location = "/" + consultationCode + "/consultation?patientid=" + patientID;
+
+                });
+                var EventID, Title, UserID, Mobile, EventDate, EventTime;
+
+                $(".btnAppointment").click(function () {
+                    EventID = $(this).parent().find('.todayApptID').val();
+                    Title = $(this).parent().find('.todayApptTitle').val();
+                    UserID = $(this).parent().find(".todayApptUserID").val();
+                    Mobile = $(this).parent().find(".todayApptMobile").val();
+                    EventDate = $(this).parent().find('.todayApptEventDate').val(),
+                    EventTime = $(this).parent().find('.todayApptEventTime').val(),
+                    $("#divreason").css("display", "none");
+                    $('#reason').val('Patient No-show');
+
+
+                });
+                $(".apptPay").click(function () {
+                    $("#patientNameGlobal").val("");
+                    $("#patientPurposeGlobal").val("");
+                    $("#patientMobileGlobal").val("");
+                    $("#patientEmailGlobal").val("");
+                    $("#patientIDGlobal").val("");
+                    $("#servicetaxGlobal").text("");
+                    $("#finalAmountGlobal").text("");
+                    $("#patientAmountGlobal").val("");
+
+                    var userName = $(this).parent().find('.todayApptTitle').val();
+                    $("#patientNameGlobal").val(userName);
+                    GetPatientPendingBill(userName);
+                });
+
+                $('#selectreason').change(function () {
+
+                    if ($('option:selected', this).text() != 'Other') {
+                        $('#reason').val($('option:selected', this).text());
+                        $('#divreason').hide();
+                    }
+                    else {
+                        $('#reason').val('');
+                        $('#divreason').show();
+                        $('#reason').focus();
+                    }
+
+                });
+                function ValidateAppointmentCancel() {
+
+                    var valid = true;
+
+
+                    $('#errorreason').hide();
+                    var x = $('#reason').val()
+                    if (x == null || x == "" || x == 'Select') {
+                        $('#errorreason').show();
+                        $('#reason').focus();
+                        valid = false;
+                    }
+
+                    return valid;
+
+                }
+
+                $(document).on("click", "#deleteAppointment", function (event) {
+
+
+                    //$('#popupEventForm').modal('hide');
+                    event.preventDefault();
+                    if (ValidateAppointmentCancel()) {
+                        $('.bs-example-modal-sm').modal('hide');
+                        var dataRow = {
+                            'EventID': EventID,
+                            'Title': Title,
+                            'UserID': UserID,
+                            'Mobile': Mobile,
+                            'AppointmentCancelReason': $("#reason").val(),
+                            'EventDate': EventDate,
+                            'EventTime': EventTime,
+                        }
+
+
+
+                        // ClearPopupFormValues();
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Calendar/DeleteEvent",
+                            data: dataRow,
+                            success: function (response) {
+                                
+                                if (response == 'True') {
+
+                                    location.reload();
+
+                                    TodaysAppointment1();
+                                   
+                                }
+                                else {
+
+                                    DisplayMessage(ErrorCross + SpanStart +"Something went wrong! Please try again." + SpanEnd);
+                                }
+                            }
+                        });
+                    }
+
+                });
+
+                function TodaysAppointment1() {
+                    var url = "/home/AppointmentList";
+                    var pane = $(this);
+
+                    // ajax load from data-url
+                    //$("#contentPadding").load(url, function (result) {
+                    //    pane.tab('show');
+                    //});
+
+                          $.ajax({
+                        type: 'GET',
+                        url: "/home/AppointmentList",
+
+                              success: function (response) {
+                                  
+                                  //console.log(response);
+                                  $("#contentPadding").html();
+                                  $("#contentPadding").html(response);
+                        }
+                    });
+                }
+
+                //function Getappoinmentlist() {
+                //    $.ajax({
+                //        type: 'POST',
+                //        url: "/home/AppointmentList",
+                        
+                //        success: function (response) {
+                           
+                //        }
+                //    });
+
+
+               // }
+
+
+                $('.btnAppointment').hover(
+           function () {
+               $(this).attr('src', '../../Content/images/Cancel-normal-icon.png')
+           },
+           function () {
+               $(this).attr('src', '../../Content/images/Cancel-hover-icon.png')
+           }
+        )
+
+                $('.btncheckin').hover(
+           function () {
+               $(this).attr('src', '../../Content/images/Checkin-normal-icon.png')
+           },
+           function () {
+               $(this).attr('src', '../../Content/images/Checkin-hover-icon.png')
+           }
+        )
+
+                $('.btnConsultation').hover(
+           function () {
+               $(this).attr('src', '../../Content/images/Consultation-normal-icon.png')
+           },
+           function () {
+               $(this).attr('src', '../../Content/images/Consultation-hover-icon.png')
+           }
+        )
+
+                $('.btnSMS').hover(
+  function () {
+      $(this).attr('src', '../../Content/images/sms-hover-icon.png')
+      $(this).css('cursor', 'pointer')
+  },
+  function () {
+      $(this).attr('src', '../../Content/images/sms-normal-icon.png')
+      $(this).css('cursor', 'pointer')
+  }
+)
+            });
+
+
+            $(".btnSMS").click(function () {
+                //  heading_today smsID
+
+                //.attr('href'));
+
+                var patientID = $(this).parent().find('.todayApptPatientID').val();
+                //var typ = getURLParameter(url, 'typ');
+                //var userName = $(this).parent().find('.todayApptTitle').val();
+                //console.log(patientID);
+
+                SendMessage(patientID);
+            });
+
+            function SendMessage(patientID) {
+
+
+                url = "../Patient/SendMessage?patientID=" + patientID;
+                $.ajax(
+                {
+                    url: url,
+                    type: "GET",
+                    async: false,
+                    success: function (data, textStatus, jqXHR) {
+
+                        $("#sendmessage").html(data);
+
+
+
+                    //    $("div.Editor-editor").text("Default Text ");
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        DisplayMessage(ErrorCross + SpanStart + "Something went wrong! Please try again." + SpanEnd);
+                    }
+                });
+                //}
+            }
+
+        </script>

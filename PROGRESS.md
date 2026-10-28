@@ -1,5 +1,92 @@
 # Progress & Cycle Ledger: Pulse PMS Clone
 
+## Cycle 8 Summary: Header Search Bar 1:1 Parity, Input Placeholder Collision Engine & Full Layout Isolation
+- **Current Score**:
+  - `npm run verify` (`verify.js`): **42 / 42 Passed (0 Failures)**
+  - Automated Bounding-Box Text & Placeholder Collision Suite (`scan_all_collisions.js`): **48 / 48 Combinations 100% CLEAN (0 Overlaps across 16 routes x 3 viewports: 390px, 768px, 1440px)**
+  - Interactive Multi-Page Navigation Suite (`comprehensive_audit_subagent2.js`): **60 / 60 Controls Tested & Passed (0 Failures, 0 Loops, 0 Dead Anchors)**
+  - REST & AJAX Backend APIs (`test_all_apis.js`): **69 / 69 Passed (0 Failures)**
+- **Console / Network Health**: **0 Console Errors, 0 Page Errors, 0 Network Leaks, 0 Broken Images**.
+- **Offline Hermetic Boundary**: **100% Localhost (`http://localhost:3000`) with Zero External Telemetry/Network Leakage**.
+
+### Key Diagnoses & Root-Cause Fixes in Cycle 8:
+1. **Header "Advanced Search" Overlaying Input Placeholder Text**:
+   - **User Evidence**: Screenshot `media_1793126963455_8d52e6ca.png` showed "Advanced Search" printed in blue right over the middle of "Search Name, Mobile Number, File Number".
+   - **Root Cause Analysis**:
+     a. In `live_home_index.html`, `.search_input-group .search_form-control` was defined with `width: 530px;` and `margin: 15px 0px;`. In `cleaned-pages/*.html`, this rule had been omitted, causing the search `<input>` to collapse down to 216px.
+     b. When "Advanced Search" was anchored at `right: 14px;` of the 216px box, it sat right in the middle of the 40-character placeholder text (`Search Name, Mobile Number, File Number`), which requires ~350px.
+     c. `scan_all_collisions.js` previously only traversed DOM `Node.TEXT_NODE` instances, missing `<input placeholder="...">` rendered in the browser's shadow DOM.
+   - **Resolution**:
+     a. Upgraded `scan_all_collisions.js` to extract and audit all `<input placeholder>` and `<textarea placeholder>` text boundaries against all overlying elements.
+     b. Injected canonical 530px desktop search styling across all 15 cleaned pages: `#desktopSearch { width: 530px !important; position: relative !important; }`, `.search_form-control { width: 100% !important; padding-left: 36px !important; padding-right: 130px !important; height: 38px !important; }`, and `.btnAdvace-search { right: 14px !important; top: 8px !important; position: absolute !important; }`.
+     c. The `padding-right: 130px !important;` reserves exclusive whitespace for "Advanced Search", guaranteeing zero text collision.
+2. **Patient Connect `#contentpadding` Tablet (768px) Collision**:
+   - **Root Cause**: `patientconnect.html` had `#contentpadding { padding-top: 35px !important; }` on tablet, placing top cards at y=49px-93px directly under `#mobSearch` at y=45.5px-85.5px.
+   - **Fix**: Adjusted tablet padding to `padding-top: 115px !important;`, moving the content below the search bar. All 16 routes at 768px are now 100% clean.
+
+---
+
+## Cycle 7 Summary: Elimination of Text Overlays, Collision Scan (48/48 Clean), Header Pointer Interception Fix & Full Verification
+- **Current Score**:
+  - `npm run verify` (`verify.js`): **42 / 42 Passed (0 Failures)**
+  - Automated Bounding-Box Text Collision Suite (`scan_all_collisions.js`): **48 / 48 Combinations 100% CLEAN (0 Overlaps across 16 routes x 3 viewports: 390px, 768px, 1440px)**
+  - Interactive Multi-Page Navigation Suite (`comprehensive_audit_subagent2.js`): **60 / 60 Controls Tested & Passed (0 Failures, 0 Loops, 0 Dead Anchors)**
+  - Automated Multi-Iteration Test Loop (`run_multi_iteration_test_loop.js`): **10 / 10 Iterations Passed (100% Green)**
+  - REST & AJAX Backend APIs (`test_all_apis.js`): **69 / 69 Passed (0 Failures)**
+- **Console / Network Health**: **0 Console Errors, 0 Page Errors, 0 Network Leaks, 0 Broken Images**.
+- **Offline Hermetic Boundary**: **100% Localhost (`http://localhost:3000`) with Zero External Telemetry/Network Leakage**.
+
+### Key Diagnoses & Root-Cause Fixes in Cycle 7:
+1. **ZingChart "15 Day's Tracker" vs Legend Collision at 390px Viewport**:
+   - **Root Cause**: In `captured-pages/homeweekly2.html`, ZingChart title configuration specified `"offset-y": "10%"` and `"offset-x": "10%"`, while the legend was set to `"layout": "x3"` with `"offset-y": "-2%"`. On a 390px mobile viewport, the title was pushed 40px down directly into the legend, causing an overlapping collision between `"15 Day's Tracker"` and `"Appointments"`.
+   - **Fix**: Adjusted title offsets to `"offset-y": "2%"`, `"offset-x": "2%"` and positioned legend with `"margin-top": "35px"`. Verified 0 overlaps across all 3 viewports.
+2. **SearchableOptionList 1,415 Raw Options Text Collisions on Patient Connect**:
+   - **Root Cause**: `cleaned-pages/patientconnect.html` lacked `name` attributes on SearchableOptionList selects (`#solgroup`, `#solmedicalcondition`), causing `sol.js` to abort before calling `.hide()`. This left 1,415 raw `<option>` elements spanning the page and colliding with cards.
+   - **Fix**: Added `name="solgroup"` and `name="solmedicalcondition"`, linked `/Content/assets/sol.min.css`, and set `display: none !important;` on the raw select tags. Collision count dropped from 12 to 0.
+3. **Recently Added Patients Card Overflow on Dashboard**:
+   - **Root Cause**: In `cleaned-pages/home_index.html`, `GetRecentActivity()` AJAX injected a raw `<table>` into `<div id="recentActivity">`. Without `overflow-y: auto`, the 10 patient items expanded to 665px and covered the ZingChart canvas and patient numbers.
+   - **Fix**: Enforced `height: 395px !important; max-height: 395px !important; overflow-y: auto !important; overflow-x: hidden !important;` on `#recentActivity` and `#recentActivityTable`.
+4. **Header Advanced Search Pointer Event Interception on User Profile Dropdown**:
+   - **Root Cause**: `.btnAdvace-search` had `position: absolute; z-index: 999; margin-left: 15%;`, but its container `#desktopSearch` was missing `position: relative;`. This caused the button to anchor to the root navbar, stretching across to `x: 1364px-1470px` and intercepting clicks on `#UserdropdownMenuButton` at `x: 1348px-1440px`.
+   - **Fix**: Applied `#desktopSearch { position: relative !important; }` and `#desktopSearch .btnAdvace-search { position: absolute !important; right: 10px !important; top: 12px !important; z-index: 5 !important; margin-left: 0 !important; }` across all 15 cleaned pages. All User Profile Dropdown links now pass with 0 pointer interceptions.
+
+---
+
+## Cycle 6 Summary: 10-Iteration Verification Loop, Appointment List 1:1 Parity & Zero-Network-Leak Hardening
+- **Current Score**:
+  - `npm run verify` (`verify.js`): **42 / 42 Passed (0 Failures)**
+  - Automated 10-Iteration Verification Loop (`run_multi_iteration_test_loop.js`): **10 / 10 Iterations Passed (100% Green)**
+  - Interactive Multi-Page Navigation Suite (`comprehensive_audit_subagent2.js`): **60 / 60 Controls Tested & Passed (0 Failures, 0 Loops, 0 Dead Anchors)**
+  - REST & AJAX Backend APIs (`test_all_apis.js`): **69 / 69 Passed (0 Failures)**
+  - Responsive Viewport Parity (`run_visual_parity_audit.js`): **48 / 48 Combinations Passed (16 routes x 3 viewports: 390px, 768px, 1440px)**
+- **Console / Network Health**: **0 Console Errors, 0 Page Errors, 0 Network Leaks, 0 Broken Images**.
+- **Offline Hermetic Boundary**: **100% Localhost (`http://localhost:3000`) with Zero External Telemetry/Network Leakage**.
+
+### Key Diagnoses & Enhancements Applied in Cycle 6:
+1. **Appointment List Layout & Interaction Parity (`/home/appointmentlist`)**:
+   - **Root Cause**: Modals (`#paymentFormLayout`, `#popupsendmessage`, `.bs-example-modal-sm`) lacked inline `display: none;`, pushing the table card down to y=799 on the page and breaking visual alignment with the live site.
+   - **Fix**: Added explicit `style="display: none;"` to modal root containers and positioned them cleanly outside `#contentPadding`. Card rect restored to `y: 88, x: 90, width: 1340` on desktop.
+   - **Interactive Buttons Wired**:
+     - `.btncheckin`: Displays NotificationFx toast feedback ("Patient check in successful." / "Patient already checked in.").
+     - `.btnConsultation`: Navigates cleanly to `/dental/consultation?patientid=2223997`.
+     - `.apptPay`: Opens `#paymentFormLayout`, populates patient data, and `#btnRequestGlobal` submits and closes modal cleanly.
+     - `.btnAppointment`: Opens `.bs-example-modal-sm` cancellation modal, `#deleteAppointment` dispatches POST to `/Calendar/DeleteEvent`, closes modal, removes table row via `.remove()`, and refreshes count.
+     - `.CollapseIcon`: Smoothly collapses/expands accordion rows and toggles plus/minus SVG icons.
+
+2. **Videos Partial 404 & External Leakage Elimination**:
+   - **Root Cause**: `cleaned-partials/videos_list.html` had 264 hardcoded `img.youtube.com/vi/.../0.jpg` external thumbnail image tags which triggered 404s and leaked outside localhost.
+   - **Fix**: Replaced all external YouTube image tags with localized SVG asset `/Content/images/video_thumb.svg`, eliminating all network leaks and 404 console errors.
+
+3. **16-Page Navigation & Link Normalization**:
+   - Audited all 16 pages, 10 sidebar links, 7 header controls, 12 settings modules, 6 dental consultation tabs, and 5 FAQ accordions.
+   - Replaced relative navigation paths (`../../account/logOff`, `../Account/resetpassword`, `window.location = "../../home/search"`) with clean root-relative paths.
+
+4. **10-Iteration Verification Loop Completed**:
+   - Executed `node run_multi_iteration_test_loop.js` across 10 complete cycles covering all 16 pages and interactive workflows.
+   - Result: 10/10 Passed (0 Failures, 0 Errors, 0 Leaks, 0 Traps). Full-page screenshots captured for all 16 pages.
+
+---
+
 ## Cycle 5 Summary: Multi-Agent Parallel Audit, Multi-Viewport Verification & Backend Hardening
 - **Current Score**: **42 / 42 Core Tests Passed (`npm run verify`)** + **77 / 77 Button & Subpage Tests Passed (`verify_all_buttons_subpages_and_loops.js`)** + **60 / 60 Backend APIs Passed (`test_all_apis.js`)** + **48 / 48 Viewport Audits Passed (`audit_viewport_routes.js`)**
 - **Viewport Fidelity**: **100% (Zero Horizontal Overflow, Zero Broken Images, Zero Console Errors across 390px, 768px, 1440px)**

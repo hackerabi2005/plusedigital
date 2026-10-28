@@ -1,0 +1,433 @@
+{
+  "timestamp": "2026-10-27T18:59:30.982Z",
+  "pagesSummary": [
+    {
+      "name": "Login",
+      "url": "/account/login",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Dashboard",
+      "url": "/home/index",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Calendar",
+      "url": "/calendar/index",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Videos",
+      "url": "/home/videos",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Laboratory",
+      "url": "/lab/laboratory",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Patient Connect",
+      "url": "/patientconnect/index",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Reports",
+      "url": "/report/reports",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Social",
+      "url": "/social/index",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Settings",
+      "url": "/home/settings",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Search",
+      "url": "/home/search",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Profile View",
+      "url": "/home/profileview",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Support",
+      "url": "/home/support",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "FAQ",
+      "url": "/home/faq",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Patient Detail",
+      "url": "/patient/detail?patientid=2223997",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Dental Consultation",
+      "url": "/dental/consultation?patientid=2223997",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    },
+    {
+      "name": "Appointment List",
+      "url": "/home/appointmentlist",
+      "httpStatus": 200,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "passed": true
+    }
+  ],
+  "headerAudit": [
+    {
+      "item": "Logo Click",
+      "expected": "/home/index",
+      "actual": "http://localhost:3000/home/index",
+      "pass": true
+    },
+    {
+      "item": "Advanced Search Link",
+      "expected": "/home/search",
+      "actual": "http://localhost:3000/home/search",
+      "pass": true
+    },
+    {
+      "item": "Book Appointment Icon",
+      "expected": "/calendar/index",
+      "actual": "http://localhost:3000/calendar/index",
+      "pass": true
+    },
+    {
+      "item": "Notification Bell Dropdown",
+      "pass": true
+    },
+    {
+      "item": "User Dropdown -> Profile View",
+      "expected": "/home/profileview",
+      "actual": "http://localhost:3000/home/profileview",
+      "pass": true
+    },
+    {
+      "item": "User Dropdown -> Contact Us / Support",
+      "expected": "/home/support",
+      "actual": "http://localhost:3000/home/support",
+      "pass": true
+    },
+    {
+      "item": "User Dropdown -> Pulse Guide / FAQ",
+      "expected": "/home/faq",
+      "actual": "http://localhost:3000/home/faq",
+      "pass": true
+    }
+  ],
+  "sidebarAudit": [
+    {
+      "label": "Dashboard",
+      "selector": "#menuDashboard",
+      "href": "/home/index",
+      "urlAfter": "http://localhost:3000/home/index",
+      "pass": true
+    },
+    {
+      "label": "Appointment List",
+      "selector": "#menuAppointmentList",
+      "href": "/home/appointmentlist",
+      "urlAfter": "http://localhost:3000/home/appointmentlist",
+      "pass": true
+    },
+    {
+      "label": "Search",
+      "selector": "#menuSearch",
+      "href": "/home/search",
+      "urlAfter": "http://localhost:3000/home/search",
+      "pass": true
+    },
+    {
+      "label": "Calendar",
+      "selector": "#menuCalendar",
+      "href": "/calendar/index",
+      "urlAfter": "http://localhost:3000/calendar/index",
+      "pass": true
+    },
+    {
+      "label": "Videos",
+      "selector": "#menuVideos",
+      "href": "/home/videos",
+      "urlAfter": "http://localhost:3000/home/videos",
+      "pass": true
+    },
+    {
+      "label": "Laboratory",
+      "selector": "#menuLab",
+      "href": "/lab/laboratory",
+      "urlAfter": "http://localhost:3000/lab/laboratory",
+      "pass": true
+    },
+    {
+      "label": "Patient Connect",
+      "selector": "#bulkMessage",
+      "href": "/patientconnect/index",
+      "urlAfter": "http://localhost:3000/patientconnect/index",
+      "pass": true
+    },
+    {
+      "label": "Reports",
+      "selector": "#menuReports",
+      "href": "/report/reports",
+      "urlAfter": "http://localhost:3000/report/reports",
+      "pass": true
+    },
+    {
+      "label": "Social",
+      "selector": "#social",
+      "href": "/social/index",
+      "urlAfter": "http://localhost:3000/social/index",
+      "pass": true
+    },
+    {
+      "label": "Settings",
+      "selector": "#btnsetting",
+      "href": "/home/settings",
+      "urlAfter": "http://localhost:3000/home/settings",
+      "pass": true
+    }
+  ],
+  "inPageActionsAudit": {
+    "Login_Submit": true,
+    "Dashboard_SlotPopover": true,
+    "Dashboard_AddPatient": true,
+    "Calendar_BlockApptModal": true,
+    "Calendar_GoToDateModal": true,
+    "Calendar_View_.fc-month-button": true,
+    "Calendar_View_.fc-agendaWeek-button": true,
+    "Calendar_View_.fc-agendaDay-button": true,
+    "PatientDetail_TabBtnConsultation": true,
+    "PatientDetail_TabBtnBilling": true,
+    "PatientDetail_ClinicalExamination": true,
+    "PatientDetail_CommunicationRoundtrip": true,
+    "PatientDetail_EstimateModal": true,
+    "Dental_OdontogramToothClick": true,
+    "PatientConnect_SendMessage": true,
+    "Reports_GenerateReport": true,
+    "Social_PillsFilter": true,
+    "Videos_CategoryTab": true,
+    "Lab_FilterInput": true,
+    "Search_QueryExecution": true
+  },
+  "settingsSubpagesAudit": [
+    {
+      "subpage": "users",
+      "expectedUrl": "/home/users",
+      "actualUrl": "http://localhost:3000/home/users",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "locations",
+      "expectedUrl": "/home/locations",
+      "actualUrl": "http://localhost:3000/home/locations",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "fees",
+      "expectedUrl": "/home/fees",
+      "actualUrl": "http://localhost:3000/home/fees",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "appointmenttimings",
+      "expectedUrl": "/home/appointmenttiming",
+      "actualUrl": "http://localhost:3000/home/appointmenttiming",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "consents",
+      "expectedUrl": "/home/consents",
+      "actualUrl": "http://localhost:3000/home/consents",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "groups",
+      "expectedUrl": "/home/groups",
+      "actualUrl": "http://localhost:3000/home/groups",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "procedures",
+      "expectedUrl": "/home/procedure",
+      "actualUrl": "http://localhost:3000/home/procedure",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "medicalconditions",
+      "expectedUrl": "/home/medicalconditions",
+      "actualUrl": "http://localhost:3000/home/medicalconditions",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "supplier",
+      "expectedUrl": "/inventory/supplier",
+      "actualUrl": "http://localhost:3000/inventory/supplier",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "remedies",
+      "expectedUrl": "/home/remedies",
+      "actualUrl": "http://localhost:3000/home/remedies",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "packageremedies",
+      "expectedUrl": "/home/packageremedies",
+      "actualUrl": "http://localhost:3000/home/packageremedies",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    },
+    {
+      "subpage": "referral",
+      "expectedUrl": "/home/referral",
+      "actualUrl": "http://localhost:3000/home/referral",
+      "titleMatches": true,
+      "returnedCleanly": true,
+      "pass": true
+    }
+  ],
+  "dentalTabsAudit": [
+    {
+      "tab": "Clinical Examination",
+      "selector": "#tab1",
+      "pass": true
+    },
+    {
+      "tab": "Procedures",
+      "selector": "#tab2",
+      "pass": true
+    },
+    {
+      "tab": "Prescriptions",
+      "selector": "#tab3",
+      "pass": true
+    },
+    {
+      "tab": "Billing",
+      "selector": "#tab4",
+      "pass": true
+    },
+    {
+      "tab": "Preview & Print",
+      "selector": "#tab5",
+      "pass": true
+    },
+    {
+      "tab": "Lab Work / Other",
+      "selector": "#tab6",
+      "pass": true
+    }
+  ],
+  "faqAccordionsAudit": [
+    {
+      "question": "How to add patients?",
+      "pass": true
+    },
+    {
+      "question": "Where to book an appointment?",
+      "pass": true
+    },
+    {
+      "question": "How to book an appointment?",
+      "pass": true
+    },
+    {
+      "question": "When does a patient receive an SMS?",
+      "pass": true
+    },
+    {
+      "question": "Where to view the list of daily appointments and check in?",
+      "pass": true
+    }
+  ],
+  "loopAndBrokenLinksCheck": {
+    "redirectLoops": 0,
+    "brokenRelativeLinks": 0,
+    "deadAnchors": 0,
+    "brokenRelativeItems": [],
+    "deadAnchorItems": []
+  },
+  "totalButtonsTested": 60,
+  "totalButtonsPassed": 60,
+  "totalButtonsFailed": 0,
+  "totalConsoleErrors": 0,
+  "totalUnhandledExceptions": 0
+}

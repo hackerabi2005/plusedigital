@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Login",
+    "route": "/account/login",
+    "capturedHtml": "account_login.html",
+    "originalScreenshot": "screenshots/original/original_Login.png",
+    "originalSize": 748345,
+    "cloneScreenshot": "screenshots/clone/clone_Login.png",
+    "cloneSize": 765152
+  },
+  {
+    "name": "Dashboard",
+    "route": "/home/index",
+    "capturedHtml": "home_index.html",
+    "originalScreenshot": "screenshots/original/original_Dashboard.png",
+    "originalSize": 118119,
+    "cloneScreenshot": "screenshots/clone/clone_Dashboard.png",
+    "cloneSize": 84785
+  },
+  {
+    "name": "Calendar",
+    "route": "/calendar/index",
+    "capturedHtml": "calendar.html",
+    "originalScreenshot": "screenshots/original/original_Calendar.png",
+    "originalSize": 83846,
+    "cloneScreenshot": "screenshots/clone/clone_Calendar.png",
+    "cloneSize": 53386
+  },
+  {
+    "name": "Appointment_List",
+    "route": "/home/appointmentlist",
+    "capturedHtml": "appointment_list.html",
+    "originalScreenshot": "screenshots/original/original_Appointment_List.png",
+    "originalSize": 24023,
+    "cloneScreenshot": "screenshots/clone/clone_Appointment_List.png",
+    "cloneSize": 44511
+  },
+  {
+    "name": "Dental_Consultation",
+    "route": "/dental/consultation?patientid=2223997",
+    "capturedHtml": "dental_consultation.html",
+    "originalScreenshot": "screenshots/original/original_Dental_Consultation.png",
+    "originalSize": 149550,
+    "cloneScreenshot": "screenshots/clone/clone_Dental_Consultation.png",
+    "cloneSize": 144403
+  },
+  {
+    "name": "Patient_Detail",
+    "route": "/patient/detail?patientid=2223997",
+    "capturedHtml": "patient_detail.html",
+    "originalScreenshot": "screenshots/original/original_Patient_Detail.png",
+    "originalSize": 104739,
+    "cloneScreenshot": "screenshots/clone/clone_Patient_Detail.png",
+    "cloneSize": 102594
+  },
+  {
+    "name": "Laboratory",
+    "route": "/lab/laboratory",
+    "capturedHtml": "lab.html",
+    "originalScreenshot": "screenshots/original/original_Laboratory.png",
+    "originalSize": 39195,
+    "cloneScreenshot": "screenshots/clone/clone_Laboratory.png",
+    "cloneSize": 61035
+  },
+  {
+    "name": "Patient_Connect",
+    "route": "/patientconnect/index",
+    "capturedHtml": "patientconnect.html",
+    "originalScreenshot": "screenshots/original/original_Patient_Connect.png",
+    "originalSize": 37757,
+    "cloneScreenshot": "screenshots/clone/clone_Patient_Connect.png",
+    "cloneSize": 199867
+  },
+  {
+    "name": "Reports",
+    "route": "/report/reports",
+    "capturedHtml": "reports.html",
+    "originalScreenshot": "screenshots/original/original_Reports.png",
+    "originalSize": 41982,
+    "cloneScreenshot": "screenshots/clone/clone_Reports.png",
+    "cloneSize": 42455
+  },
+  {
+    "name": "Social",
+    "route": "/social/index",
+    "capturedHtml": "social.html",
+    "originalScreenshot": "screenshots/original/original_Social.png",
+    "originalSize": 81292,
+    "cloneScreenshot": "screenshots/clone/clone_Social.png",
+    "cloneSize": 859676
+  },
+  {
+    "name": "Settings",
+    "route": "/home/settings",
+    "capturedHtml": "settings.html",
+    "originalScreenshot": "screenshots/original/original_Settings.png",
+    "originalSize": 54277,
+    "cloneScreenshot": "screenshots/clone/clone_Settings.png",
+    "cloneSize": 55211
+  },
+  {
+    "name": "Search",
+    "route": "/home/search",
+    "capturedHtml": "search.html",
+    "originalScreenshot": "screenshots/original/original_Search.png",
+    "originalSize": 72196,
+    "cloneScreenshot": "screenshots/clone/clone_Search.png",
+    "cloneSize": 74533
+  },
+  {
+    "name": "Profile_View",
+    "route": "/home/profileview",
+    "capturedHtml": "profileview.html",
+    "originalScreenshot": "screenshots/original/original_Profile_View.png",
+    "originalSize": 34484,
+    "cloneScreenshot": "screenshots/clone/clone_Profile_View.png",
+    "cloneSize": 35325
+  },
+  {
+    "name": "Support",
+    "route": "/home/support",
+    "capturedHtml": "support.html",
+    "originalScreenshot": "screenshots/original/original_Support.png",
+    "originalSize": 186137,
+    "cloneScreenshot": "screenshots/clone/clone_Support.png",
+    "cloneSize": 185422
+  },
+  {
+    "name": "FAQ",
+    "route": "/home/faq",
+    "capturedHtml": "faq.html",
+    "originalScreenshot": "screenshots/original/original_FAQ.png",
+    "originalSize": 98201,
+    "cloneScreenshot": "screenshots/clone/clone_FAQ.png",
+    "cloneSize": 95958
+  },
+  {
+    "name": "Videos",
+    "route": "/home/videos",
+    "capturedHtml": "videos.html",
+    "originalScreenshot": "screenshots/original/original_Videos.png",
+    "originalSize": 60489,
+    "cloneScreenshot": "screenshots/clone/clone_Videos.png",
+    "cloneSize": 60489
+  }
+]

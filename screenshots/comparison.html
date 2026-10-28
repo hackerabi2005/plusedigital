@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pulse PMS: Original vs Clone Screenshot Visual Parity</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 2rem; }
+    h1 { margin-bottom: 0.5rem; }
+    p.sub { color: #94a3b8; margin-bottom: 2rem; }
+    .page-card { background: #1e293b; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid #334155; }
+    .page-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 1rem; color: #38bdf8; display: flex; justify-content: space-between; }
+    .side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .pane { background: #0b1120; border-radius: 6px; padding: 1rem; border: 1px solid #1e293b; }
+    .pane h4 { margin-top: 0; color: #cbd5e1; display: flex; justify-content: space-between; }
+    .pane img { width: 100%; border-radius: 4px; border: 1px solid #334155; }
+    .meta { font-size: 0.85rem; color: #64748b; font-weight: normal; }
+  </style>
+</head>
+<body>
+  <h1>Pulse PMS Visual Parity: Original Captured vs 1:1 Cleaned Clone</h1>
+  <p class="sub">Auditing 16 Core Application Interfaces (1440x900 Full-Page High Fidelity)</p>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Login</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/account/login</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">730.8 KB</span></h4>
+          <img src="original/original_Login.png" alt="Original Login" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">747.2 KB</span></h4>
+          <img src="clone/clone_Login.png" alt="Clone Login" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Dashboard</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/index</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">115.4 KB</span></h4>
+          <img src="original/original_Dashboard.png" alt="Original Dashboard" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">82.8 KB</span></h4>
+          <img src="clone/clone_Dashboard.png" alt="Clone Dashboard" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Calendar</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/calendar/index</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">81.9 KB</span></h4>
+          <img src="original/original_Calendar.png" alt="Original Calendar" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">52.1 KB</span></h4>
+          <img src="clone/clone_Calendar.png" alt="Clone Calendar" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Appointment List</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/appointmentlist</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">23.5 KB</span></h4>
+          <img src="original/original_Appointment_List.png" alt="Original Appointment_List" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">43.5 KB</span></h4>
+          <img src="clone/clone_Appointment_List.png" alt="Clone Appointment_List" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Dental Consultation</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/dental/consultation?patientid=2223997</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">146.0 KB</span></h4>
+          <img src="original/original_Dental_Consultation.png" alt="Original Dental_Consultation" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">141.0 KB</span></h4>
+          <img src="clone/clone_Dental_Consultation.png" alt="Clone Dental_Consultation" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Patient Detail</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/patient/detail?patientid=2223997</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">102.3 KB</span></h4>
+          <img src="original/original_Patient_Detail.png" alt="Original Patient_Detail" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">100.2 KB</span></h4>
+          <img src="clone/clone_Patient_Detail.png" alt="Clone Patient_Detail" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Laboratory</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/lab/laboratory</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">38.3 KB</span></h4>
+          <img src="original/original_Laboratory.png" alt="Original Laboratory" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">59.6 KB</span></h4>
+          <img src="clone/clone_Laboratory.png" alt="Clone Laboratory" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Patient Connect</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/patientconnect/index</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">36.9 KB</span></h4>
+          <img src="original/original_Patient_Connect.png" alt="Original Patient_Connect" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">195.2 KB</span></h4>
+          <img src="clone/clone_Patient_Connect.png" alt="Clone Patient_Connect" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Reports</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/report/reports</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">41.0 KB</span></h4>
+          <img src="original/original_Reports.png" alt="Original Reports" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">41.5 KB</span></h4>
+          <img src="clone/clone_Reports.png" alt="Clone Reports" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Social</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/social/index</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">79.4 KB</span></h4>
+          <img src="original/original_Social.png" alt="Original Social" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">839.5 KB</span></h4>
+          <img src="clone/clone_Social.png" alt="Clone Social" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Settings</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/settings</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">53.0 KB</span></h4>
+          <img src="original/original_Settings.png" alt="Original Settings" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">53.9 KB</span></h4>
+          <img src="clone/clone_Settings.png" alt="Clone Settings" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Search</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/search</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">70.5 KB</span></h4>
+          <img src="original/original_Search.png" alt="Original Search" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">72.8 KB</span></h4>
+          <img src="clone/clone_Search.png" alt="Clone Search" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Profile View</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/profileview</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">33.7 KB</span></h4>
+          <img src="original/original_Profile_View.png" alt="Original Profile_View" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">34.5 KB</span></h4>
+          <img src="clone/clone_Profile_View.png" alt="Clone Profile_View" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Support</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/support</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">181.8 KB</span></h4>
+          <img src="original/original_Support.png" alt="Original Support" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">181.1 KB</span></h4>
+          <img src="clone/clone_Support.png" alt="Clone Support" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>FAQ</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/faq</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">95.9 KB</span></h4>
+          <img src="original/original_FAQ.png" alt="Original FAQ" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">93.7 KB</span></h4>
+          <img src="clone/clone_FAQ.png" alt="Clone FAQ" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+    <div class="page-card">
+      <div class="page-title">
+        <span>Videos</span>
+        <span style="font-family: monospace; font-size: 0.9rem; color: #a5b4fc;">/home/videos</span>
+      </div>
+      <div class="side-by-side">
+        <div class="pane">
+          <h4>Original Captured (Production) <span class="meta">59.1 KB</span></h4>
+          <img src="original/original_Videos.png" alt="Original Videos" loading="lazy" />
+        </div>
+        <div class="pane">
+          <h4>Cloned & Repaired (Localhost) <span class="meta">59.1 KB</span></h4>
+          <img src="clone/clone_Videos.png" alt="Clone Videos" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  
+</body>
+</html>

@@ -250,6 +250,40 @@ const apisToAudit = [
   { name: 'Patient Report DataTables Result API', path: '/report/patientreportresult?draw=1&start=0&length=10', method: 'GET', expectedType: 'json', validate: (res) => {
     const dt = JSON.parse(res.body);
     return dt.draw === 1 && typeof dt.recordsTotal === 'number' && Array.isArray(dt.data) && dt.data.length > 0;
+  }},
+  { name: 'Consultation Report Result API', path: '/report/consultationreportresult?draw=1&start=0&length=10', method: 'GET', expectedType: 'json', validate: (res) => {
+    const dt = JSON.parse(res.body);
+    return dt.draw === 1 && typeof dt.recordsTotal === 'number' && Array.isArray(dt.data);
+  }},
+  { name: 'Billing Report Result API', path: '/report/billingreportresult?draw=1&start=0&length=10', method: 'GET', expectedType: 'json', validate: (res) => {
+    const dt = JSON.parse(res.body);
+    return dt.draw === 1 && typeof dt.recordsTotal === 'number' && Array.isArray(dt.data);
+  }},
+  { name: 'Show Patient Clinical Notes Partial', path: '/report/showpatientnotes?FirstName=Yalini&LastName=&filenumber=7241&Mobile=7548801024&Email=yalini@patient.com', method: 'GET', expectedType: 'html', validate: (res) => {
+    return res.body.includes('Clinical Notes for Yalini') && res.body.includes('7241');
+  }},
+
+  // 8. Core Frontend Integration & Action APIs
+  { name: 'Appointment List View (lowercase)', path: '/home/appointmentlist', method: 'GET', expectedType: 'html', validate: (res) => {
+    return res.body.includes('Appointment') && (res.body.includes('AppointmentListTable') || res.body.includes('appointment_list') || res.body.includes('Appointment List'));
+  }},
+  { name: 'Appointment List View (PascalCase)', path: '/home/AppointmentList', method: 'GET', expectedType: 'html', validate: (res) => {
+    return res.body.includes('Appointment') && (res.body.includes('AppointmentListTable') || res.body.includes('appointment_list') || res.body.includes('Appointment List'));
+  }},
+  { name: 'Delete Calendar Event API', path: '/Calendar/DeleteEvent', method: 'POST', body: { EventID: 'test_event_delete' }, expectedType: 'html', validate: (res) => {
+    return res.body === 'True';
+  }},
+  { name: 'Patient Pending Bill API', path: '/Home/GetPatientPendingBill?name=Yalini', method: 'POST', body: JSON.stringify('Yalini'), expectedType: 'json', validate: (res) => {
+    const str = JSON.parse(res.body);
+    return typeof str === 'string' && str.includes('-');
+  }},
+  { name: 'Enable Payment Status API', path: '/Home/EnablePayment', method: 'POST', body: {}, expectedType: 'json', validate: (res) => {
+    const val = JSON.parse(res.body);
+    return val === 'true' || val === true;
+  }},
+  { name: 'Instant Fees API', path: '/Home/GetInstaFees', method: 'POST', body: {}, expectedType: 'json', validate: (res) => {
+    const str = JSON.parse(res.body);
+    return typeof str === 'string' && str.includes('-');
   }}
 ];
 

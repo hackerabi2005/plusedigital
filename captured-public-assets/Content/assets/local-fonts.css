@@ -1,0 +1,14 @@
+/* Local Offline Font Fallbacks for Pulse PMS */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300 700;
+  src: local('Roboto'), local('Segoe UI'), local('Arial'), sans-serif;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('Segoe UI Symbol'), sans-serif;
+}

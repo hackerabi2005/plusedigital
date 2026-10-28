@@ -5,7 +5,11 @@ const url = require('url');
 const querystring = require('querystring');
 
 const PORT = process.env.PORT || 3000;
-const ROOT_DIR = __dirname;
+const ROOT_DIR = fs.existsSync(path.join(__dirname, 'captured-public-assets'))
+  ? __dirname
+  : (fs.existsSync(path.join(process.cwd(), 'captured-public-assets'))
+      ? process.cwd()
+      : path.join(__dirname, '..'));
 const ASSETS_DIR = path.join(ROOT_DIR, 'captured-public-assets');
 const PAGES_DIR = path.join(ROOT_DIR, 'cleaned-pages');
 const PARTIALS_DIR = path.join(ROOT_DIR, 'cleaned-partials');
@@ -75,23 +79,40 @@ const state = {
       locationId: '1395',
       locationName: ' Vaiyapuri Nagar,Kurumbpalayam',
       date: '24/10/2026',
-      time: '10:30 AM',
+      time: '11:30 AM',
       duration: 30,
-      treatment: 'Root Canal Treatment (RCT), Scaling'
+      treatment: 'Root Canal Treatment (RCT), Scaling',
+      consultationCode: 'dental'
     },
     {
       id: '900102',
       patientId: '2223851',
-      title: 'Mr. Abrahamthomas',
-      mobile: '9842210451',
+      title: 'Mr.  Abrahamthomas',
+      mobile: '9840123456',
       doctorId: '17472',
       doctorName: 'Dr. Naveena Ramnath',
       locationId: '1395',
-      locationName: ' Vaiyapuri Nagar,Kurumbpalayam',
+      locationName: ' Band lane, ooty',
       date: '24/10/2026',
-      time: '04:30 PM',
+      time: '02:15 PM',
       duration: 15,
-      treatment: 'Consultation'
+      treatment: 'Consultation',
+      consultationCode: 'dental'
+    },
+    {
+      id: '900103',
+      patientId: '2223790',
+      title: 'Mr.  Ramkumar S',
+      mobile: '9443217890',
+      doctorId: '17472',
+      doctorName: 'Dr. Naveena Ramnath',
+      locationId: '1395',
+      locationName: ' Band lane, ooty',
+      date: '24/10/2026',
+      time: '04:00 PM',
+      duration: 15,
+      treatment: 'Consultation',
+      consultationCode: 'dental'
     }
   ],
   dentalConditions: [
@@ -314,7 +335,17 @@ function buildAppointmentTimingsHtml(dateStr) {
 
 function buildPopoverHtml(dateStr, timeStr) {
   const normTime = (timeStr || '').replace(/^0/, '').trim();
-  const appt = state.appointments.find(a => a.time.replace(/^0/, '').trim() === normTime) || state.appointments[0] || {
+  const appt = state.appointments.find(a => a.time.replace(/^0/, '').trim() === normTime) || (normTime.includes('10:30') ? {
+    id: '900101',
+    patientId: '2223997',
+    title: 'Ms.  Yalini',
+    mobile: '7548801024',
+    doctorName: 'Dr. Naveena Ramnath',
+    locationName: ' Vaiyapuri Nagar,Kurumbpalayam',
+    date: dateStr || '24/10/2026',
+    time: '10:30 AM',
+    treatment: 'Root Canal Treatment (RCT), Scaling'
+  } : state.appointments[0]) || {
     id: '900101',
     patientId: '2223997',
     title: 'Ms.  Yalini',
@@ -352,7 +383,7 @@ function buildTodayAppointmentsHtml() {
         <div class="row ml-3 pb-2 pt-2" style="border-bottom:1px solid #ececec;">
           <div class="w-85" style="padding-right:10px;">
             <div style="display:flex;" class="atDetails">
-              <a href="../patient/detail?patientid=${a.patientId}" style="padding-left:3px !important" class="heading_today AlPatientName w-75">${a.title}</a>
+              <a href="/patient/detail?patientid=${a.patientId}" style="padding-left:3px !important" class="heading_today AlPatientName w-75">${a.title}</a>
               <div class="AlTime d-flex w-25"><i class="far fa-clock AlIcons"></i> <span class="pl-2">${a.time}</span></div>
             </div>
             <div class="collapse" id="appt_${a.id}" style="padding-top:5px;">
@@ -384,6 +415,115 @@ function buildTodayAppointmentsHtml() {
   const tableHtml = `<div class="card-header pt-2 pb-2 pr-3 pl-3"><div class="cardHeadingText">Scheduled Appointments (${state.appointments.length})</div></div><table class="table AppointmentListTable" id="AppointmentListTable" style="table-layout: fixed;"><tbody>${rows}</tbody></table>`;
   html = html.replace('<div class="">\n\n</div>', tableHtml).replace('<div class="">\r\n\r\n</div>', tableHtml);
   html = html.replace('$(".todaysSchedule").html(\'0\');', `$(".todaysSchedule").html('${state.appointments.length}');`);
+  return html;
+}
+
+function renderAppointmentListRows() {
+  if (!state.appointments || state.appointments.length === 0) {
+    return '<tr><td colspan="2" class="text-center p-4 text-muted">No appointments found.</td></tr>';
+  }
+  const colorMap = ['#9b6ce8', '#00bcd4', '#4caf50', '#ff9800', '#e91e63'];
+  const colorClasses = ['color1', 'color2', 'color3', 'color4', 'color5'];
+
+  return state.appointments.map((a, index) => {
+    const isLast = (index === state.appointments.length - 1);
+    const colorHex = colorMap[index % colorMap.length];
+    const colorClass = colorClasses[index % colorClasses.length];
+    const lastClass = isLast ? ' lastopendiv' : '';
+    const pid = a.patientId || '2223997';
+    const ccode = a.consultationCode || 'dental';
+    const docName = a.doctorName || 'Dr. Naveena Ramnath';
+    const docId = a.doctorId || '17472';
+    const locName = a.locationName || 'Vaiyapuri Nagar,Kurumbpalayam';
+    const evDate = a.date || '24/10/2026';
+    const evTime = a.time || '11:00 AM';
+    const mobile = a.mobile || '';
+    const title = a.title || 'Patient';
+
+    return `
+      <tr id="tr_appt_${a.id}">
+        <td class="btnAppointment" style="width:4%; background-color:#ffffff !important;border-top:none!important;" align="center" valign="middle">
+          <button type="button" class="btn define_btn define-Appointment-circle today_color ${colorClass}" style="background:${colorHex};"></button>
+        </td>
+        <td class="list-group-heading AppointmentListContainer${lastClass}" valign="middle" style="border-top:none!important;">
+          <div class="row ml-3 pb-2 pt-2" style="border-bottom:1px solid #ececec;">
+            <div class="w-85" style="padding-right:10px;">
+              <div style="display:flex;" class="atDetails">
+                <a href="/patient/detail?patientid=${pid}" style="padding-left:3px !important" class="heading_today AlPatientName w-75">${title}</a>
+                <div class="AlTime d-flex w-25"><i class="far fa-clock AlIcons"></i> <span class="pl-2">${evTime}</span></div>
+              </div>
+              <div class="collapse show" id="appt_${a.id}" style="padding-top:5px;">
+                <div class="subheading_today desktopMobileLink AlPatientMobile" style="padding-bottom:5px;"><i class="fas fa-mobile-alt AlIcons" style="padding-left:3px;padding-right:3px;"></i> <span class="pl-2">${mobile}</span></div>
+                <div class="subheading_today desktopMobileLink AlPatientMobile" style="padding-bottom:5px;">
+                  <img src="/Content/images/svg/doctor.svg" style="width:18px;height:18px;">
+                  <span class="pl-2">${docName}</span>
+                </div>
+                <div class="pull-left mt-2">
+                  <div class="btn-group m-0" role="group">
+                    <a class="btncheckin" data-patientid="${pid}" data-userid="${docId}" title="Patient Check In" style="cursor:pointer; margin-right:8px;">
+                      <img class="IconButtons" src="../../Content/images/svg/CheckIn.svg" title="Check In">
+                    </a>
+                    <a class="btnConsultation" href="/${ccode}/consultation?patientid=${pid}" title="Start Consultation" style="cursor:pointer; margin-right:8px;">
+                      <img class="IconButtons" src="../../Content/images/svg/consultation.svg" title="Consultation">
+                    </a>
+                    <a class="apptPay" title="Collect Payment" style="cursor:pointer; margin-right:8px;">
+                      <img class="IconButtons" src="../../Content/images/svg/PaymentRequest.svg" title="Payment">
+                    </a>
+                    <a class="btnAppointment" data-toggle="modal" data-target=".bs-example-modal-sm" title="Cancel Appointment" style="cursor:pointer;">
+                      <img class="IconButtons" src="../../Content/images/svg/closeDark.svg" title="Cancel">
+                    </a>
+                    <input type="hidden" class="todayApptPatientID" value="${pid}">
+                    <input type="hidden" class="todayApptConsultationCode" value="${ccode}">
+                    <input type="hidden" class="todayApptID" value="${a.id}">
+                    <input type="hidden" class="todayApptTitle" value="${title}">
+                    <input type="hidden" class="todayApptUserID" value="${docId}">
+                    <input type="hidden" class="todayApptMobile" value="${mobile}">
+                    <input type="hidden" class="todayApptEventDate" value="${evDate}">
+                    <input type="hidden" class="todayApptEventTime" value="${evTime}">
+                    <input type="hidden" class="todayApptLocation" value="${locName}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-15" style="padding-right:16px;">
+              <img src="../../Content/images/svg/minus.svg" class="CollapseIcon" data-toggle="collapse" href="#appt_${a.id}" data-target="#appt_${a.id}" title="collapse Details" style="cursor:pointer;">
+            </div>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('\n');
+}
+
+function buildAppointmentListPage(isPartial = false) {
+  const rows = renderAppointmentListRows();
+  if (isPartial) {
+    return `
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-md-12 col-sm-12 col-xs-12 p-0">
+                <div class="card">
+                    <div class="card-header pt-2 pb-2 pr-3 pl-3">
+                        <div class="cardHeadingText">Appointment List</div>
+                    </div>
+                    <div class="p-0">
+                        <table class="table AppointmentListTable" id="AppointmentListTable" style="table-layout: fixed; margin-bottom: 0;">
+                            <tbody>
+                                ${rows}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+  }
+
+  let html = readPage('appointment_list.html');
+  const tbodyRegex = /(<table[^>]*id="AppointmentListTable"[^>]*>[\s\S]*?<tbody>)[\s\S]*?(<\/tbody>[\s\S]*?<\/table>)/i;
+  if (tbodyRegex.test(html)) {
+    html = html.replace(tbodyRegex, `$1${rows}$2`);
+  }
   return html;
 }
 
@@ -1284,7 +1424,8 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (pathname === '/home/appointmentlist' || pathname === '/appointmentlist') {
-    return sendHtml(res, readPage('appointment_list.html'));
+    const isAjax = req.headers['x-requested-with'] === 'XMLHttpRequest' || query.partial === 'true';
+    return sendHtml(res, buildAppointmentListPage(isAjax));
   }
 
   // 4. Dashboard & Global Layout Backend APIs
@@ -1334,8 +1475,16 @@ const server = http.createServer(async (req, res) => {
     return sendJson(res, 5);
   }
 
-  if (pathname === '/home/enablepayment' || pathname === '/home/getinstafees') {
-    return sendJson(res, 'True');
+  if (pathname === '/home/enablepayment') {
+    return sendJson(res, "true");
+  }
+
+  if (pathname === '/home/getinstafees') {
+    return sendJson(res, "500-18");
+  }
+
+  if (pathname === '/home/getusernameandpassword') {
+    return sendJson(res, "drnaveena@pulseclinic.com-Pulse@123");
   }
 
   if (pathname === '/home/getpatientcheckincount') {
@@ -1406,9 +1555,11 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (pathname === '/home/getpatientpendingbill') {
-    const name = (query.name || '').toLowerCase();
-    const p = state.patients.find(x => x.fullName.toLowerCase().includes(name)) || state.patients[0];
-    return sendJson(res, [`0-${p.mobile}-${p.email || 'patient@clinic.com'}-${p.id}`]);
+    const body = await parseBody(req);
+    const rawName = query.name || (typeof body === 'string' ? body : (body && (body.name || body.userName))) || '';
+    const name = String(rawName).toLowerCase().trim();
+    const p = state.patients.find(x => name && (x.fullName.toLowerCase().includes(name) || x.id === name || x.firstName.toLowerCase().includes(name))) || state.patients[0];
+    return sendJson(res, `${p.id}-${p.mobile}-${p.email || 'patient@pulseclinic.com'}-0.00`);
   }
 
   if (pathname === '/home/patientsearch' || pathname === '/calendar/patientnameautocomplete') {
@@ -1477,7 +1628,7 @@ const server = http.createServer(async (req, res) => {
 
   if (pathname === '/calendar/deleteevent') {
     const body = await parseBody(req);
-    const eventId = body.EventID || query.EventID;
+    const eventId = body.EventID || query.EventID || body.eventID || query.eventID || body.eventId || query.eventId || body.id || query.id;
     if (eventId) {
       state.appointments = state.appointments.filter(a => a.id !== String(eventId));
     }
@@ -1907,6 +2058,22 @@ const server = http.createServer(async (req, res) => {
         }))
       });
     }
+    if (pathname === '/report/showpatientnotes') {
+      const fn = query.FirstName || 'Yalini';
+      const ln = query.LastName || '';
+      const fno = query.filenumber || '7241';
+      const mob = query.Mobile || '7548801024';
+      const em = query.Email || 'yalini@patient.com';
+      return sendHtml(res, `
+        <div class="card p-3">
+          <h5><i class="fas fa-file-medical text-primary mr-2"></i> Clinical Notes for ${fn} ${ln} (#${fno})</h5>
+          <p class="text-muted"><i class="fas fa-phone mr-1"></i> ${mob} | <i class="fas fa-envelope mr-1"></i> ${em}</p>
+          <div class="alert alert-info mt-2">
+            <strong>Oct 24, 2026:</strong> Patient presented with sensitivity on upper right quadrant. Pulp vitality testing confirmed symptomatic irreversible pulpitis in tooth 16. Root canal therapy initiated under local anesthesia. Working length determined (MB: 20mm, DB: 19.5mm, P: 21mm). Master cone trial scheduled for next appointment.
+          </div>
+        </div>
+      `);
+    }
     if (pathname.endsWith('report') || pathname.includes('report')) {
       return sendHtml(res, readPartial('report_patient.html'));
     }
@@ -1926,6 +2093,10 @@ const server = http.createServer(async (req, res) => {
     return sendJson(res, ['Dental Implants', 'Root Canal Procedure', 'Oral Hygiene & Brushing', 'Orthodontic Braces']);
   }
 
+  if (pathname === '/home/getvideos') {
+    return sendHtml(res, readPartial('videos_list.html'));
+  }
+
   if (pathname === '/home/smsvideolink' || pathname === '/home/requestquery') {
     await parseBody(req);
     return sendJson(res, true);
@@ -1938,6 +2109,13 @@ const server = http.createServer(async (req, res) => {
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ ok: true }));
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('Server Uncaught Exception:', err);
+});
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Server Unhandled Rejection:', reason);
 });
 
 if (require.main === module) {
